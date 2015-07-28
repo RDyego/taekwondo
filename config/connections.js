@@ -29,7 +29,7 @@ module.exports.connections = {
   *                                                                          *
   ***************************************************************************/
   localDiskDb: {
-    adapter: 'sails-disk'
+    adapter: 'sails-mongo'//'sails-disk'
   },
 
   /***************************************************************************
@@ -60,9 +60,10 @@ module.exports.connections = {
     adapter: 'sails-mongo',
     host: 'localhost',
     port: 27017,
-    // user: 'username',
-    // password: 'password',
-    // database: 'your_mongo_db_name_here'
+    user: '',
+    password: '',
+    database: 'activityoverlord',
+    schema: true
   },
 
   /***************************************************************************
