@@ -1,7 +1,7 @@
 /**
- * UserController
+ * AdminController
  *
- * @description :: Server-side logic for managing users
+ * @description :: Server-side logic for managing admins
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
@@ -11,22 +11,23 @@ module.exports = {
 	},
 
 	index: function (req, res, next) {
-		User.find({}).exec(function (err, usersFound) {
+		Admin.find({}).exec(function (err, usersFound) {
 			if (err) return next(err);
 			res.view({ users: usersFound });
 		});
 	},
 
 	create: function (req, res, next) {
-		var userViewModel = {
+		var adminViewModel = {
 			name: req.param('name'),
 			email: req.param('email'),
+			password: req.param('password'),
+			confirmation: req.param('confirmation')
 		};
 
-		User.create(userViewModel).exec(function (err, userCreated) {
-			if (err) res.redirect('/user/new');
-			res.redirect('/user/index');
+		Admin.create(adminViewModel).exec(function (err, userCreated) {
+			if (err) res.redirect('/admin/new');
+			res.redirect('/admin/index');
 		});
 	}
 };
-

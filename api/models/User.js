@@ -15,7 +15,22 @@ module.exports = {
       type: 'email',
       required: true,
       unique: true
-    }
+    },
+    bday: {
+      type: 'date'
+    },
   }
 };
 
+/*
+var userBaseModel = require('../services/baseModels/userBaseModel');
+
+module.exports = _.merge(userBaseModel, {
+  scheme: true,
+  attributes: {
+    bday: {
+      type: 'date'
+    },
+  },
+});
+*/
