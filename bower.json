@@ -1,0 +1,17 @@
+{
+  "name": "taekwondo",
+  "version": "0.0.0",
+  "homepage": "https://github.com/RDyego/taekwondo",
+  "authors": [
+    "R. Dyego <dyego@alu.ufc.br>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/bower_components",
+    "test",
+    "tests"
+  ]
+}
