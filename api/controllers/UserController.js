@@ -21,6 +21,8 @@ module.exports = {
 		var userViewModel = {
 			name: req.param('name'),
 			email: req.param('email'),
+			password: req.param('password'),
+			confirmation: req.param('confirmation')
 		};
 
 		User.create(userViewModel).exec(function (err, userCreated) {
