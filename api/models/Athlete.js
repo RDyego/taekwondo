@@ -13,6 +13,12 @@ module.exports = {
       required: true,
       size: 100
     },
+    email: {
+      type: 'email',
+      //required: true,
+      unique: true,
+      size: 100
+    },
     fatherName: {
       type: 'string',
       size: 100
@@ -23,12 +29,6 @@ module.exports = {
     },
     address: {
       type: 'string',
-      size: 100
-    },
-    email: {
-      type: 'email',
-      required: true,
-      unique: true,
       size: 100
     },
     cep: {
@@ -64,7 +64,7 @@ module.exports = {
     },
     education: {
       type: 'string',
-      enum: ['primary', 'secondary', 'superior']
+      enum: ['Primary', 'Secondary', 'Superior']
     },
     cpf: {
       type: 'string',
