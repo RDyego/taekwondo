@@ -2,15 +2,103 @@
 	<div class="card center">
 		<form action="/athlete/create" method="post" class="col s12">
 			<div class="row">
-				<div class="input-field col s12">
-					<input id="name" name="name" type="text" class="validate">
+				<div class="input-field col s6">
+					<input id="name" name="name" type="text" class="validate" maxlength="50">
 					<label for="name" data-error="Invalid Name..." data-success="Ok...">Name</label>
+				</div>
+				<div class="input-field col s6">
+					<input id="email" name="email" type="email" class="validate" maxlength="50">
+					<label for="email" data-error="Invalid Email..." data-success="Ok...">Email</label>
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s12">
-					<input id="email" name="email" type="email" class="validate">
-					<label for="email" data-error="Invalid Email..." data-success="Ok...">Email</label>
+				<div class="input-field col s6">
+					<input id="fatherName" name="fatherName" type="text" class="validate" maxlength="50">
+					<label for="fatherName" data-error="Invalid Name..." data-success="Ok...">Pai</label>
+				</div>
+				<div class="input-field col s6">
+					<input id="motherName" name="motherName" type="text" class="validate" maxlength="50">
+					<label for="motherName" data-error="Invalid Email..." data-success="Ok...">Mãe</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3">
+					<input id="bday" name="bday" type="text" class="validate" maxlength="20">
+					<label for="bday" data-error="Invalid Email..." data-success="Ok...">Data de Nascimento</label>
+				</div>
+				<div class="input-field col s3">
+					<input id="education" name="education" type="text" class="validate" maxlength="20">
+					<label for="education" data-error="Invalid Email..." data-success="Ok...">Escolaridade</label>
+				</div>
+				<div class="input-field col s3">
+					<input id="naturalness" name="naturalness" type="text" class="validate" maxlength="20">
+					<label for="naturalness" data-error="Invalid Email..." data-success="Ok...">Natural de</label>
+				</div>
+				<div class="input-field col s3">
+					<input id="nationality" name="nationality" type="text" class="validate" maxlength="50">
+					<label for="nationality" data-error="Invalid Email..." data-success="Ok...">Nacionalidade</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input id="profession" name="profession" type="text" class="validate" maxlength="50">
+					<label for="profession" data-error="Invalid Name..." data-success="Ok...">Profissão</label>
+				</div>
+				<div class="input-field col s3">
+					<input id="rg" name="rg" type="text" class="validate" maxlength="20">
+					<label for="rg" data-error="Invalid Email..." data-success="Ok...">RG</label>
+				</div>
+				<div class="input-field col s3">
+					<input id="cpf" name="cpf" type="text" class="validate" maxlength="50">
+					<label for="cpf" data-error="Invalid Email..." data-success="Ok...">CPF</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s9">
+					<input id="address" name="address" type="text" class="validate" maxlength="75">
+					<label for="address" data-error="Invalid Name..." data-success="Ok...">Endereço</label>
+				</div>
+				<div class="input-field col s3">
+					<input id="cep" name="cep" type="text" class="validate" maxlength="50">
+					<label for="cep" data-error="Invalid Name..." data-success="Ok...">CEP</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s9">
+					<input id="businessAddress" name="businessAddress" type="text" class="validate" maxlength="75">
+					<label for="businessAddress" data-error="Invalid Name..." data-success="Ok...">Endereço Comercial</label>
+				</div>
+				<div class="input-field col s3">
+					<input id="phone" name="phone" type="text" class="validate" maxlength="50">
+					<label for="phone" data-error="Invalid Name..." data-success="Ok...">Fone</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3">
+					<input id="graduation" name="graduation" type="text" class="validate" maxlength="20">
+					<label for="graduation" data-error="Invalid Email..." data-success="Ok...">Graduação</label>
+				</div>
+				<div class="input-field col s3">
+					<input id="dateStarted" name="dateStarted" type="text" class="validate" maxlength="20">
+					<label for="dateStarted" data-error="Invalid Email..." data-success="Ok...">Data de início</label>
+				</div>
+				<div class="input-field col s3">
+					<input id="bloodGroup" name="bloodGroup" type="text" class="validate" maxlength="20">
+					<label for="bloodGroup" data-error="Invalid Email..." data-success="Ok...">Grupo sanguíneo</label>
+				</div>
+				<div class="input-field col s3">
+					<input id="rhFactor" name="rhFactor" type="text" class="validate" maxlength="50">
+					<label for="rhFactor" data-error="Invalid Email..." data-success="Ok...">Fator RH</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input id="instructorName" name="instructorName" type="text" class="validate" maxlength="50">
+					<label for="instructorName" data-error="Invalid Name..." data-success="Ok...">Nome do Instrutor/Mestre/Professor</label>
+				</div>
+				<div class="input-field col s6">
+					<input id="associationName" name="associationName" type="email" class="validate" maxlength="50">
+					<label for="associationName" data-error="Invalid Email..." data-success="Ok...">Nome da Associação ou Academia em que  da aula ou treina</label>
 				</div>
 			</div>
 			<div class="row">

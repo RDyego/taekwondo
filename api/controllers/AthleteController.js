@@ -18,12 +18,7 @@ module.exports = {
 	},
 
 	create: function (req, res, next) {
-		var athleteViewModel = {
-			name: req.param('name'),
-			email: req.param('email'),
-		};
-
-		Athlete.create(athleteViewModel).exec(function (err, athleteCreated) {
+		Athlete.create(req.params.all()).exec(function (err, athleteCreated) {
 			if (err) res.redirect('/athlete/new');
 			res.redirect('/athlete/index');
 		});
