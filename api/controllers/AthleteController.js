@@ -29,8 +29,9 @@ module.exports = {
 				if (err) return next(err);
 				res.view({
 					athletes: athletesFound,
-					totalPage: (countTotal / limit),
-					currentPage: page
+					totalPage: Math.ceil(countTotal / limit),
+					currentPage: page,
+					model: 'athlete'
 				});
 			});
 		});

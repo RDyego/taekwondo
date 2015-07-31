@@ -1,24 +1,63 @@
 <div class="row center-align">
-	<div class="">
-		<table class="center bordered hoverable responsive-table" align=center>
-			<thead>
+	<table class="center bordered hoverable responsive-table" align=center>
+		<thead>
+			<tr>
+				<th data-field="name">Name</th>
+				<th data-field="email">Email</th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% _.each(users, function (user) { %>
 				<tr>
-					<th data-field="name">Name</th>
-					<th data-field="email">Email</th>
+					<td>
+						<%=user.name %>
+					</td>
+					<td>
+						<%=user.email %>
+					</td>
+					<td>
+						<a href="/user/show/<%=user.id%>" class="btn-floating waves-effect waves-light green">
+							<i class="material-icons">search</i>
+						</a>
+					</td>
+					<td>
+						<a href="/user/edit/<%=user.id%>" class="btn-floating waves-effect waves-light blue">
+							<i class="material-icons">search</i>
+						</a>
+					</td>
+					<td>
+						<form action="/user/destroy/<%=user.id%>" method="POST">
+							<input type="hidden" name="_method" value="delete" />
+							<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+							<button type="submit" class="btn waves-effect waves-light red" type="submit" name="action">
+								<i class="material-icons">search</i>
+							</button>
+						</form>
+					</td>
 				</tr>
-			</thead>
-			<tbody>
-				<% _.each(users, function (user) { %>
-					<tr>
-						<td>
-							<%=user.name %>
-						</td>
-						<td>
-							<%=user.email %>
-						</td>
-					</tr>
-					<% }) %>
-			</tbody>
-		</table>
+				<% }) %>
+		</tbody>
+	</table>
+	<div class="paginate">
+		<ul class="pagination center">
+			<li class="<%=((currentPage == 1) ? 'disabled' : 'waves-effect')%>">
+				<a href="<%=((currentPage == 1) ? '#' : '/'+model+'?page='+(+currentPage-1))%>">
+					<i class="material-icons">chevron_left</i>
+				</a>
+			</li>
+			<%for(i=1;i<=totalPage;i++){%>
+			<li class="waves-effect <%=((currentPage == i) ? 'active' : '')%>">
+				<a href="/<%=model%>?page=<%=i%>"><%=i%></a>
+			</li>
+			<%}%>
+			<li class="<%=((currentPage == totalPage) ? 'disabled' : 'waves-effect')%>">
+				<a href="<%=((currentPage == totalPage) ? '#' : '/'+model+'?page='+(+currentPage+1))%>">
+					<i class="material-icons">chevron_right</i>
+				</a>
+			</li>
+		</ul>
 	</div>
 </div>

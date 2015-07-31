@@ -10,13 +10,6 @@ module.exports = {
 		res.view();
 	},
 
-	index: function (req, res, next) {
-		User.find({}).exec(function (err, usersFound) {
-			if (err) return next(err);
-			res.view({ users: usersFound });
-		});
-	},
-
 	create: function (req, res, next) {
 		var userViewModel = {
 			name: req.param('name'),
@@ -28,6 +21,66 @@ module.exports = {
 		User.create(userViewModel).exec(function (err, userCreated) {
 			if (err) res.redirect('/user/new');
 			res.redirect('/user/index');
+		});
+	},
+	
+	index: function (req, res, next) {
+		var limit = 2;
+		var page = req.param('page');
+		page = page ? page : 1;
+		User.find({}).paginate({ page: page, limit: limit }).exec(function (err, usersFound) {
+			if (err) return next(err);
+			User.count().exec(function (err, countTotal) {
+				if (err) return next(err);
+				res.view({
+					users: usersFound,
+					totalPage: Math.ceil(countTotal / limit),
+					currentPage: page,
+					model: 'user'
+				});
+			});
+		});
+	},
+	
+	show: function (req, res, next) {
+		var userId = req.param('id');
+		User.findOne(userId).exec(function (err, userFound) {
+			if (err) return next(err);
+			if(!userFound) return next('User doesn\'t exist.');
+			res.view({ user: userFound });
+		});
+	},
+	
+	edit: function (req, res, next) {
+		var userId = req.param('id');
+		User.findOne(userId).exec(function (err, userFound) {
+			if (err) return next(err);
+			if(!userFound) return next('User doesn\'t exist.');
+			res.view({ user: userFound });
+		});
+	},
+	
+	update: function (req, res, next) {
+		var userId = req.param('id');
+		var userViewModel = {
+			name: req.param('name'),
+			email: req.param('email')
+		};
+		User.update(userId, userViewModel).exec(function (err) {
+			if(err) return res.redirect('/user/edit/'+userId);
+			res.redirect('/user/show/'+userId);
+		});
+	},
+	
+	destroy: function (req, res, next) {
+		var userId = req.param('id');
+		User.findOne(userId).exec(function (err, userFound) {
+			if (err) return next(err);
+			if (!userFound) return next('User doesn\'t exist.');
+			User.destroy(userId).exec(function (err) {
+				if (err) return next(err);
+			});
+			res.redirect('/user');
 		});
 	}
 };
