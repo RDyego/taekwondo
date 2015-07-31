@@ -42,11 +42,16 @@
       <div class="nav-wrapper">
         <a href="/" class="brand-logo">Logo</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="/">Main</a></li>
-          <li><a href="/athlete/new">New Athlete</a></li>
-          <li><a href="/athlete">List´s Athletes</a></li>
-          <li><a href="/user/new">New User</a></li>
-          <li><a href="/user">List´s Users</a></li>
+          <% if (session.authenticated) { %>
+            <li><a href="/">Main</a></li>
+            <li><a href="/athlete/new">New Athlete</a></li>
+            <li><a href="/athlete">List´s Athletes</a></li>
+            <li><a href="/user/new">New User</a></li>
+            <li><a href="/user">List´s Users</a></li>
+            <li><a href="/session/destroy" class="btn btn-default navbar-btn navbar-right">sign-out</a></li>
+          <% } else { %>
+            <li><a href="/session/new" class="btn btn-default navbar-btn navbar-right">log-on</a></li>
+          <%}%> 
         </ul>
       </div>
     </nav>
