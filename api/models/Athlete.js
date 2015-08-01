@@ -35,6 +35,10 @@ module.exports = {
       type: 'string',
       size: 100
     },
+    photo: {
+      type: 'string',
+      size: 100
+    },
     phone: {
       type: 'string',
       size: 100
@@ -72,7 +76,7 @@ module.exports = {
     },
     graduation: {
       type: 'string',
-      enum: ['white', 'black']
+      enum: ['White', 'Black']
     },
     dateStarted: {
       type: 'date'
@@ -91,7 +95,7 @@ module.exports = {
     },
     rhFactor: {
       type: 'string',
-      enum: ['positive', 'negative']
+      enum: ['Positive', 'Negative']
     },
   }
 };

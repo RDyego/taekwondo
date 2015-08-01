@@ -1,5 +1,7 @@
 {
 	"User": "Usuário",
+	"White": "Branca",
+	"Black": "Preta",
 	"Athlete": "Atleta",
 	"Users": "Usuários",
 	"Athletes": "Atletas",
@@ -29,5 +31,7 @@
 	"Blood Group": "Grupo sanguíneo",
 	"RH Factor": "Fator RH",
 	"Instructor Name": "Nome do Instrutor/Mestre/Professor",
-	"Association Name": "Nome da Associação ou Academia em que da aula ou treina"
+	"Association Name": "Nome da Associação ou Academia em que da aula ou treina",
+	"Positive": "Positivo",
+	"Negative": "Negativo"
 }

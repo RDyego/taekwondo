@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="card center">
-		<form action="/athlete/create" method="post" class="col s12">
+		<form action="/athlete/create" enctype="multipart/form-data" method="post" class="col s12">
 			<div class="row">
 				<div class="input-field col s6">
 					<input id="name" name="name" type="text" class="validate" maxlength="50">
@@ -79,7 +79,11 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s3">
-					<input id="graduation" name="graduation" type="text" class="validate" maxlength="20">
+					<select id="graduation" name="graduation">
+						<%_.each(Athlete.attributes.graduation.enum, function (enumValue) {%>
+							<option value="<%=enumValue%>"><%=i18n(enumValue)%></option>
+						<%})%>
+					</select>
 					<label for="graduation" data-error="<%=i18n('Invalid')%>" data-success="<%=i18n('Ok')%>"><%=i18n('Graduation')%></label>
 				</div>
 				<div class="input-field col s3">
@@ -91,7 +95,11 @@
 					<label for="bloodGroup" data-error="<%=i18n('Invalid')%>" data-success="<%=i18n('Ok')%>"><%=i18n('Blood Group')%></label>
 				</div>
 				<div class="input-field col s3">
-					<input id="rhFactor" name="rhFactor" type="text" class="validate" maxlength="50">
+					<select id="rhFactor" name="rhFactor">
+						<%_.each(Athlete.attributes.rhFactor.enum, function (enumValue) {%>
+							<option value="<%=enumValue%>"><%=i18n(enumValue)%></option>
+						<%})%>
+					</select>
 					<label for="rhFactor" data-error="<%=i18n('Invalid')%>" data-success="<%=i18n('Ok')%>"><%=i18n('RH Factor')%></label>
 				</div>
 			</div>
@@ -105,6 +113,17 @@
 					<label for="associationName" data-error="<%=i18n('Invalid')%>" data-success="<%=i18n('Ok')%>"><%=i18n('Association Name')%></label>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col s6">
+					<div class="file-field input-field">
+						<input class="file-path validate" type="text"/>
+						<div class="btn">
+							<span>Photo</span>
+							<input type="file" id="photo" name="photo"/>
+						</div>
+				    </div>
+			    </div>
+	    	</div>
 			<div class="row">
 				<button class="btn waves-effect waves-light" type="submit" name="action">Submit
 					<i class="material-icons">send</i>

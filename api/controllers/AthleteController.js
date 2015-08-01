@@ -18,7 +18,7 @@ module.exports = {
 		});
 	},
 	*/
-	
+
 	index: function (req, res, next) {
 		var limit = 2;
 		var page = req.param('page');
@@ -38,10 +38,38 @@ module.exports = {
 	},
 
 	create: function (req, res, next) {
-		Athlete.create(req.params.all()).exec(function (err, athleteCreated) {
-			if (err) return res.redirect('/athlete/new');
-			res.redirect('/athlete/index');
-		});
+
+		res.setTimeout(0);
+
+		req.file('photo')
+			.upload({
+				maxBytes: 500000, //500kb
+				dirname: '../../assets/images/photo'
+			}, function whenDone(err, uploadedFiles) {
+				if (err) {
+					var fileUploadError = [{
+						name: 'fileUploadError',
+						message: 'file upload error.'
+					}];
+					req.session.flash = {
+						err: fileUploadError
+					}
+					return res.redirect('/athlete/new');
+				}
+				Athlete.create(req.params.all()).exec(function (err, athleteCreated) {
+					if (err) {
+						var createNewAthleteError = [{
+							name: 'createNewAthleteError',
+							message: 'create new athlete error.'
+						}];
+						req.session.flash = {
+							err: createNewAthleteError
+						}
+						return res.redirect('/athlete/new');
+					}
+					res.redirect('/athlete/index');
+				});
+			});
 	}
 };
 
