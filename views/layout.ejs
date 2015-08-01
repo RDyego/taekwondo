@@ -38,16 +38,34 @@
   <body>
   
   <header>
+    <!-- Dropdown Athlete Structure -->
+    <ul id="dropdownAthlete" class="dropdown-content">
+      <li><a href="/athlete/new">New Athlete</a></li>
+      <li class="divider"></li>
+      <li><a href="/athlete">List´s Athletes</a></li>
+    </ul>
+    <!-- Dropdown User Structure -->
+    <ul id="dropdownUser" class="dropdown-content">
+      <li><a href="/user/new">New User</a></li>
+      <li class="divider"></li>
+      <li><a href="/user">List´s Users</a></li>
+    </ul>
     <nav>
       <div class="nav-wrapper">
-        <a href="/" class="brand-logo">Logo</a>
+        <a href="/" class="brand-logo">FECET</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <% if (session.authenticated) { %>
             <li><a href="/">Main</a></li>
-            <li><a href="/athlete/new">New Athlete</a></li>
-            <li><a href="/athlete">List´s Athletes</a></li>
-            <li><a href="/user/new">New User</a></li>
-            <li><a href="/user">List´s Users</a></li>
+            <li>
+              <a class="dropdown-button" href="#!" data-activates="dropdownUser">
+                <%=i18n('Users')%><i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-button" href="#!" data-activates="dropdownAthlete">
+                <%=i18n('Athletes')%><i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
             <li><a href="/session/destroy" class="btn btn-default navbar-btn navbar-right">sign-out</a></li>
           <% } else { %>
             <li><a href="/session/new" class="btn btn-default navbar-btn navbar-right">log-on</a></li>
@@ -130,13 +148,8 @@
     <script src="/js/dependencies/sails.io.js"></script>
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/materialize/dist/js/materialize.min.js"></script>
+    <script src="/js/custom.js"></script>
     <!--SCRIPTS END-->
     
-<script>
-	
-$(document).ready(function() {
-    $('select').material_select();
-});
-</script>
   </body>
 </html>

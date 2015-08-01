@@ -58,7 +58,7 @@ module.exports = {
 				req.session.authenticated = true;
 				req.session.User = user;
 
-				return res.redirect('/user');
+				return res.redirect('/athlete');
 			});
 		});
 	},

@@ -25,7 +25,7 @@ module.exports = {
 	},
 	
 	index: function (req, res, next) {
-		var limit = 2;
+		var limit = 20;
 		var page = req.param('page');
 		page = page ? page : 1;
 		User.find({}).paginate({ page: page, limit: limit }).exec(function (err, usersFound) {

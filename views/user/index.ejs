@@ -25,17 +25,15 @@
 					</td>
 					<td>
 						<a href="/user/edit/<%=user.id%>" class="btn-floating waves-effect waves-light blue">
-							<i class="material-icons">search</i>
+							<i class="material-icons">create</i>
 						</a>
 					</td>
 					<td>
-						<form action="/user/destroy/<%=user.id%>" method="POST">
-							<input type="hidden" name="_method" value="delete" />
-							<input type="hidden" name="_csrf" value="<%= _csrf %>" />
-							<button type="submit" class="btn waves-effect waves-light red" type="submit" name="action">
-								<i class="material-icons">search</i>
-							</button>
-						</form>
+  						<a class="btn-floating waves-effect waves-light red modal-trigger" href="#modalDeleteUser"
+							  data-action="/user/destroy/<%=user.id%>"
+							  data-form="#formDeleteUser">
+							<i class="material-icons">clear</i>
+					 	</a>
 					</td>
 				</tr>
 				<% }) %>
@@ -60,4 +58,21 @@
 			</li>
 		</ul>
 	</div>
+</div>
+
+<div id="modalDeleteUser" class="modal">
+	<form id="formDeleteUser" action="" method="POST">
+		<input type="hidden" name="_method" value="delete" />
+		<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+		<div class="modal-content">
+			<h4>Modal Header</h4>
+			<p>A bunch of text</p>
+		</div>
+		<div class="modal-footer">
+			<button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" name="action">
+				Delete
+			</button>
+			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+		</div>
+	</form>
 </div>
