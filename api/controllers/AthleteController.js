@@ -70,6 +70,15 @@ module.exports = {
 					res.redirect('/athlete/index');
 				});
 			});
-	}
+	},
+	
+	show: function (req, res, next) {
+		var athleteId = req.param('id');
+		Athlete.findOne(athleteId).exec(function (err, athleteFound) {
+			if (err) return next(err);
+			if(!athleteFound) return next('Athlete doesn\'t exist.');
+			res.view({ athlete: athleteFound });
+		});
+	},
 };
 
