@@ -1,28 +1,26 @@
 <div class="container">
-	<div class="card center">
+	<div class="center">
 		<form action="/user/create" method="post" class="col s12">
 			<div class="row">
-				<div class="input-field col s12">
-					<input id="name" name="name" type="text" class="validate">
-					<label for="name" data-error="Invalid Name..." data-success="Ok...">Name</label>
+				<div class="input-field col s6">
+					<input id="name" name="name" type="text" class="validate" maxlength="50">
+					<label for="name" data-error="<%=i18n('Invalid')%>" data-success="<%=i18n('Ok')%>"><%=i18n('Name')%></label>
 				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s12">
-					<input id="email" name="email" type="email" class="validate">
-					<label for="email" data-error="Invalid Email..." data-success="Ok...">Email</label>
+				<div class="input-field col s6">
+					<input id="email" name="email" type="email" class="validate" maxlength="50">
+					<label for="email" data-error="<%=i18n('Invalid')%>" data-success="<%=i18n('Ok')%>"><%=i18n('Email')%></label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
 					<input id="password" name="password" type="password" class="validate">
-					<label for="password" data-error="Invalid Password..." data-success="Ok...">Password</label>
+					<label for="name" data-error="<%=i18n('Invalid')%>" data-success="<%=i18n('Ok')%>"><%=i18n('Password')%></label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
 					<input id="confirmation" name="confirmation" type="password" class="validate">
-					<label for="confirmation" data-error="Invalid Pass confirmation..." data-success="Ok...">Pass confirmation</label>
+					<label for="email" data-error="<%=i18n('Invalid')%>" data-success="<%=i18n('Ok')%>"><%=i18n('Password Confirmation')%></label>
 				</div>
 			</div>
 			<div class="row">
