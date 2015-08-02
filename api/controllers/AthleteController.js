@@ -45,8 +45,11 @@ module.exports = {
 			.upload({
 				maxBytes: 500000, //500kb
 				dirname: '../../assets/images/photo'
+				//dirname: '../../assets/images/'
+				//dirname: require('path').resolve(sails.config.appPath, '/assets/images/photo')
+				//dirname: './.tmp/public/images/posts'
 			}, function whenDone(err, uploadedFiles) {
-				if (err) {
+				if (err || uploadedFiles.length === 0) {
 					var fileUploadError = [{
 						name: 'fileUploadError',
 						message: 'file upload error.'
@@ -56,6 +59,7 @@ module.exports = {
 					}
 					return res.redirect('/athlete/new');
 				}
+
 				Athlete.create(req.params.all()).exec(function (err, athleteCreated) {
 					if (err) {
 						var createNewAthleteError = [{
@@ -67,16 +71,33 @@ module.exports = {
 						}
 						return res.redirect('/athlete/new');
 					}
-					res.redirect('/athlete/index');
+					var path = require('path');
+					var file = path.basename(uploadedFiles[0].fd);
+					Athlete.update(athleteCreated.id, {
+						//photo: require('util').format('%s/images/%s', sails.getBaseUrl(), file)
+						photo: require('util').format('%s/images/photo/%s', sails.getBaseUrl(), file)
+					}).exec(function (err) {
+						if (err) {
+							var updatePhotoAthleteError = [{
+								name: 'updatePhotoAthleteError',
+								message: 'update photo athlete error.'
+							}];
+							req.session.flash = {
+								err: updatePhotoAthleteError
+							}
+							return res.redirect('/athlete/new');
+						}
+						res.redirect('/athlete/index');
+					});
 				});
 			});
 	},
-	
+
 	show: function (req, res, next) {
 		var athleteId = req.param('id');
 		Athlete.findOne(athleteId).exec(function (err, athleteFound) {
 			if (err) return next(err);
-			if(!athleteFound) return next('Athlete doesn\'t exist.');
+			if (!athleteFound) return next('Athlete doesn\'t exist.');
 			res.view({ athlete: athleteFound });
 		});
 	},
