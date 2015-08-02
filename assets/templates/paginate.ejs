@@ -1,3 +1,4 @@
+<%if(totalPage!=0){%>
 <ul class="pagination center">
 	<li class="<%=((currentPage == 1) ? 'disabled' : 'waves-effect')%>">
 		<a href="<%=((currentPage == 1) ? '#' : '/'+model+'?page='+(+currentPage-1))%>">
@@ -15,3 +16,4 @@
 		</a>
 	</li>
 </ul>
+<%}%>
