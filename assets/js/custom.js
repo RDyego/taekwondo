@@ -26,7 +26,13 @@ $(document).ready(function () {
 	}).on('click', function () {
 		var $myElementCliked = $(this);
 		var $form = $($myElementCliked.attr('data-form'));
+		var $p = $($myElementCliked.attr('data-form') + ' p');
+		var $h4 = $($myElementCliked.attr('data-form') + ' h4');
 		var action = $myElementCliked.attr('data-action');
+		var message = $myElementCliked.attr('data-message');
+		var title = $myElementCliked.attr('data-title');
 		$form.attr('action', action);
+		$h4.text(title);
+		$p.text(message);
 	});
 });

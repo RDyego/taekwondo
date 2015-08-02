@@ -1,4 +1,7 @@
 {
+	"Do you wish delete the user %s?": "Você deseja excluir o usuário %s?",
+	"Delete":  "Excluir",
+	"Close":  "Fechar",
 	"Main": "Início",
 	"FECET": "FECET",
 	"Password": "Password",

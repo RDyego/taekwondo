@@ -9,9 +9,25 @@
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.bootstrap.html
  */
 
-module.exports.bootstrap = function(cb) {
+module.exports.bootstrap = function (cb) {
 
   // It's very important to trigger this callback method when you are finished
   // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
   cb();
+  var userModel = {
+    name: 'R. Dyego',
+    email: 'dyego@gmail.com',
+    password: 'asd',
+    confirmation: 'asd'
+  };
+
+  User.findOneByEmail(userModel.email).exec(function (err, userFound) {
+    if (err) return cb(err);
+    if (!userFound) {
+      User.create(userModel).exec(function (err, userCreated) {
+        if (err) return cb(err);
+        console.log('user created: ', userCreated);
+      });
+    }
+  });
 };

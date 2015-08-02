@@ -31,7 +31,9 @@
 					<td>
   						<a class="btn-floating waves-effect waves-light red modal-trigger" href="#modalDeleteUser"
 							  data-action="/user/destroy/<%=user.id%>"
-							  data-form="#formDeleteUser">
+							  data-form="#formDeleteUser"
+							  data-message="<%=i18n('Do you wish delete the user %s?',user.name)%>"
+							  data-title="<%=i18n('Delete')%>">
 							<i class="material-icons">clear</i>
 					 	</a>
 					</td>
@@ -49,14 +51,14 @@
 		<input type="hidden" name="_method" value="delete" />
 		<input type="hidden" name="_csrf" value="<%= _csrf %>" />
 		<div class="modal-content">
-			<h4>Modal Header</h4>
-			<p>A bunch of text</p>
+			<h4></h4>
+			<p></p>
 		</div>
 		<div class="modal-footer">
 			<button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" name="action">
-				Delete
+				<%=i18n('Delete')%>
 			</button>
-			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><%=i18n('Close')%></a>
 		</div>
 	</form>
 </div>
