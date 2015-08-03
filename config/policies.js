@@ -29,8 +29,8 @@ module.exports.policies = {
   // '*': true,
     '*' : ['localize','flash'],
   
-    user: ['localize','sessionAuth'],
-    athlete: ['localize','sessionAuth'],
+    user: ['localize','flash','sessionAuth'],
+    athlete: ['localize','flash','sessionAuth'],
 
   /***************************************************************************
   *                                                                          *

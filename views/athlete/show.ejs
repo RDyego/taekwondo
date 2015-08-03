@@ -3,77 +3,77 @@
 		<form class="col s12">
 			<div class="row">
 				<div class="input-field col s6">
-					<input id="name" name="name" type="text" disabled value="<%=athlete.name%>">
+					<input id="name" name="name" type="text" readonly value="<%=(athlete.name)?athlete.name:''%>">
 					<label for="name" ><%=i18n('Name')%></label>
 				</div>
 				<div class="input-field col s6">
-					<input id="email" name="email" type="email" disabled value="<%=athlete.email%>">
+					<input id="email" name="email" type="email" readonly value="<%=(athlete.email)?athlete.email:''%>">
 					<label for="email"><%=i18n('Email')%></label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s6">
-					<input id="fatherName" name="fatherName" type="text" disabled>
+					<input id="fatherName" name="fatherName" type="text" readonly value="<%=(athlete.fatherName)?athlete.fatherName:''%>">
 					<label for="fatherName"><%=i18n('Father')%></label>
 				</div>
 				<div class="input-field col s6">
-					<input id="motherName" name="motherName" type="text" disabled>
+					<input id="motherName" name="motherName" type="text" readonly value="<%=(athlete.motherName)?athlete.motherName:''%>">
 					<label for="motherName"><%=i18n('Mother')%></label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s3">
-					<input id="bday" name="bday" type="text" disabled>
+					<input id="bday" name="bday" type="text" readonly value="<%=(athlete.bday)?athlete.bday:''%>">
 					<label for="bday"><%=i18n('Date of Birth')%></label>
 				</div>
 				<div class="input-field col s3">
 					<select id="education" name="education" disabled>
-						<%_.each(Athlete.attributes.education.enum, function (eduEnum) {%>
-							<option value="<%=eduEnum%>"><%=i18n(eduEnum)%></option>
+						<%_.each(Athlete.attributes.education.enum, function (enumValue) {%>
+							<option <%=(athlete.education == enumValue)?'selected':''%> value="<%=enumValue%>"><%=i18n(enumValue)%></option>
 						<%})%>
 					</select>
 					<label for="education"><%=i18n('Education')%></label>
 				</div>
 				<div class="input-field col s3">
-					<input id="naturalness" name="naturalness" type="text" disabled>
+					<input id="naturalness" name="naturalness" type="text" readonly value="<%=(athlete.naturalness)?athlete.naturalness:''%>">
 					<label for="naturalness"><%=i18n('Naturalness')%></label>
 				</div>
 				<div class="input-field col s3">
-					<input id="nationality" name="nationality" type="text" disabled>
+					<input id="nationality" name="nationality" type="text" readonly value="<%=(athlete.nationality)?athlete.nationality:''%>">
 					<label for="nationality"><%=i18n('Nationality')%></label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s6">
-					<input id="profession" name="profession" type="text" disabled>
+					<input id="profession" name="profession" type="text" readonly value="<%=(athlete.profession)?athlete.profession:''%>">
 					<label for="profession"><%=i18n('Profession')%></label>
 				</div>
 				<div class="input-field col s3">
-					<input id="rg" name="rg" type="text" disabled>
+					<input id="rg" name="rg" type="text" readonly value="<%=(athlete.rg)?athlete.rg:''%>">
 					<label for="rg"><%=i18n('RG')%></label>
 				</div>
 				<div class="input-field col s3">
-					<input id="cpf" name="cpf" type="text" disabled>
+					<input id="cpf" name="cpf" type="text" readonly value="<%=(athlete.cpf)?athlete.cpf:''%>">
 					<label for="cpf"><%=i18n('CPF')%></label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s9">
-					<input id="address" name="address" type="text" disabled>
+					<input id="address" name="address" type="text" readonly value="<%=(athlete.address)?athlete.address:''%>">
 					<label for="address"><%=i18n('Address')%></label>
 				</div>
 				<div class="input-field col s3">
-					<input id="cep" name="cep" type="text" disabled>
+					<input id="cep" name="cep" type="text" readonly value="<%=(athlete.cep)?athlete.cep:''%>">
 					<label for="cep"><%=i18n('CEP')%></label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s9">
-					<input id="businessAddress" name="businessAddress" type="text" disabled>
+					<input id="businessAddress" name="businessAddress" type="text" readonly value="<%=(athlete.businessAddress)?athlete.businessAddress:''%>">
 					<label for="businessAddress"><%=i18n('Business Address')%></label>
 				</div>
 				<div class="input-field col s3">
-					<input id="phone" name="phone" type="text" disabled>
+					<input id="phone" name="phone" type="text" readonly value="<%=(athlete.phone)?athlete.phone:''%>">
 					<label for="phone"><%=i18n('Phone')%></label>
 				</div>
 			</div>
@@ -81,23 +81,27 @@
 				<div class="input-field col s3">
 					<select id="graduation" name="graduation" disabled>
 						<%_.each(Athlete.attributes.graduation.enum, function (enumValue) {%>
-							<option value="<%=enumValue%>"><%=i18n(enumValue)%></option>
+							<option <%=(athlete.graduation == enumValue)?'selected':''%> value="<%=enumValue%>"><%=i18n(enumValue)%></option>
 						<%})%>
 					</select>
 					<label for="graduation"><%=i18n('Graduation')%></label>
 				</div>
 				<div class="input-field col s3">
-					<input id="dateStarted" name="dateStarted" type="text" disabled>
+					<input id="dateStarted" name="dateStarted" type="text" readonly value="<%=(athlete.dateStarted)?athlete.dateStarted:''%>">
 					<label for="dateStarted"><%=i18n('Date Started')%></label>
 				</div>
 				<div class="input-field col s3">
-					<input id="bloodGroup" name="bloodGroup" type="text" disabled>
+					<select id="bloodGroup" name="bloodGroup" disabled>
+						<%_.each(Athlete.attributes.bloodGroup.enum, function (enumValue) {%>
+							<option <%=(athlete.bloodGroup == enumValue)?'selected':''%> value="<%=enumValue%>"><%=i18n(enumValue)%></option>
+						<%})%>
+					</select>
 					<label for="bloodGroup"><%=i18n('Blood Group')%></label>
 				</div>
 				<div class="input-field col s3">
 					<select id="rhFactor" name="rhFactor" disabled>
 						<%_.each(Athlete.attributes.rhFactor.enum, function (enumValue) {%>
-							<option value="<%=enumValue%>"><%=i18n(enumValue)%></option>
+							<option <%=(athlete.rhFactor == enumValue)?'selected':''%> value="<%=enumValue%>"><%=i18n(enumValue)%></option>
 						<%})%>
 					</select>
 					<label for="rhFactor"><%=i18n('RH Factor')%></label>
@@ -105,11 +109,11 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s6">
-					<input id="instructorName" name="instructorName" type="text" disabled>
+					<input id="instructorName" name="instructorName" type="text" readonly value="<%=(athlete.instructorName)?athlete.instructorName:''%>">
 					<label for="instructorName"><%=i18n('Instructor Name')%></label>
 				</div>
 				<div class="input-field col s6">
-					<input id="associationName" name="associationName" type="email" disabled>
+					<input id="associationName" name="associationName" type="email" readonly value="<%=(athlete.associationName)?athlete.associationName:''%>">
 					<label for="associationName"><%=i18n('Association Name')%></label>
 				</div>
 			</div>

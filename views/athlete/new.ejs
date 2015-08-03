@@ -1,5 +1,12 @@
 <div class="container">
 	<div class="center">
+		<% if(flash && flash.err) { %>
+			<ul class="alert alert-success">
+		<% Object.keys(flash.err).forEach(function(error) { %>
+			<li><%- JSON.stringify(flash.err[error])  %></li>	
+		<% }) %>	
+			</ul>
+		<% } %>
 		<form action="/athlete/create" enctype="multipart/form-data" method="post" class="col s12">
 			<div class="row">
 				<div class="input-field col s6">

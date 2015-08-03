@@ -41,38 +41,41 @@ module.exports = {
 
 		res.setTimeout(0);
 
-		req.file('photo')
-			.upload({
-				maxBytes: 500000, //500kb
-				dirname: '../../assets/images/photo'
-				//dirname: '../../assets/images/'
-				//dirname: require('path').resolve(sails.config.appPath, '/assets/images/photo')
-				//dirname: './.tmp/public/images/posts'
-			}, function whenDone(err, uploadedFiles) {
-				if (err || uploadedFiles.length === 0) {
-					var fileUploadError = [{
-						name: 'fileUploadError',
-						message: 'file upload error.'
-					}];
-					req.session.flash = {
-						err: fileUploadError
-					}
-					return res.redirect('/athlete/new');
-				}
 
-				Athlete.create(req.params.all()).exec(function (err, athleteCreated) {
-					if (err) {
-						var createNewAthleteError = [{
-							name: 'createNewAthleteError',
-							message: 'create new athlete error.'
+		Athlete.create(req.params.all()).exec(function (err, athleteCreated) {
+			if (err) {
+				var createNewAthleteError = [{
+					name: 'createNewAthleteError',
+					message: 'create new athlete error.'
+				}];
+				req.session.flash = {
+					err: createNewAthleteError
+				}
+				return res.redirect('/athlete/new');
+			}
+			var file = req.file('photo');
+			if (file) {
+				file.upload({
+					maxBytes: 500000, //500kb
+					dirname: '../../assets/images/photo'
+					//dirname: '../../assets/images/'
+					//dirname: require('path').resolve(sails.config.appPath, '/assets/images/photo')
+					//dirname: './.tmp/public/images/posts'
+				}, function whenDone(err, uploadedFiles) {
+					if (err || uploadedFiles.length === 0) {
+						var fileUploadError = [{
+							name: 'fileUploadError',
+							message: 'file upload error.'
 						}];
 						req.session.flash = {
-							err: createNewAthleteError
+							err: fileUploadError
 						}
 						return res.redirect('/athlete/new');
 					}
+
 					var path = require('path');
 					var file = path.basename(uploadedFiles[0].fd);
+
 					Athlete.update(athleteCreated.id, {
 						//photo: require('util').format('%s/images/%s', sails.getBaseUrl(), file)
 						photo: require('util').format('%s/images/photo/%s', sails.getBaseUrl(), file)
@@ -87,10 +90,11 @@ module.exports = {
 							}
 							return res.redirect('/athlete/new');
 						}
-						res.redirect('/athlete/index');
 					});
 				});
-			});
+			}
+			res.redirect('/athlete/index');
+		});
 	},
 
 	show: function (req, res, next) {
