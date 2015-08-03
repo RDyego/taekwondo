@@ -41,7 +41,6 @@ module.exports = {
 
 		res.setTimeout(0);
 
-
 		Athlete.create(req.params.all()).exec(function (err, athleteCreated) {
 			if (err) {
 				var createNewAthleteError = [{
@@ -53,26 +52,24 @@ module.exports = {
 				}
 				return res.redirect('/athlete/new');
 			}
-			var file = req.file('photo');
-			if (file) {
-				file.upload({
-					maxBytes: 500000, //500kb
-					dirname: '../../assets/images/photo'
-					//dirname: '../../assets/images/'
-					//dirname: require('path').resolve(sails.config.appPath, '/assets/images/photo')
-					//dirname: './.tmp/public/images/posts'
-				}, function whenDone(err, uploadedFiles) {
-					if (err || uploadedFiles.length === 0) {
-						var fileUploadError = [{
-							name: 'fileUploadError',
-							message: 'file upload error.'
-						}];
-						req.session.flash = {
-							err: fileUploadError
-						}
-						return res.redirect('/athlete/new');
+			req.file('photo').upload({
+				maxBytes: 500000, //500kb
+				dirname: '../../assets/images/photo'
+				//dirname: '../../assets/images/'
+				//dirname: require('path').resolve(sails.config.appPath, '/assets/images/photo')
+				//dirname: './.tmp/public/images/posts'
+			}, function whenDone(err, uploadedFiles) {
+				if (err) {
+					var fileUploadError = [{
+						name: 'fileUploadError',
+						message: 'file upload error.'
+					}];
+					req.session.flash = {
+						err: fileUploadError
 					}
-
+					return res.redirect('/athlete/new');
+				}
+				if (uploadedFiles.length != 0) {
 					var path = require('path');
 					var file = path.basename(uploadedFiles[0].fd);
 
@@ -91,8 +88,8 @@ module.exports = {
 							return res.redirect('/athlete/new');
 						}
 					});
-				});
-			}
+				}
+			});
 			res.redirect('/athlete/index');
 		});
 	},
@@ -100,10 +97,150 @@ module.exports = {
 	show: function (req, res, next) {
 		var athleteId = req.param('id');
 		Athlete.findOne(athleteId).exec(function (err, athleteFound) {
-			if (err) return next(err);
-			if (!athleteFound) return next('Athlete doesn\'t exist.');
+			if (err) {
+				var error = [{
+					name: 'showAthleteError',
+					message: 'show athlete error.'
+				}];
+				req.session.flash = {
+					err: error
+				}
+				return res.redirect('/athlete/index');
+			}
+			if (!athleteFound) {
+				var error = [{
+					name: 'showNotFoundAthleteError',
+					message: 'Athlete doesn\'t exist.'
+				}];
+				req.session.flash = {
+					err: error
+				}
+				return res.redirect('/athlete/index');
+			}
 			res.view({ athlete: athleteFound });
 		});
 	},
+
+	edit: function (req, res, next) {
+		var athleteId = req.param('id');
+		Athlete.findOne(athleteId).exec(function (err, athleteFound) {
+			if (err) {
+				var error = [{
+					name: 'editAthleteError',
+					message: 'show athlete error.'
+				}];
+				req.session.flash = {
+					err: error
+				}
+				return res.redirect('/athlete/index');
+			}
+			if (!athleteFound) {
+				var error = [{
+					name: 'editNotFoundAthleteError',
+					message: 'Athlete doesn\'t exist.'
+				}];
+				req.session.flash = {
+					err: error
+				}
+				return res.redirect('/athlete/index');
+			}
+			res.view({ athlete: athleteFound });
+		});
+	},
+
+	update: function (req, res, next) {
+		var athleteId = req.param('id');
+
+		Athlete.update(athleteId, req.params.all(), function (err) {
+			if (err) {
+				var error = [{
+					name: 'updateAthleteError',
+					message: 'update athlete error.'
+				}];
+				req.session.flash = {
+					err: error
+				}
+				return res.redirect('/athlete/edit/' + athleteId);
+			}
+			req.file('photo').upload({
+				maxBytes: 500000, //500kb
+				dirname: '../../assets/images/photo'
+				//dirname: '../../assets/images/'
+				//dirname: require('path').resolve(sails.config.appPath, '/assets/images/photo')
+				//dirname: './.tmp/public/images/posts'
+			}, function whenDone(err, uploadedFiles) {
+				if (err) {
+					var fileUploadError = [{
+						name: 'fileUploadError',
+						message: 'file upload error.'
+					}];
+					req.session.flash = {
+						err: fileUploadError
+					}
+					return res.redirect('/athlete/edit/' + athleteId);
+				}
+
+				if (uploadedFiles.length != 0) {
+					var path = require('path');
+					var file = path.basename(uploadedFiles[0].fd);
+
+					Athlete.update(athleteId, {
+						//photo: require('util').format('%s/images/%s', sails.getBaseUrl(), file)
+						photo: require('util').format('%s/images/photo/%s', sails.getBaseUrl(), file)
+					}).exec(function (err) {
+						if (err) {
+							var updatePhotoAthleteError = [{
+								name: 'updatePhotoAthleteError',
+								message: 'update photo athlete error.'
+							}];
+							req.session.flash = {
+								err: updatePhotoAthleteError
+							}
+							return res.redirect('/athlete/edit/' + athleteId);
+						}
+					});
+				}
+			});
+			res.redirect('/athlete/index');
+		});
+	},
+
+	destroy: function (req, res, next) {
+		var athleteId = req.param('id');
+		Athlete.findOne(athleteId).exec(function (err, athleteFound) {
+			if (err) {
+				var error = [{
+					name: 'deleteFindAthleteError',
+					message: 'show athlete error.'
+				}];
+				req.session.flash = {
+					err: error
+				}
+				return res.redirect('/athlete/index');
+			}
+			if (!athleteFound) {
+				var error = [{
+					name: 'deleteNotFoundAthleteError',
+					message: 'Athlete doesn\'t exist.'
+				}];
+				req.session.flash = {
+					err: error
+				}
+				return res.redirect('/athlete/index');
+			}
+			Athlete.destroy(athleteFound.id).exec(function (err) {
+				if (err) {
+					var error = [{
+						name: 'deleteAthleteError',
+						message: 'show athlete error.'
+					}];
+					req.session.flash = {
+						err: error
+					}
+				}
+			});
+			res.redirect('/athlete');
+		});
+	}
 };
 

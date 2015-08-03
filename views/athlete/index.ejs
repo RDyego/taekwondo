@@ -15,31 +15,39 @@
 			<% _.each(athletes, function (athlete) { %>
 				<tr>
 					<td>
-						<%=athlete.name %>
+						<%=(athlete.name)?athlete.name:''%>
 					</td>
 					<td>
-						<%=athlete.email %>
+						<%=(athlete.email)?athlete.email:''%>
 					</td>
 					<td>
-						<%=athlete.graduation %>
+						<%=(athlete.graduation)?i18n(athlete.graduation):''%>
 					</td>
 					<td>
-						<%=athlete.instructorName %>
+						<%=(athlete.instructorName)?athlete.instructorName:''%>
 					</td>
 					<td>
-						<a href="/athlete/show/<%=athlete.id%>" class="btn-floating waves-effect waves-light green">
+						<a href="/athlete/show/<%=athlete.id%>" 
+							class="btn-floating waves-effect waves-light green tooltipped"
+							data-position="right" data-delay="50" data-tooltip="<%=i18n('Show')%>">
 							<i class="material-icons">search</i>
 						</a>
 					</td>
 					<td>
-						<a href="/athlete/edit/<%=athlete.id%>" class="btn-floating waves-effect waves-light blue">
+						<a href="/athlete/edit/<%=athlete.id%>" 
+							class="btn-floating waves-effect waves-light blue tooltipped"
+							data-position="right" data-delay="50" data-tooltip="<%=i18n('Edit')%>">
 							<i class="material-icons">create</i>
 						</a>
 					</td>
 					<td>
-  						<a class="btn-floating waves-effect waves-light red modal-trigger" href="#modalDeleteAthlete"
-							  data-action="/athlete/destroy/<%=athlete.id%>"
-							  data-form="#formDeleteAthlete">
+  						<a  href="#modalDeleteAthlete"
+						  	data-action="/athlete/destroy/<%=athlete.id%>"
+						  	data-form="#formDeleteAthlete" 
+						  	data-message="<%=i18n('Do you wish delete the user %s?',athlete.name)%>"
+						  	data-title="<%=i18n('Delete')%>"
+							class="btn-floating waves-effect waves-light red tooltipped modal-trigger"
+							data-position="right" data-delay="50" data-tooltip="<%=i18n('Delete')%>">
 							<i class="material-icons">clear</i>
 					 	</a>
 					</td>
@@ -57,14 +65,14 @@
 		<input type="hidden" name="_method" value="delete" />
 		<input type="hidden" name="_csrf" value="<%= _csrf %>" />
 		<div class="modal-content">
-			<h4>Modal Header</h4>
-			<p>A bunch of text</p>
+			<h4></h4>
+			<p></p>
 		</div>
 		<div class="modal-footer">
 			<button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" name="action">
-				Delete
+				<%=i18n('Delete')%>
 			</button>
-			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><%=i18n('Close')%></a>
 		</div>
 	</form>
 </div>

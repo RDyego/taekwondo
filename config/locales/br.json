@@ -1,6 +1,8 @@
 {
 	"Do you wish delete the user %s?": "Você deseja excluir o usuário %s?",
 	"Delete":  "Excluir",
+	"Show":  "Visualizar",
+	"Edit":  "Editar",
 	"Close":  "Fechar",
 	"Main": "Início",
 	"FECET": "FECET",
@@ -33,6 +35,7 @@
 	"Profession": "Profissão",
 	"RG": "RG",
 	"Phone": "Fone",
+	"Photo": "Foto",
 	"CPF": "CPF",
 	"Address": "Endereço",
 	"CEP": "CEP",
