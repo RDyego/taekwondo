@@ -17,7 +17,7 @@ $(document).ready(function () {
 		// Formats
 		format: 'dd/mm/yyyy',
 		selectMonths: true, // Creates a dropdown to control month
-		selectYears: 70 // Creates a dropdown of 15 years to control year
+		selectYears: 200 // Creates a dropdown of 15 years to control year
 	});
 	$('.modal-trigger').leanModal({
 		dismissible: true, // Modal can be dismissed by clicking outside of the modal
