@@ -9,6 +9,7 @@
 				<th></th>
 				<th></th>
 				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -25,6 +26,14 @@
 					</td>
 					<td>
 						<%=(athlete.instructorName)?athlete.instructorName:''%>
+					</td>
+					<td>
+  						<a  href="#modalCardAthlete"
+						  	data-form="#formCardAthlete" 
+							class="btn-floating waves-effect waves-light yellow tooltipped modal-trigger-card"
+							data-position="right" data-delay="50" data-tooltip="<%=i18n('Card')%>">
+							<i class="material-icons">credit_card</i>
+					 	</a>
 					</td>
 					<td>
 						<a href="/athlete/show/<%=athlete.id%>" 
@@ -72,6 +81,24 @@
 			<button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" name="action">
 				<%=i18n('Delete')%>
 			</button>
+			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><%=i18n('Close')%></a>
+		</div>
+	</form>
+</div>
+
+<div id="modalCardAthlete" class="modal modal-fixed-footer" style="width: 1070px;">
+	<form id="formCardAthlete">
+		<input type="hidden" name="_method" value="delete" />
+		<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+		<div class="modal-content">
+			<h4>Carteira</h4>
+			<p></p>
+			<div id="cardAthlete">
+				<img width="1000" src="/images/carteira-colorida.jpg">
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a id="downloadCardAthlete" target="_blank" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><%=i18n('Download')%></a>
 			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><%=i18n('Close')%></a>
 		</div>
 	</form>

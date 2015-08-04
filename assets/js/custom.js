@@ -35,4 +35,15 @@ $(document).ready(function () {
 		$h4.text(title);
 		$p.text(message);
 	});
+
+	$('.modal-trigger-card').leanModal({
+		ready: function () {
+			var $divCard = $('#cardAthlete');
+			var $download = $('#downloadCardAthlete');
+			html2canvas($divCard).then(function (canvas) {
+				$download.attr('href', canvas.toDataURL());
+				$download.attr('download', "CarteiraTeste");
+			});
+		},
+    });
 });
