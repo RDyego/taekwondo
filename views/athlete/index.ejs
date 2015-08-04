@@ -29,7 +29,9 @@
 					</td>
 					<td>
   						<a  href="#modalCardAthlete"
-						  	data-form="#formCardAthlete" 
+						  	data-form="#formCardAthlete"
+						  	data-athlete-name="<%=i18n('Name')%>: <%=(athlete.name)?athlete.name:''%>"  
+						  	data-athlete-graduation="<%=(athlete.graduation)?i18n(athlete.graduation):''%>"
 							class="btn-floating waves-effect waves-light yellow tooltipped modal-trigger-card"
 							data-position="right" data-delay="50" data-tooltip="<%=i18n('Card')%>">
 							<i class="material-icons">credit_card</i>
@@ -86,15 +88,20 @@
 	</form>
 </div>
 
-<div id="modalCardAthlete" class="modal modal-fixed-footer" style="width: 1070px;">
+<div id="modalCardAthlete" class="modal modal-fixed-footer" style="width: 1050px;">
 	<form id="formCardAthlete">
-		<input type="hidden" name="_method" value="delete" />
 		<input type="hidden" name="_csrf" value="<%= _csrf %>" />
 		<div class="modal-content">
 			<h4>Carteira</h4>
-			<p></p>
-			<div id="cardAthlete">
-				<img width="1000" src="/images/carteira-colorida.jpg">
+			<div id="cardAthlete" class="container"
+				style="background-image: url(../images/carteira-colorida.jpg); 
+				height: 361px; 
+				width: 1000px;">
+				<div class="row">
+					<div class="col s3 offset-s7">
+						<p id="athleteCardName"></p>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="modal-footer">

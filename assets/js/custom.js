@@ -45,5 +45,9 @@ $(document).ready(function () {
 				$download.attr('download', "CarteiraTeste");
 			});
 		},
-    });
+    }).on('click', function () {
+		var $myElementCliked = $(this);
+		var $divCard = $('#cardAthlete');
+		var $athleteCardName = $('#athleteCardName').text($myElementCliked.attr('data-athlete-name'));
+	});
 });
