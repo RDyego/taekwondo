@@ -2,10 +2,10 @@
 	<table class="center bordered hoverable responsive-table" align=center>
 		<thead>
 			<tr>
-				<th data-field="name">Name</th>
-				<th data-field="email">Email</th>
-				<th data-field="graduation">Graduation</th>
-				<th data-field="instructorName">Instructor</th>
+				<th data-field="name"><%=i18n('Name')%></th>
+				<th data-field="email"><%=i18n('Email')%></th>
+				<th data-field="graduation"><%=i18n('Graduation')%></th>
+				<th data-field="instructorName"><%=i18n('Instructor')%></th>
 				<th></th>
 				<th></th>
 				<th></th>
@@ -31,7 +31,7 @@
   						<a  href="#modalCardAthlete"
 						  	data-form="#formCardAthlete"
 						  	data-athlete-name="<%=i18n('Name')%>: <%=(athlete.name)?athlete.name:''%>"  
-						  	data-athlete-graduation="<%=(athlete.graduation)?i18n(athlete.graduation):''%>"
+						  	data-athlete-graduation="<%=i18n('Graduation')%>: <%=(athlete.graduation)?i18n(athlete.graduation):''%>"
 							class="btn-floating waves-effect waves-light yellow tooltipped modal-trigger-card"
 							data-position="right" data-delay="50" data-tooltip="<%=i18n('Card')%>">
 							<i class="material-icons">credit_card</i>
@@ -100,6 +100,9 @@
 				<div class="row">
 					<div class="col s3 offset-s7">
 						<p id="athleteCardName"></p>
+					</div>
+					<div class="col s3 offset-s7">
+						<p id="athleteCardGraduation"></p>
 					</div>
 				</div>
 			</div>

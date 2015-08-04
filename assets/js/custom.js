@@ -49,5 +49,6 @@ $(document).ready(function () {
 		var $myElementCliked = $(this);
 		var $divCard = $('#cardAthlete');
 		var $athleteCardName = $('#athleteCardName').text($myElementCliked.attr('data-athlete-name'));
+		var $athleteCardGraduation = $('#athleteCardGraduation').text($myElementCliked.attr('data-athlete-graduation'));
 	});
 });
