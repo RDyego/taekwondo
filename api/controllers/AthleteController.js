@@ -21,15 +21,38 @@ module.exports = {
 
 	index: function (req, res, next) {
 		var myAthleteQuery = Athlete.find();
-		var moment = require('moment');	
+		var moment = require('moment');
 		var limit = 10;
-		var sortBy = req.param('sortBy') ? req.param('sortBy') : 'name';
-		var sortType = req.param('sortType') ? req.param('sortType') : 'DESC';
 		var page = req.param('page');
 		page = page ? page : 1;
-		
-		myAthleteQuery.sort(sortBy + ' ' + sortType);
-		
+
+		var sortBy = req.param('sortBy') ? req.param('sortBy') : 'name';
+		var sortType = req.param('sortType') ? req.param('sortType') : 'ASC';
+		var sortViewModel = {
+			sortBy: sortBy,
+			sortType: sortType == 'DESC' ? 'ASC' : 'DESC',
+			attributes: [
+				{
+					name: 'name',
+					sortable: true
+				},
+				{
+					name: 'email',
+					sortable: false
+				},
+				{
+					name: 'graduation',
+					sortable: true
+				},
+				{
+					name: 'instructorName',
+					sortable: false
+				},
+			]
+		};
+
+		myAthleteQuery.sort(sortViewModel.sortBy + ' ' + sortViewModel.sortType);
+
 		myAthleteQuery.paginate({ page: page, limit: limit }).exec(function (err, athletesFound) {
 			if (err) return next(err);
 			Athlete.count().exec(function (err, countTotal) {
@@ -40,8 +63,7 @@ module.exports = {
 					currentPage: page,
 					model: 'athlete',
 					moment: moment,
-					sortBy: sortBy,
-					sortType: sortType == 'DESC' ? 'ASC' : 'DESC'
+					sortViewModel: sortViewModel
 				});
 			});
 		});
