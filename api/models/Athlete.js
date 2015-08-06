@@ -97,5 +97,8 @@ module.exports = {
       type: 'string',
       enum: ['Positive', 'Negative']
     },
+    validity: {
+      type: 'date'
+    },
   }
 };

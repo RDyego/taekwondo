@@ -38,7 +38,7 @@ module.exports = {
 				},
 				{
 					name: 'email',
-					sortable: false
+					sortable: true
 				},
 				{
 					name: 'graduation',
@@ -46,7 +46,7 @@ module.exports = {
 				},
 				{
 					name: 'instructorName',
-					sortable: false
+					sortable: true
 				},
 			]
 		};

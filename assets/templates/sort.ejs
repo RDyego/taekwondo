@@ -1,0 +1,12 @@
+
+<% _.each(sortViewModel.attributes, function (attribute) { 
+	if (attribute.sortable) { %>
+	<th data-field="<%=attribute.name%>">
+		<a href="/athlete?sortType=<%=((sortViewModel.sortBy == attribute.name) ? sortViewModel.sortType : 'DESC')%>&sortBy=<%=attribute.name%>">
+			<%=i18n(attribute.name)%>
+			<i class="material-icons">keyboard_arrow_<%=((sortViewModel.sortBy == attribute.name) ? (sortViewModel.sortType == 'DESC' ?  'down' : 'up') : 'up')%></i>
+		</a>
+	</th>
+<% }else{%>
+	<th data-field="<%=attribute.name%>"><%=i18n(attribute.name)%></th>
+<% }}) %>
