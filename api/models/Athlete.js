@@ -76,7 +76,7 @@ module.exports = {
     },
     graduation: {
       type: 'string',
-      enum: ['White', 'Black']
+      enum: ['White', 'Yellow', 'Orange', 'Light Blue', 'Green', 'Purple', 'Dark Blue', 'Brown', 'Red', 'Red/Black', 'Black']
     },
     dateStarted: {
       type: 'date'

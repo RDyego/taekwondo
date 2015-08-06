@@ -61,12 +61,14 @@ $(document).ready(function () {
 		var $pName = $('#athleteCardName');
 		var $pAcademy = $('#athleteCardAcademy');
 		var $pDateStarted = $('#athleteCardDateStarted');
+		var $pValidity = $('#athleteCardValidity');
 		
 		$imgPhoto.attr('src',($myElementCliked.attr('data-athlete-photo')));
 		$pGraduation.text($myElementCliked.attr('data-athlete-graduation'));
 		$pName.text($myElementCliked.attr('data-athlete-name'));
 		$pAcademy.text($myElementCliked.attr('data-athlete-academy'));
 		$pDateStarted.text($myElementCliked.attr('data-athlete-date-started'));
+		$pValidity.text($myElementCliked.attr('data-athlete-validity'));
 		
 		var isBlackBelt = $pGraduation.text().indexOf('Preta') != -1;
 		if(isBlackBelt){
