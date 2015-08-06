@@ -20,6 +20,7 @@ module.exports = {
 	*/
 
 	index: function (req, res, next) {
+		var moment = require('moment');	
 		var limit = 10;
 		var page = req.param('page');
 		page = page ? page : 1;
@@ -31,7 +32,8 @@ module.exports = {
 					athletes: athletesFound,
 					totalPage: Math.ceil(countTotal / limit),
 					currentPage: page,
-					model: 'athlete'
+					model: 'athlete',
+					moment: moment
 				});
 			});
 		});
@@ -165,9 +167,6 @@ module.exports = {
 			req.file('photo').upload({
 				maxBytes: 500000, //500kb
 				dirname: '../../assets/images/photo'
-				//dirname: '../../assets/images/'
-				//dirname: require('path').resolve(sails.config.appPath, '/assets/images/photo')
-				//dirname: './.tmp/public/images/posts'
 			}, function whenDone(err, uploadedFiles) {
 				if (err) {
 					var fileUploadError = [{
@@ -185,7 +184,6 @@ module.exports = {
 					var file = path.basename(uploadedFiles[0].fd);
 
 					Athlete.update(athleteId, {
-						//photo: require('util').format('%s/images/%s', sails.getBaseUrl(), file)
 						photo: require('util').format('%s/images/photo/%s', sails.getBaseUrl(), file)
 					}).exec(function (err) {
 						if (err) {

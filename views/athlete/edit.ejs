@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="center">
-		<form action="/athlete/update/<%=athlete.id%>" method="post" class="col s12">
+		<form action="/athlete/update/<%=athlete.id%>" enctype="multipart/form-data" method="post" class="col s12">
 			<div class="row">
 				<div class="input-field col s6">
 					<input id="name" name="name" type="text" value="<%=(athlete.name)?athlete.name:''%>">

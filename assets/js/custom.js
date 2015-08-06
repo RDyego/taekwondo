@@ -37,18 +37,45 @@ $(document).ready(function () {
 	});
 
 	$('.modal-trigger-card').leanModal({
+		dismissible: true, // Modal can be dismissed by clicking outside of the modal
+		in_duration: 1000, // Transition in duration
 		ready: function () {
 			var $divCard = $('#cardAthlete');
 			var $download = $('#downloadCardAthlete');
 			html2canvas($divCard).then(function (canvas) {
 				$download.attr('href', canvas.toDataURL());
-				$download.attr('download', "CarteiraTeste");
+				//$download.attr('download', "CarteiraTeste");
 			});
 		},
     }).on('click', function () {
+		
 		var $myElementCliked = $(this);
 		var $divCard = $('#cardAthlete');
-		var $athleteCardName = $('#athleteCardName').text($myElementCliked.attr('data-athlete-name'));
-		var $athleteCardGraduation = $('#athleteCardGraduation').text($myElementCliked.attr('data-athlete-graduation'));
+		
+		var urlColorCard = $('#urlColorCard').val();
+		var urlBlackCard = $('#urlBlackCard').val();
+		var urlbackGroundImage = "url("+urlColorCard+")";
+		
+		var $imgPhoto = $('#athleteCardPhoto');
+		var $pGraduation = $('#athleteCardGraduation');
+		var $pName = $('#athleteCardName');
+		var $pAcademy = $('#athleteCardAcademy');
+		var $pDateStarted = $('#athleteCardDateStarted');
+		
+		$imgPhoto.attr('src',($myElementCliked.attr('data-athlete-photo')));
+		$pGraduation.text($myElementCliked.attr('data-athlete-graduation'));
+		$pName.text($myElementCliked.attr('data-athlete-name'));
+		$pAcademy.text($myElementCliked.attr('data-athlete-academy'));
+		$pDateStarted.text($myElementCliked.attr('data-athlete-date-started'));
+		
+		var isBlackBelt = $pGraduation.text().indexOf('Preta') != -1;
+		if(isBlackBelt){
+			urlbackGroundImage = "url("+urlBlackCard+")";
+		}
+		$divCard.css('background-image', urlbackGroundImage);
+		
+		
+		var $download = $('#downloadCardAthlete');
+		$download.attr('download', "Carteira " + $pName.text());
 	});
 });

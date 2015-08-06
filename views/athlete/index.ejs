@@ -30,8 +30,11 @@
 					<td>
   						<a  href="#modalCardAthlete"
 						  	data-form="#formCardAthlete"
+						  	data-athlete-photo="<%=(athlete.photo)?athlete.photo:''%>"  
 						  	data-athlete-name="<%=i18n('Name')%>: <%=(athlete.name)?athlete.name:''%>"  
 						  	data-athlete-graduation="<%=i18n('Graduation')%>: <%=(athlete.graduation)?i18n(athlete.graduation):''%>"
+						  	data-athlete-academy="<%=i18n('Academy')%>: <%=(athlete.associationName)?athlete.associationName:''%>"  
+						  	data-athlete-date-started="<%=i18n('Date Started')%>: <%=(athlete.dateStarted)?moment(athlete.dateStarted).format('DD/MM/YYYY'):''%>"  
 							class="btn-floating waves-effect waves-light yellow tooltipped modal-trigger-card"
 							data-position="right" data-delay="50" data-tooltip="<%=i18n('Card')%>">
 							<i class="material-icons">credit_card</i>
@@ -69,6 +72,8 @@
 	<div class="row">
 		<% include ../../assets/templates/paginate %>
 	</div>
+	<input type="hidden" id="urlColorCard" value="<%=sails.getBaseUrl()+'/images/carteira-colorida.jpg'%>">
+	<input type="hidden" id="urlBlackCard" value="<%=sails.getBaseUrl()+'/images/carteira-preta.jpg'%>">
 </div>
 
 <div id="modalDeleteAthlete" class="modal">
@@ -88,21 +93,27 @@
 	</form>
 </div>
 
-<div id="modalCardAthlete" class="modal modal-fixed-footer" style="width: 1050px;">
+<div id="modalCardAthlete" class="modal modal-fixed-footer">
 	<form id="formCardAthlete">
 		<input type="hidden" name="_csrf" value="<%= _csrf %>" />
 		<div class="modal-content">
 			<h4>Carteira</h4>
-			<div id="cardAthlete" class="container"
-				style="background-image: url(../images/carteira-colorida.jpg); 
-				height: 361px; 
-				width: 1000px;">
+			<div id="cardAthlete" class="container">
 				<div class="row">
-					<div class="col s3 offset-s7">
+					<div class="cardAthleteDivImgCardPhotoTop">
+      					<img id="athleteCardPhoto">
+					</div>
+					<div class="cardAthleteDivP cardAthleteDivPCardNameTop">
 						<p id="athleteCardName"></p>
 					</div>
-					<div class="col s3 offset-s7">
+					<div class="cardAthleteDivP cardAthleteDivPCardGraduationTop">
 						<p id="athleteCardGraduation"></p>
+					</div>
+					<div class="cardAthleteDivP cardAthleteDivPCardAcademyTop">
+						<p id="athleteCardAcademy"></p>
+					</div>
+					<div class="cardAthleteDivP cardAthleteDivPCardDateStartedTop">
+						<p id="athleteCardDateStarted"></p>
 					</div>
 				</div>
 			</div>
