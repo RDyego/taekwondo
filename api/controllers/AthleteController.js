@@ -20,11 +20,17 @@ module.exports = {
 	*/
 
 	index: function (req, res, next) {
+		var myAthleteQuery = Athlete.find();
 		var moment = require('moment');	
 		var limit = 10;
+		var sortBy = req.param('sortBy') ? req.param('sortBy') : 'name';
+		var sortType = req.param('sortType') ? req.param('sortType') : 'DESC';
 		var page = req.param('page');
 		page = page ? page : 1;
-		Athlete.find({}).paginate({ page: page, limit: limit }).exec(function (err, athletesFound) {
+		
+		myAthleteQuery.sort(sortBy + ' ' + sortType);
+		
+		myAthleteQuery.paginate({ page: page, limit: limit }).exec(function (err, athletesFound) {
 			if (err) return next(err);
 			Athlete.count().exec(function (err, countTotal) {
 				if (err) return next(err);
@@ -33,7 +39,9 @@ module.exports = {
 					totalPage: Math.ceil(countTotal / limit),
 					currentPage: page,
 					model: 'athlete',
-					moment: moment
+					moment: moment,
+					sortBy: sortBy,
+					sortType: sortType == 'DESC' ? 'ASC' : 'DESC'
 				});
 			});
 		});

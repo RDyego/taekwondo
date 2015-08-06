@@ -2,7 +2,11 @@
 	<table class="center bordered hoverable responsive-table" align=center>
 		<thead>
 			<tr>
-				<th data-field="name"><%=i18n('Name')%></th>
+				<th data-field="name">
+					<a href="/athlete?sortType=<%=((sortBy == 'name') ? sortType : 'ASC')%>&sortBy=name"><%=i18n('Name')%>
+						<i class="material-icons">keyboard_arrow_<%=((sortBy == 'name') ? (sortType == 'DESC' ?  'up' : 'down') : 'up')%></i>
+					</a>
+				</th>
 				<th data-field="email"><%=i18n('Email')%></th>
 				<th data-field="graduation"><%=i18n('Graduation')%></th>
 				<th data-field="instructorName"><%=i18n('Instructor')%></th>
