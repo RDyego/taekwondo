@@ -61,6 +61,7 @@ $(document).ready(function () {
 		var $pName = $('#athleteCardName');
 		var $pAcademy = $('#athleteCardAcademy');
 		var $pDateStarted = $('#athleteCardDateStarted');
+		var $pRegisterNumber = $('#athleteCardRegisterNumber');
 		var $pValidity = $('#athleteCardValidity');
 		
 		$imgPhoto.attr('src',($myElementCliked.attr('data-athlete-photo')));
@@ -69,8 +70,9 @@ $(document).ready(function () {
 		$pAcademy.text($myElementCliked.attr('data-athlete-academy'));
 		$pDateStarted.text($myElementCliked.attr('data-athlete-date-started'));
 		$pValidity.text($myElementCliked.attr('data-athlete-validity'));
+		$pRegisterNumber.text($myElementCliked.attr('data-athlete-register-number'));
 		
-		var isBlackBelt = $pGraduation.text().indexOf('Preta') != -1;
+		var isBlackBelt = $pGraduation.text().indexOf('Dan') != -1;
 		if(isBlackBelt){
 			urlbackGroundImage = "url("+urlBlackCard+")";
 		}
