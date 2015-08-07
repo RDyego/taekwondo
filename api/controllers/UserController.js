@@ -25,10 +25,33 @@ module.exports = {
 	},
 	
 	index: function (req, res, next) {
+		var myUserQuery = User.find();
 		var limit = 20;
 		var page = req.param('page');
+		var hasPage = !!page;
 		page = page ? page : 1;
-		User.find({}).paginate({ page: page, limit: limit }).exec(function (err, usersFound) {
+
+		var sortBy = req.param('sortBy') ? req.param('sortBy') : 'name';
+		var sortType = req.param('sortType') ? req.param('sortType') : 'ASC';
+		var sortViewModel = {
+			model: 'user',
+			sortBy: sortBy,
+			sortType: (hasPage ? sortType : (sortType == 'DESC' ? 'ASC' : 'DESC')),
+			attributes: [
+				{
+					name: 'name',
+					sortable: true
+				},
+				{
+					name: 'email',
+					sortable: true
+				},
+			]
+		};
+		
+		myUserQuery.sort(sortViewModel.sortBy + ' ' + sortViewModel.sortType);
+		
+		myUserQuery.paginate({ page: page, limit: limit }).exec(function (err, usersFound) {
 			if (err) return next(err);
 			User.count().exec(function (err, countTotal) {
 				if (err) return next(err);
@@ -36,7 +59,8 @@ module.exports = {
 					users: usersFound,
 					totalPage: Math.ceil(countTotal / limit),
 					currentPage: page,
-					model: 'user'
+					model: 'user',
+					sortViewModel: sortViewModel
 				});
 			});
 		});

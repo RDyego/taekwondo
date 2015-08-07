@@ -23,15 +23,17 @@ module.exports = {
 	index: function (req, res, next) {
 		var moment = require('moment');
 		var myAthleteQuery = Athlete.find();
-		var limit = 10;
+		var limit = 20;
 		var page = req.param('page');
+		var hasPage = !!page;
 		page = page ? page : 1;
 
 		var sortBy = req.param('sortBy') ? req.param('sortBy') : 'name';
 		var sortType = req.param('sortType') ? req.param('sortType') : 'ASC';
 		var sortViewModel = {
+			model: 'athlete',
 			sortBy: sortBy,
-			sortType: sortType == 'DESC' ? 'ASC' : 'DESC',
+			sortType: (hasPage ? sortType : (sortType == 'DESC' ? 'ASC' : 'DESC')),
 			attributes: [
 				{
 					name: 'name',

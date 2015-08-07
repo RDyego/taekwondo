@@ -30,4 +30,14 @@ module.exports.bootstrap = function (cb) {
       });
     }
   });
+  
+  /*
+   for (var x = 0; x < 100; x++) {
+     var name = "z" + x;
+     Athlete.create({ name: name }).exec(function (err, athleteCreated) {
+       if (err) return cb(err);
+       //console.log('athlete created: ', athleteCreated);
+     });
+   }
+   */
 };

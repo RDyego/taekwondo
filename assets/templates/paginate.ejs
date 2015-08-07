@@ -1,17 +1,17 @@
 <%if(totalPage!=0){%>
 <ul class="pagination center">
 	<li class="<%=((currentPage == 1) ? 'disabled' : 'waves-effect')%>">
-		<a href="<%=((currentPage == 1) ? '#' : '/'+model+'?page='+(+currentPage-1))%>">
+		<a href="<%=((currentPage == 1) ? '#' : '/'+model+'?page='+(+currentPage-1)+'&sortType='+sortViewModel.sortType+'&sortBy'+sortViewModel.sortBy)%>">
 			<i class="material-icons">chevron_left</i>
 		</a>
 	</li>
 	<%for(i=1;i<=totalPage;i++){%>
 	<li class="waves-effect <%=((currentPage == i) ? 'active' : '')%>">
-		<a href="/<%=model%>?page=<%=i%>"><%=i%></a>
+		<a href="/<%=model%>?page=<%=i%>&sortType=<%=sortViewModel.sortType%>&sortBy<%=sortViewModel.sortBy%>"><%=i%></a>
 	</li>
 	<%}%>
 	<li class="<%=((currentPage == totalPage) ? 'disabled' : 'waves-effect')%>">
-		<a href="<%=((currentPage == totalPage) ? '#' : '/'+model+'?page='+(+currentPage+1))%>">
+		<a href="<%=((currentPage == totalPage) ? '#' : '/'+model+'?page='+(+currentPage+1)+'&sortType='+sortViewModel.sortType+'&sortBy'+sortViewModel.sortBy)%>">
 			<i class="material-icons">chevron_right</i>
 		</a>
 	</li>
