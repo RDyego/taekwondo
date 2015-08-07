@@ -30,7 +30,9 @@ module.exports = {
 
 		var sortBy = req.param('sortBy') ? req.param('sortBy') : 'name';
 		var sortType = req.param('sortType') ? req.param('sortType') : 'ASC';
-		var sortViewModel = {
+		var sortAndPaginateViewModel = {
+			totalPage: 0,
+			currentPage: page,
 			model: 'athlete',
 			sortBy: sortBy,
 			sortType: (hasPage ? sortType : (sortType == 'DESC' ? 'ASC' : 'DESC')),
@@ -54,19 +56,17 @@ module.exports = {
 			]
 		};
 
-		myAthleteQuery.sort(sortViewModel.sortBy + ' ' + sortViewModel.sortType);
+		myAthleteQuery.sort(sortAndPaginateViewModel.sortBy + ' ' + sortAndPaginateViewModel.sortType);
 
 		myAthleteQuery.paginate({ page: page, limit: limit }).exec(function (err, athletesFound) {
 			if (err) return next(err);
 			Athlete.count().exec(function (err, countTotal) {
 				if (err) return next(err);
+				sortAndPaginateViewModel.totalPage = Math.ceil(countTotal / limit);
 				res.view({
 					athletes: athletesFound,
-					totalPage: Math.ceil(countTotal / limit),
-					currentPage: page,
-					model: 'athlete',
 					moment: moment,
-					sortViewModel: sortViewModel
+					sortAndPaginate: sortAndPaginateViewModel
 				});
 			});
 		});

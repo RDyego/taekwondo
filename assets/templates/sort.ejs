@@ -1,10 +1,10 @@
 
-<% _.each(sortViewModel.attributes, function (attribute) { 
+<% _.each(sortAndPaginate.attributes, function (attribute) { 
 	if (attribute.sortable) { %>
 	<th data-field="<%=attribute.name%>">
-		<a href="/<%=sortViewModel.model%>?sortType=<%=((sortViewModel.sortBy == attribute.name) ? sortViewModel.sortType : 'DESC')%>&sortBy=<%=attribute.name%>">
+		<a href="/<%=sortAndPaginate.model%>?sortType=<%=((sortAndPaginate.sortBy == attribute.name) ? sortAndPaginate.sortType : 'DESC')%>&sortBy=<%=attribute.name%>">
 			<%=i18n(attribute.name)%>
-			<i class="material-icons">keyboard_arrow_<%=((sortViewModel.sortBy == attribute.name) ? (sortViewModel.sortType == 'DESC' ?  'down' : 'up') : 'up')%></i>
+			<i class="material-icons">keyboard_arrow_<%=((sortAndPaginate.sortBy == attribute.name) ? (sortAndPaginate.sortType == 'DESC' ?  'down' : 'up') : 'up')%></i>
 		</a>
 	</th>
 <% }else{%>

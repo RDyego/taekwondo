@@ -33,7 +33,9 @@ module.exports = {
 
 		var sortBy = req.param('sortBy') ? req.param('sortBy') : 'name';
 		var sortType = req.param('sortType') ? req.param('sortType') : 'ASC';
-		var sortViewModel = {
+		var sortAndPaginateViewModel = {
+			totalPage: 0,
+			currentPage: page,
 			model: 'user',
 			sortBy: sortBy,
 			sortType: (hasPage ? sortType : (sortType == 'DESC' ? 'ASC' : 'DESC')),
@@ -49,18 +51,16 @@ module.exports = {
 			]
 		};
 		
-		myUserQuery.sort(sortViewModel.sortBy + ' ' + sortViewModel.sortType);
+		myUserQuery.sort(sortAndPaginateViewModel.sortBy + ' ' + sortAndPaginateViewModel.sortType);
 		
 		myUserQuery.paginate({ page: page, limit: limit }).exec(function (err, usersFound) {
 			if (err) return next(err);
 			User.count().exec(function (err, countTotal) {
 				if (err) return next(err);
+				sortAndPaginateViewModel.totalPage = Math.ceil(countTotal / limit);
 				res.view({
 					users: usersFound,
-					totalPage: Math.ceil(countTotal / limit),
-					currentPage: page,
-					model: 'user',
-					sortViewModel: sortViewModel
+					sortAndPaginate: sortAndPaginateViewModel
 				});
 			});
 		});
