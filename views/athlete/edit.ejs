@@ -3,27 +3,27 @@
 		<form action="/athlete/update/<%=athlete.id%>" enctype="multipart/form-data" method="post" class="col s12">
 			<div class="row">
 				<div class="input-field col s6">
-					<input id="name" name="name" type="text" value="<%=(athlete.name)?athlete.name:''%>">
+					<input id="name" name="name" type="text" maxlength="50" value="<%=(athlete.name)?athlete.name:''%>">
 					<label for="name" ><%=i18n('Name')%></label>
 				</div>
 				<div class="input-field col s6">
-					<input id="email" name="email" type="email" value="<%=(athlete.email)?athlete.email:''%>">
+					<input id="email" name="email" type="email" maxlength="50" value="<%=(athlete.email)?athlete.email:''%>">
 					<label for="email"><%=i18n('Email')%></label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s6">
-					<input id="fatherName" name="fatherName" type="text" value="<%=(athlete.fatherName)?athlete.fatherName:''%>">
+					<input id="fatherName" name="fatherName" type="text" maxlength="50" value="<%=(athlete.fatherName)?athlete.fatherName:''%>">
 					<label for="fatherName"><%=i18n('Father')%></label>
 				</div>
 				<div class="input-field col s6">
-					<input id="motherName" name="motherName" type="text" value="<%=(athlete.motherName)?athlete.motherName:''%>">
+					<input id="motherName" name="motherName" type="text" maxlength="50" value="<%=(athlete.motherName)?athlete.motherName:''%>">
 					<label for="motherName"><%=i18n('Mother')%></label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s3">
-					<input id="bday" name="bday" type="date" class="datepicker" value="<%=(athlete.bday)?athlete.bday:''%>">
+					<input id="bday" name="bday" type="date" class="datepicker" maxlength="20" value="<%=(athlete.bday)?athlete.bday:''%>">
 					<label for="bday"><%=i18n('Date of Birth')%></label>
 				</div>
 				<div class="input-field col s3">
@@ -35,45 +35,45 @@
 					<label for="education"><%=i18n('Education')%></label>
 				</div>
 				<div class="input-field col s3">
-					<input id="naturalness" name="naturalness" type="text" value="<%=(athlete.naturalness)?athlete.naturalness:''%>">
+					<input id="naturalness" name="naturalness" type="text" maxlength="27" value="<%=(athlete.naturalness)?athlete.naturalness:''%>">
 					<label for="naturalness"><%=i18n('Naturalness')%></label>
 				</div>
 				<div class="input-field col s3">
-					<input id="nationality" name="nationality" type="text" value="<%=(athlete.nationality)?athlete.nationality:''%>">
+					<input id="nationality" name="nationality" type="text" maxlength="27" value="<%=(athlete.nationality)?athlete.nationality:''%>">
 					<label for="nationality"><%=i18n('Nationality')%></label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s6">
-					<input id="profession" name="profession" type="text" value="<%=(athlete.profession)?athlete.profession:''%>">
+					<input id="profession" name="profession" type="text" maxlength="50" value="<%=(athlete.profession)?athlete.profession:''%>">
 					<label for="profession"><%=i18n('Profession')%></label>
 				</div>
 				<div class="input-field col s3">
-					<input id="rg" name="rg" type="text" value="<%=(athlete.rg)?athlete.rg:''%>">
+					<input id="rg" name="rg" type="text" maxlength="27" value="<%=(athlete.rg)?athlete.rg:''%>">
 					<label for="rg"><%=i18n('RG')%></label>
 				</div>
 				<div class="input-field col s3">
-					<input id="cpf" name="cpf" type="text" value="<%=(athlete.cpf)?athlete.cpf:''%>">
+					<input id="cpf" name="cpf" type="text" maxlength="27" value="<%=(athlete.cpf)?athlete.cpf:''%>">
 					<label for="cpf"><%=i18n('CPF')%></label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s9">
-					<input id="address" name="address" type="text" value="<%=(athlete.address)?athlete.address:''%>">
+					<input id="address" name="address" maxlength="90" type="text" value="<%=(athlete.address)?athlete.address:''%>">
 					<label for="address"><%=i18n('Address')%></label>
 				</div>
 				<div class="input-field col s3">
-					<input id="cep" name="cep" type="text" value="<%=(athlete.cep)?athlete.cep:''%>">
+					<input id="cep" name="cep" type="text" maxlength="27" value="<%=(athlete.cep)?athlete.cep:''%>">
 					<label for="cep"><%=i18n('CEP')%></label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s9">
-					<input id="businessAddress" name="businessAddress" type="text" value="<%=(athlete.businessAddress)?athlete.businessAddress:''%>">
+					<input id="businessAddress" name="businessAddress" type="text" maxlength="90" value="<%=(athlete.businessAddress)?athlete.businessAddress:''%>">
 					<label for="businessAddress"><%=i18n('Business Address')%></label>
 				</div>
 				<div class="input-field col s3">
-					<input id="phone" name="phone" type="text" value="<%=(athlete.phone)?athlete.phone:''%>">
+					<input id="phone" name="phone" type="text" maxlength="27" value="<%=(athlete.phone)?athlete.phone:''%>">
 					<label for="phone"><%=i18n('Phone')%></label>
 				</div>
 			</div>
@@ -87,7 +87,7 @@
 					<label for="graduation"><%=i18n('Graduation')%></label>
 				</div>
 				<div class="input-field col s3">
-					<input id="dateStarted" name="dateStarted" type="date" class="datepicker" value="<%=(athlete.dateStarted)?athlete.dateStarted:''%>">
+					<input id="dateStarted" name="dateStarted" type="date" class="datepicker" maxlength="20" value="<%=(athlete.dateStarted)?athlete.dateStarted:''%>">
 					<label for="dateStarted"><%=i18n('Date Started')%></label>
 				</div>
 				<div class="input-field col s3">
@@ -109,11 +109,11 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s6">
-					<input id="instructorName" name="instructorName" type="text" value="<%=(athlete.instructorName)?athlete.instructorName:''%>">
+					<input id="instructorName" name="instructorName" type="text" maxlength="50" value="<%=(athlete.instructorName)?athlete.instructorName:''%>">
 					<label for="instructorName"><%=i18n('Instructor Name')%></label>
 				</div>
 				<div class="input-field col s6">
-					<input id="associationName" name="associationName" type="text" value="<%=(athlete.associationName)?athlete.associationName:''%>">
+					<input id="associationName" name="associationName" type="text" maxlength="50" value="<%=(athlete.associationName)?athlete.associationName:''%>">
 					<label for="associationName"><%=i18n('Association Name')%></label>
 				</div>
 			</div>

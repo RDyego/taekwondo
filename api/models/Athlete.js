@@ -15,60 +15,60 @@ module.exports = {
     name: {
       type: 'string',
       required: true,
-      size: 100
+      size: 50
     },
     email: {
       type: 'email',
       //required: true,
       //unique: true,
-      size: 100
+      size: 50
     },
     fatherName: {
       type: 'string',
-      size: 100
+      size: 50
     },
     motherName: {
       type: 'string',
-      size: 100
+      size: 50
     },
     address: {
       type: 'string',
-      size: 100
+      size: 90
     },
     cep: {
       type: 'string',
-      size: 100
+      size: 27
     },
     photo: {
       type: 'string',
-      size: 100
+      size: 200
     },
     phone: {
       type: 'string',
-      size: 100
+      size: 27
     },
     bday: {
       type: 'date'
     },
     rg: {
       type: 'string',
-      size: 100
+      size: 27
     },
     naturalness: {
       type: 'string',
-      size: 100
+      size: 27
     },
     nationality: {
       type: 'string',
-      size: 100
+      size: 27
     },
     profession: {
       type: 'string',
-      size: 100
+      size: 50
     },
     businessAddress: {
       type: 'string',
-      size: 100
+      size: 90
     },
     education: {
       type: 'string',
@@ -76,7 +76,7 @@ module.exports = {
     },
     cpf: {
       type: 'string',
-      size: 100
+      size: 27
     },
     graduation: {
       type: 'string',
@@ -87,11 +87,11 @@ module.exports = {
     },
     instructorName: {
       type: 'string',
-      size: 100
+      size: 50
     },
     associationName: {
       type: 'string',
-      size: 100
+      size: 50
     },
     bloodGroup: {
       type: 'string',
