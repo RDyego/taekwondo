@@ -140,6 +140,7 @@
 					<i class="material-icons">send</i>
 				</button>
 			</div>
+			<input type="hidden" name="validity" value="<%=moment().add(1, 'years').format('DD/MM/YYYY')%>">
 			<input type="hidden" name="_csrf" value="<%= _csrf %>">
 		</form>
 	</div>

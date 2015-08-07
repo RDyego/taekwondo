@@ -7,7 +7,8 @@
 
 module.exports = {
 	'new': function (req, res, next) {
-		res.view();
+		var moment = require('moment');
+		res.view({ moment: moment });
 	},
 	
 	/*
@@ -20,8 +21,8 @@ module.exports = {
 	*/
 
 	index: function (req, res, next) {
-		var myAthleteQuery = Athlete.find();
 		var moment = require('moment');
+		var myAthleteQuery = Athlete.find();
 		var limit = 10;
 		var page = req.param('page');
 		page = page ? page : 1;
@@ -154,6 +155,7 @@ module.exports = {
 	},
 
 	edit: function (req, res, next) {
+		var moment = require('moment');
 		var athleteId = req.param('id');
 		Athlete.findOne(athleteId).exec(function (err, athleteFound) {
 			if (err) {
@@ -176,7 +178,7 @@ module.exports = {
 				}
 				return res.redirect('/athlete/index');
 			}
-			res.view({ athlete: athleteFound });
+			res.view({ athlete: athleteFound, moment: moment });
 		});
 	},
 

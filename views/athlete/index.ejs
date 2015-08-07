@@ -33,10 +33,10 @@
 						  	data-athlete-academy="<%=i18n('Academy')%>: <%=(athlete.associationName)?athlete.associationName:''%>"  
 						  	data-athlete-date-started="<%=i18n('Date Started')%>: <%=(athlete.dateStarted)?moment(athlete.dateStarted).format('DD/MM/YYYY'):''%>"
 						  	data-athlete-validity="<%=i18n('Validity')%> <%=i18n('for')%>: <%=(athlete.validity)
-							  ?	moment(athlete.validity).format('DD/MM/YYYY')
-							  	: moment().format('DD/MM/YYYY')%> <%=i18n('to')%>: <%=(athlete.validity)
-							  		? moment(athlete.validity).add(-1, 'years').format('DD/MM/YYYY')
-									  : moment().add(1, 'years').format('DD/MM/YYYY')%>"  
+						  			? moment(athlete.validity).add(-1, 'years').format('DD/MM/YYYY')
+					  				: moment().format('DD/MM/YYYY')%> <%=i18n('to')%>: <%=(athlete.validity)
+							  		? moment(athlete.validity).format('DD/MM/YYYY')
+								  	: moment().add(1, 'years').format('DD/MM/YYYY')%>"  
 						  	data-athlete-register-number="<%=i18n('Register Number')%>: <%=(athlete.registerNumber)?athlete.registerNumber:''%>"    
 							class="btn-floating waves-effect waves-light yellow tooltipped modal-trigger-card"
 							data-position="right" data-delay="50" data-tooltip="<%=i18n('Card')%>">
