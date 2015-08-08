@@ -36,6 +36,9 @@
     "type": "git",
     "url": "git://github.com/anonymous node/sails user/taekwondo.git"
   },
+  "engines": {
+    "node": "0.12.x"
+  },
   "author": "anonymous node/sails user",
   "license": ""
 }
