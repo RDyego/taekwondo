@@ -73,9 +73,6 @@ module.exports = {
 	},
 
 	create: function (req, res, next) {
-
-		res.setTimeout(0);
-
 		Athlete.create(req.params.all()).exec(function (err, athleteCreated) {
 			if (err) {
 				var createNewAthleteError = [{
@@ -87,13 +84,19 @@ module.exports = {
 				}
 				return res.redirect('/athlete/new');
 			}
-			req.file('photo').upload({
+
+			var db = sails.config.connections.someMongodbServer;
+			var uriMongo = 'mongodb://';
+			uriMongo += db.username ? db.username + ':' : '';
+			uriMongo += db.password ? db.password + '@' : '';
+			uriMongo += db.host + ':' + db.port;
+			uriMongo += '/' + db.database;
+			var blobAdapter = require('skipper-gridfs')({
 				maxBytes: 500000, //500kb
-				dirname: '../../assets/images/photo'
-				//dirname: '../../assets/images/'
-				//dirname: require('path').resolve(sails.config.appPath, '/assets/images/photo')
-				//dirname: './.tmp/public/images/posts'
-			}, function whenDone(err, uploadedFiles) {
+				uri: uriMongo + '.photo'
+			});
+			var receiving = blobAdapter.receive();
+			req.file('photo').upload(receiving, function whenDone(err, uploadedFiles) {
 				if (err) {
 					var fileUploadError = [{
 						name: 'fileUploadError',
@@ -109,8 +112,7 @@ module.exports = {
 					var file = path.basename(uploadedFiles[0].fd);
 
 					Athlete.update(athleteCreated.id, {
-						//photo: require('util').format('%s/images/%s', sails.getBaseUrl(), file)
-						photo: require('util').format('%s/images/photo/%s', sails.getBaseUrl(), file)
+						photo: file //require('util').format('%s/images/photo/%s', sails.getBaseUrl(), file)
 					}).exec(function (err) {
 						if (err) {
 							var updatePhotoAthleteError = [{
@@ -126,6 +128,41 @@ module.exports = {
 				}
 			});
 			res.redirect('/athlete/index');
+		});
+	},
+
+	showPhotoByFd: function (req, res, next) {
+		req.validate({
+			id: 'string'
+		});
+		var db = sails.config.connections.someMongodbServer;
+		var uriMongo = 'mongodb://';
+		uriMongo += db.username ? db.username + ':' : '';
+		uriMongo += db.password ? db.password + '@' : '';
+		uriMongo += db.host + ':' + db.port;
+		uriMongo += '/' + db.database;
+
+		var blobAdapter = require('skipper-gridfs')({
+			uri: uriMongo + '.photo'
+		});
+
+		var fd = req.param('id');
+		blobAdapter.read(fd, function (err, file) {
+			if (err) {
+				var error = [{
+					name: 'showPhotoByFdError',
+					message: 'show photo by fd error.'
+				}];
+				req.session.flash = {
+					err: error
+				}
+				return res.redirect('/athlete/index');
+			} else {
+				if (file) {
+					res.contentType('image/png');
+					res.send(new Buffer(file));
+				}
+			}
 		});
 	},
 
@@ -198,10 +235,19 @@ module.exports = {
 				}
 				return res.redirect('/athlete/edit/' + athleteId);
 			}
-			req.file('photo').upload({
+
+			var db = sails.config.connections.someMongodbServer;
+			var uriMongo = 'mongodb://';
+			uriMongo += db.username ? db.username + ':' : '';
+			uriMongo += db.password ? db.password + '@' : '';
+			uriMongo += db.host + ':' + db.port;
+			uriMongo += '/' + db.database;
+			var blobAdapter = require('skipper-gridfs')({
 				maxBytes: 500000, //500kb
-				dirname: '../../assets/images/photo'
-			}, function whenDone(err, uploadedFiles) {
+				uri: uriMongo + '.photo'
+			});
+			var receiving = blobAdapter.receive();
+			req.file('photo').upload(receiving, function whenDone(err, uploadedFiles) {
 				if (err) {
 					var fileUploadError = [{
 						name: 'fileUploadError',
@@ -212,14 +258,11 @@ module.exports = {
 					}
 					return res.redirect('/athlete/edit/' + athleteId);
 				}
-
 				if (uploadedFiles.length != 0) {
 					var path = require('path');
 					var file = path.basename(uploadedFiles[0].fd);
 
-					Athlete.update(athleteId, {
-						photo: require('util').format('%s/images/photo/%s', sails.getBaseUrl(), file)
-					}).exec(function (err) {
+					Athlete.update(athleteId, { photo: file }).exec(function (err) {
 						if (err) {
 							var updatePhotoAthleteError = [{
 								name: 'updatePhotoAthleteError',
@@ -228,7 +271,7 @@ module.exports = {
 							req.session.flash = {
 								err: updatePhotoAthleteError
 							}
-							return res.redirect('/athlete/edit/' + athleteId);
+							return res.redirect('/athlete/index');
 						}
 					});
 				}

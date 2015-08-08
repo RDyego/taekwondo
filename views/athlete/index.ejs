@@ -27,7 +27,7 @@
 					<td>
   						<a  href="#modalCardAthlete"
 						  	data-form="#formCardAthlete"
-						  	data-athlete-photo="<%=(athlete.photo)?athlete.photo:''%>"  
+						  	data-athlete-photo="<%=(athlete.photo)?('/athlete/showPhotoByFd/'+athlete.photo):''%>"  
 						  	data-athlete-name="<%=i18n('Name')%>: <%=(athlete.name)?athlete.name:''%>"  
 						  	data-athlete-graduation="<%=i18n('Graduation')%>: <%=(athlete.graduation)?i18n(athlete.graduation):''%>"
 						  	data-athlete-academy="<%=i18n('Academy')%>: <%=(athlete.associationName)?athlete.associationName:''%>"  
