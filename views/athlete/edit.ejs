@@ -23,7 +23,8 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s3">
-					<input id="bday" name="bday" type="date" class="datepicker" maxlength="20" value="<%=(athlete.bday)?athlete.bday:''%>">
+					<input id="bday" name="bday" type="date" class="datepicker" maxlength="20" 
+						value="<%=(athlete.bday) ? moment(athlete.bday).format('DD/MM/YYYY') : ''%>">
 					<label for="bday"><%=i18n('Date of Birth')%></label>
 				</div>
 				<div class="input-field col s3">
@@ -133,7 +134,8 @@
 					<i class="material-icons">send</i>
 				</button>
 			</div>
-			<input type="hidden" name="validity" value="<%=(athlete.validity)?athlete.validity:moment().add(1, 'years').format('DD/MM/YYYY')%>">
+			<input type="hidden" name="validity" 
+				value="<%=(athlete.validity)?moment(athlete.validity).format('DD/MM/YYYY'):moment().add(1, 'years').format('DD/MM/YYYY')%>">
 			<input type="hidden" name="_csrf" value="<%=_csrf%>">
 		</form>
 	</div>

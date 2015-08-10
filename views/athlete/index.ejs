@@ -7,6 +7,7 @@
 				<th></th>
 				<th></th>
 				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -23,6 +24,24 @@
 					</td>
 					<td>
 						<%=(athlete.instructorName)?athlete.instructorName:''%>
+					</td>
+					<td>
+						<% if(moment().isAfter(moment(athlete.validity))) { %>
+						<form action="" method="POST">
+							<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+							<button type="submit" class="btn-floating waves-effect waves-light red tooltipped"
+									data-position="right" data-delay="50" 
+									data-tooltip="Carteira vencida. Validade: <%=moment(athlete.validity).format('DD/MM/YYYY')%>">
+							<i class="material-icons">add</i>
+							</button>
+						</form>
+						<% } else { %>
+							<button type="button" class="btn-floating waves-effect waves-light green tooltipped"
+									data-position="right" data-delay="50" 
+									data-tooltip="Carteira Ok. Validade: <%=moment(athlete.validity).format('DD/MM/YYYY')%>">
+							<i class="material-icons">add</i>
+							</button>
+						<% } %>
 					</td>
 					<td>
   						<a  href="#modalCardAthlete"

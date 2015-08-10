@@ -23,7 +23,8 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s3">
-					<input id="bday" name="bday" type="text" readonly value="<%=(athlete.bday)?athlete.bday:''%>">
+					<input id="bday" name="bday" type="text" readonly 
+						value="<%=(athlete.bday) ? moment(athlete.bday).format('DD/MM/YYYY') : ''%>">
 					<label for="bday"><%=i18n('Date of Birth')%></label>
 				</div>
 				<div class="input-field col s3">
