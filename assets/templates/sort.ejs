@@ -2,7 +2,9 @@
 <% _.each(sortAndPaginate.attributes, function (attribute) { 
 	if (attribute.sortable) { %>
 	<th data-field="<%=attribute.name%>">
-		<a href="/<%=sortAndPaginate.model%>?sortType=<%=((sortAndPaginate.sortBy == attribute.name) ? sortAndPaginate.sortType : 'DESC')%>&sortBy=<%=attribute.name%>">
+		<a href="/<%=sortAndPaginate.model%>?sortType=<%=((sortAndPaginate.sortBy == attribute.name) 
+			? sortAndPaginate.sortType : 'DESC')%>&sortBy=<%=attribute.name%>
+			<%=((req.param('validity'))?('&validity='+req.param('validity')):'')%>">
 			<%=i18n(attribute.name)%>
 			<i class="material-icons">keyboard_arrow_<%=((sortAndPaginate.sortBy == attribute.name) ? (sortAndPaginate.sortType == 'DESC' ?  'down' : 'up') : 'up')%></i>
 		</a>

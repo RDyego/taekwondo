@@ -23,6 +23,7 @@ module.exports = {
 	index: function (req, res, next) {
 		var moment = require('moment');
 		var myAthleteQuery = Athlete.find();
+		var hasValidity = req.param('validity')
 		var limit = 20;
 		var page = req.param('page');
 		var hasPage = !!page;
@@ -55,6 +56,27 @@ module.exports = {
 				},
 			]
 		};
+		
+		if (hasValidity) {
+			var value = (hasValidity == true || hasValidity == 'true');
+			var currentDate = new Date(moment().format('YYYY-MM-DDTHH:mm:ss.SSS') + 'Z');
+			if (value) {
+				myAthleteQuery.where(
+					{
+						validity: {
+							'>=': currentDate
+						}
+					});
+			} else {
+				myAthleteQuery.where(
+					{
+						validity: {
+							'<': currentDate
+						}
+					});
+
+			}
+		}
 
 		myAthleteQuery.sort(sortAndPaginateViewModel.sortBy + ' ' + sortAndPaginateViewModel.sortType);
 
@@ -75,20 +97,20 @@ module.exports = {
 	create: function (req, res, next) {
 		var moment = require('moment');
 		var viewModel = req.params.all();
-		if(viewModel.bday){
-			var d = viewModel.bday.split('/');   
-			viewModel.bday = d[1] +'/'+ d[0] +'/'+ d[2];
-			
+		if (viewModel.bday) {
+			var d = viewModel.bday.split('/');
+			viewModel.bday = d[1] + '/' + d[0] + '/' + d[2];
+
 		}
-		if(viewModel.validity){
-			var d = viewModel.validity.split('/');   
-			viewModel.validity = d[1] +'/'+ d[0] +'/'+ d[2];
-			
+		if (viewModel.validity) {
+			var d = viewModel.validity.split('/');
+			viewModel.validity = d[1] + '/' + d[0] + '/' + d[2];
+
 		}
-		if(viewModel.dateStarted){
-			var d = viewModel.dateStarted.split('/');   
-			viewModel.dateStarted = d[1] +'/'+ d[0] +'/'+ d[2];
-			
+		if (viewModel.dateStarted) {
+			var d = viewModel.dateStarted.split('/');
+			viewModel.dateStarted = d[1] + '/' + d[0] + '/' + d[2];
+
 		}
 		Athlete.create(viewModel).exec(function (err, athleteCreated) {
 			if (err) {
@@ -207,7 +229,7 @@ module.exports = {
 				}
 				return res.redirect('/athlete/index');
 			}
-			res.view({ athlete: athleteFound, moment: moment});
+			res.view({ athlete: athleteFound, moment: moment });
 		});
 	},
 
@@ -242,19 +264,19 @@ module.exports = {
 	update: function (req, res, next) {
 		var athleteId = req.param('id');
 		var viewModel = req.params.all();
-		if(viewModel.bday){
-			var d = viewModel.bday.split('/');   
-			viewModel.bday = d[1] +'/'+ d[0] +'/'+ d[2];
-			
+		if (viewModel.bday) {
+			var d = viewModel.bday.split('/');
+			viewModel.bday = d[1] + '/' + d[0] + '/' + d[2];
+
 		}
-		if(viewModel.validity){
-			var d = viewModel.validity.split('/');   
-			viewModel.validity = d[1] +'/'+ d[0] +'/'+ d[2];
-			
+		if (viewModel.validity) {
+			var d = viewModel.validity.split('/');
+			viewModel.validity = d[1] + '/' + d[0] + '/' + d[2];
+
 		}
-		if(viewModel.dateStarted){
-			var d = viewModel.dateStarted.split('/');   
-			viewModel.dateStarted = d[1] +'/'+ d[0] +'/'+ d[2];
+		if (viewModel.dateStarted) {
+			var d = viewModel.dateStarted.split('/');
+			viewModel.dateStarted = d[1] + '/' + d[0] + '/' + d[2];
 		}
 
 		Athlete.update(athleteId, viewModel, function (err) {
