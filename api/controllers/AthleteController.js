@@ -371,6 +371,25 @@ module.exports = {
 			});
 			res.redirect('/athlete');
 		});
+	},
+
+	updateValidity: function (req, res, next) {
+		var moment = require('moment');
+		var athleteId = req.param('id');
+		var viewModel = { validity: new Date(moment().add(1, 'years').format('MM/DD/YYYY'))};
+
+		Athlete.update(athleteId, viewModel, function (err) {
+			if (err) {
+				var error = [{
+					name: 'updateValidityAthleteError',
+					message: 'update validity athlete error.'
+				}];
+				req.session.flash = {
+					err: error
+				}
+			}
+			res.redirect('/athlete/index');
+		});
 	}
 };
 

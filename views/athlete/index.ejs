@@ -1,4 +1,11 @@
 <div class="container">
+	<% if(flash && flash.err) { %>
+		<ul class="alert alert-success">
+	<% Object.keys(flash.err).forEach(function(error) { %>
+		<li><%- JSON.stringify(flash.err[error])  %></li>	
+	<% }) %>	
+		</ul>
+	<% } %>
 	<table class="center bordered hoverable responsive-table" align=center>
 		<thead>
 			<tr>
@@ -27,6 +34,16 @@
 					</td>
 					<td>
 						<% if(moment().isAfter(moment(athlete.validity))) { %>
+  						<a  href="#modalDeleteAthlete"
+						  	data-action="/athlete/updateValidity/<%=athlete.id%>"
+						  	data-form="#formDeleteAthlete" 
+						  	data-message="<%=i18n('Do you wish delete the user %s?',athlete.name)%>"
+						  	data-title="<%=i18n('Atualizar')%>"
+							class="btn-floating waves-effect waves-light red tooltipped modal-trigger"
+							data-position="right" data-delay="50" data-tooltip="Carteira vencida. Validade: <%=moment(athlete.validity).format('DD/MM/YYYY')%>">
+							<i class="material-icons">add</i>
+					 	</a>
+							<!--
 						<form action="" method="POST">
 							<input type="hidden" name="_csrf" value="<%= _csrf %>" />
 							<button type="submit" class="btn-floating waves-effect waves-light red tooltipped"
@@ -35,6 +52,7 @@
 							<i class="material-icons">add</i>
 							</button>
 						</form>
+							-->
 						<% } else { %>
 							<button type="button" class="btn-floating waves-effect waves-light green tooltipped"
 									data-position="right" data-delay="50" 
