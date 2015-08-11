@@ -51,12 +51,16 @@
 						  	data-athlete-graduation="<%=i18n('Graduation')%>: <%=(athlete.graduation)?i18n(athlete.graduation):''%>"
 						  	data-athlete-academy="<%=i18n('Academy')%>: <%=(athlete.associationName)?athlete.associationName:''%>"  
 						  	data-athlete-date-started="<%=i18n('Date Started')%>: <%=(athlete.dateStarted)?moment(athlete.dateStarted).format('DD/MM/YYYY'):''%>"
+						  	data-athlete-blood-group="<%=i18n('Blood Group')%>: <%=(athlete.bloodGroup)?athlete.bloodGroup:''%>"
+					  		data-athlete-rh-factor="<%=i18n('RH Factor')%>: <%=(athlete.rhFactor)?athlete.rhFactor:''%>"  
+						  	data-athlete-naturalness="<%=i18n('Naturalness')%>: <%=(athlete.naturalness)?athlete.naturalness:''%>"  
+						  	data-athlete-bday="<%=i18n('Date of Birth')%>: <%=(athlete.bday)?moment(athlete.bday).format('DD/MM/YYYY'):''%>"
+						  	data-athlete-register-number="<%=i18n('Register Number')%>: <%=(athlete.registerNumber)?athlete.registerNumber:''%>" 
 						  	data-athlete-validity="<%=i18n('Validity')%> <%=i18n('for')%>: <%=(athlete.validity)
 						  			? moment(athlete.validity).add(-1, 'years').format('DD/MM/YYYY')
 					  				: moment().format('DD/MM/YYYY')%> <%=i18n('to')%>: <%=(athlete.validity)
 							  		? moment(athlete.validity).format('DD/MM/YYYY')
-								  	: moment().add(1, 'years').format('DD/MM/YYYY')%>"  
-						  	data-athlete-register-number="<%=i18n('Register Number')%>: <%=(athlete.registerNumber)?athlete.registerNumber:''%>"    
+								  	: moment().add(1, 'years').format('DD/MM/YYYY')%>"     
 							class="btn-floating waves-effect waves-light yellow tooltipped modal-trigger-card"
 							data-position="right" data-delay="50" data-tooltip="<%=i18n('Card')%>">
 							<i class="material-icons">credit_card</i>
@@ -136,6 +140,18 @@
 					</div>
 					<div class="cardAthleteDivP cardAthleteDivPCardDateStartedTop">
 						<p id="athleteCardDateStarted"></p>
+					</div>
+					<div class="cardAthleteDivP cardAthleteDivPCardBloodGroupTop">
+						<p id="athleteCardBloodGroup"></p>
+					</div>
+					<div class="cardAthleteDivP cardAthleteDivPCardRHFactorTop">
+						<p id="athleteCardRHFactor"></p>
+					</div>
+					<div class="cardAthleteDivP cardAthleteDivPCardNaturalnessTop">
+						<p id="athleteCardNaturalness"></p>
+					</div>
+					<div class="cardAthleteDivP cardAthleteDivPCardBdayTop">
+						<p id="athleteCardBday"></p>
 					</div>
 					<div class="cardAthleteDivP cardAthleteDivPCardRegisterNumberTop">
 						<p id="athleteCardRegisterNumber"></p>

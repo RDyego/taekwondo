@@ -64,6 +64,11 @@ $(document).ready(function () {
 		var $pRegisterNumber = $('#athleteCardRegisterNumber');
 		var $pValidity = $('#athleteCardValidity');
 		
+		var $pBloodGroup = $('#athleteCardBloodGroup');
+		var $pRHFactor = $('#athleteCardRHFactor');
+		var $pNaturalness = $('#athleteCardNaturalness');
+		var $pBday = $('#athleteCardBday');
+		
 		$imgPhoto.attr('src',($myElementCliked.attr('data-athlete-photo')));
 		$pGraduation.text($myElementCliked.attr('data-athlete-graduation'));
 		$pName.text($myElementCliked.attr('data-athlete-name'));
@@ -71,6 +76,11 @@ $(document).ready(function () {
 		$pDateStarted.text($myElementCliked.attr('data-athlete-date-started'));
 		$pValidity.text($myElementCliked.attr('data-athlete-validity'));
 		$pRegisterNumber.text($myElementCliked.attr('data-athlete-register-number'));
+		
+		$pBloodGroup.text($myElementCliked.attr('data-athlete-blood-group'));
+		$pRHFactor.text($myElementCliked.attr('data-athlete-rh-factor'));
+		$pNaturalness.text($myElementCliked.attr('data-athlete-naturalness'));
+		$pBday.text($myElementCliked.attr('data-athlete-bday'));
 		
 		var isBlackBelt = $pGraduation.text().indexOf('Dan') != -1;
 		if(isBlackBelt){
