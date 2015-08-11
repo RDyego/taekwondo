@@ -28,12 +28,15 @@ $(document).ready(function () {
 		var $form = $($myElementCliked.attr('data-form'));
 		var $p = $($myElementCliked.attr('data-form') + ' p');
 		var $h4 = $($myElementCliked.attr('data-form') + ' h4');
+		var $button = $($myElementCliked.attr('data-form') + ' button');
 		var action = $myElementCliked.attr('data-action');
 		var message = $myElementCliked.attr('data-message');
 		var title = $myElementCliked.attr('data-title');
+		var button = $myElementCliked.attr('data-button');
 		$form.attr('action', action);
 		$h4.text(title);
 		$p.text(message);
+		$button.text(button);
 	});
 
 	$('.modal-trigger-card').leanModal({

@@ -34,11 +34,13 @@
 					</td>
 					<td>
 						<% if(moment().isAfter(moment(athlete.validity))) { %>
-  						<a  href="#modalDeleteAthlete"
+  						<a  href="#modalBaseAthlete"
 						  	data-action="/athlete/updateValidity/<%=athlete.id%>"
-						  	data-form="#formDeleteAthlete" 
-						  	data-message="<%=i18n('Do you wish delete the user %s?',athlete.name)%>"
+						  	data-form="#formBaseAthlete" 
+						  	data-message="Deseja atualizar a data de validade da carteira do <%=(athlete.name)?athlete.name:''%>
+							  de <%=moment(athlete.validity).format('DD/MM/YYYY')%> para <%=moment().add(1,'years').format('DD/MM/YYYY')%>?"
 						  	data-title="<%=i18n('Atualizar')%>"
+						  	data-button="<%=i18n('Atualizar')%>"
 							class="btn-floating waves-effect waves-light red tooltipped modal-trigger"
 							data-position="right" data-delay="50" data-tooltip="Carteira vencida. Validade: <%=moment(athlete.validity).format('DD/MM/YYYY')%>">
 							<i class="material-icons">add</i>
@@ -99,11 +101,12 @@
 						</a>
 					</td>
 					<td>
-  						<a  href="#modalDeleteAthlete"
+  						<a  href="#modalBaseAthlete"
 						  	data-action="/athlete/destroy/<%=athlete.id%>"
-						  	data-form="#formDeleteAthlete" 
+						  	data-form="#formBaseAthlete" 
 						  	data-message="<%=i18n('Do you wish delete the user %s?',athlete.name)%>"
 						  	data-title="<%=i18n('Delete')%>"
+						  	data-button="<%=i18n('Delete')%>"
 							class="btn-floating waves-effect waves-light red tooltipped modal-trigger"
 							data-position="right" data-delay="50" data-tooltip="<%=i18n('Delete')%>">
 							<i class="material-icons">clear</i>
@@ -120,8 +123,8 @@
 	<input type="hidden" id="urlBlackCard" value="<%=sails.getBaseUrl()+'/images/carteira-preta.jpg'%>">
 </div>
 
-<div id="modalDeleteAthlete" class="modal">
-	<form id="formDeleteAthlete" action="" method="POST">
+<div id="modalBaseAthlete" class="modal">
+	<form id="formBaseAthlete" action="" method="POST">
 		<input type="hidden" name="_method" value="delete" />
 		<input type="hidden" name="_csrf" value="<%= _csrf %>" />
 		<div class="modal-content">
@@ -129,8 +132,7 @@
 			<p></p>
 		</div>
 		<div class="modal-footer">
-			<button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" name="action">
-				<%=i18n('Delete')%>
+			<button id="buttonBaseAthlete" type="submit" class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" name="action">
 			</button>
 			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><%=i18n('Close')%></a>
 		</div>
