@@ -11,15 +11,6 @@ module.exports = {
 		res.view({ moment: moment });
 	},
 	
-	/*
-	countTotal: function (req, res, next) {
-		Athlete.count().exec(function (err, countTotal) {
-			if (err) return next(err);
-			return countTotal;
-		});
-	},
-	*/
-
 	index: function (req, res, next) {
 		var moment = require('moment');
 		var myAthleteQuery = Athlete.find();
@@ -97,6 +88,8 @@ module.exports = {
 	create: function (req, res, next) {
 		var moment = require('moment');
 		var viewModel = req.params.all();
+		
+		/** INIT - Needs improvement */
 		if (viewModel.bday) {
 			var d = viewModel.bday.split('/');
 			viewModel.bday = d[1] + '/' + d[0] + '/' + d[2];
@@ -112,6 +105,8 @@ module.exports = {
 			viewModel.dateStarted = d[1] + '/' + d[0] + '/' + d[2];
 
 		}
+		/** END - Needs improvement */
+		
 		Athlete.create(viewModel).exec(function (err, athleteCreated) {
 			if (err) {
 				var createNewAthleteError = [{
@@ -247,6 +242,8 @@ module.exports = {
 	update: function (req, res, next) {
 		var athleteId = req.param('id');
 		var viewModel = req.params.all();
+		
+		/** INIT - Needs improvement */
 		if (viewModel.bday) {
 			var d = viewModel.bday.split('/');
 			viewModel.bday = d[1] + '/' + d[0] + '/' + d[2];
@@ -261,6 +258,7 @@ module.exports = {
 			var d = viewModel.dateStarted.split('/');
 			viewModel.dateStarted = d[1] + '/' + d[0] + '/' + d[2];
 		}
+		/** END - Needs improvement */
 
 		Athlete.update(athleteId, viewModel, function (err) {
 			if (err) {
