@@ -109,7 +109,7 @@ $(document).ready(function () {
 			
 			
 			var $download = $('#downloadCardAthlete');
-			$download.attr('download', "Carteira " + $pName.text());
+			$download.attr('download', "Carteira " + $pName.text().replace('.',''));
 		}
 	});
 });
