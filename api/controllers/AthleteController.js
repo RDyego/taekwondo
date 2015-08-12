@@ -124,7 +124,7 @@ module.exports = {
 				return res.redirect('/athlete/new');
 			}
 
-			var receiving = BlobAdapterService.receive();
+			var receiving = BlobAdapterService.blobAdapter().receive();
 			
 			req.file('photo').upload(receiving, function whenDone(err, uploadedFiles) {
 				if (err) {
@@ -165,16 +165,8 @@ module.exports = {
 		req.validate({
 			id: 'string'
 		});
-		var db = sails.config.connections.someMongodbServer;
-		var uriMongo = 'mongodb://';
-		uriMongo += db.username ? db.username + ':' : '';
-		uriMongo += db.password ? db.password + '@' : '';
-		uriMongo += db.host + ':' + db.port;
-		uriMongo += '/' + db.database;
 
-		var blobAdapter = require('skipper-gridfs')({
-			uri: uriMongo + '.photo'
-		});
+		var blobAdapter = BlobAdapterService.blobAdapter();
 
 		var fd = req.param('id');
 		blobAdapter.read(fd, function (err, file) {
@@ -282,7 +274,7 @@ module.exports = {
 				return res.redirect('/athlete/edit/' + athleteId);
 			}
 			
-			var receiving = BlobAdapterService.receive();
+			var receiving = BlobAdapterService.blobAdapter().receive();
 			
 			req.file('photo').upload(receiving, function whenDone(err, uploadedFiles) {
 				if (err) {
