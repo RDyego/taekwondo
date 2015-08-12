@@ -19,7 +19,7 @@
 		</thead>
 		<tbody>
 			<% _.each(athletes, function (athlete) { %>
-				<tr>
+				<tr class="tr-athlete">
 					<td>	
 					 	<ul class="collection">
 							<li class="collection-item avatar">
@@ -29,20 +29,10 @@
 							  <i class="material-icons circle">folder</i>
 							<% } %>
 						      <span class="title"><%=(athlete.name)?athlete.name:''%></span>
-						      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-						    </li>	
-						</ul>				
-					</td>
-					<td>
-						<%=(athlete.email)?athlete.email:''%>
-					</td>
-					<td>
-						<%=(athlete.graduation)?i18n(athlete.graduation):''%>
-					</td>
-					<td>
-						<%=(athlete.instructorName)?athlete.instructorName:''%>
-					</td>
-					<td class="td-icons">
+							  <p><%=(athlete.email)?athlete.email:''%></p>
+						      
+							  
+							  
 						<% if(moment().isAfter(moment(athlete.validity))) { %>
   						<a  href="#modalBaseAthlete"
 						  	data-action="/athlete/updateValidity/<%=athlete.id%>"
@@ -51,27 +41,30 @@
 							  de <%=moment(athlete.validity).format('DD/MM/YYYY')%> para <%=moment().add(1,'years').format('DD/MM/YYYY')%>?"
 						  	data-title="<%=i18n('Atualizar')%>"
 						  	data-button="<%=i18n('Atualizar')%>"
-							class="btn-floating waves-effect waves-light red tooltipped modal-trigger"
+							class="secondary-content waves-effect waves-light tooltipped modal-trigger"
 							data-position="right" data-delay="50" data-tooltip="Carteira vencida. Validade: <%=moment(athlete.validity).format('DD/MM/YYYY')%>">
-							<i class="material-icons">add</i>
+							<i class="material-icons iconRed">grade</i>
 					 	</a>
-							<!--
-						<form action="" method="POST">
-							<input type="hidden" name="_csrf" value="<%= _csrf %>" />
-							<button type="submit" class="btn-floating waves-effect waves-light red tooltipped"
-									data-position="right" data-delay="50" 
-									data-tooltip="Carteira vencida. Validade: <%=moment(athlete.validity).format('DD/MM/YYYY')%>">
-							<i class="material-icons">add</i>
-							</button>
-						</form>
-							-->
 						<% } else { %>
-							<button type="button" class="btn-floating waves-effect waves-light green tooltipped"
-									data-position="right" data-delay="50" 
-									data-tooltip="Carteira Ok. Validade: <%=moment(athlete.validity).format('DD/MM/YYYY')%>">
-							<i class="material-icons">add</i>
-							</button>
+							<a href="#!" class="secondary-content waves-effect tooltipped"
+								data-position="right" data-delay="50" 
+								data-tooltip="Carteira Ok. Validade: <%=moment(athlete.validity).format('DD/MM/YYYY')%>">
+								<i class="material-icons">grade</i>
+							</a>
 						<% } %>
+							
+							
+							
+						    </li>	
+						</ul>	
+					</td>
+					<td>
+						<%=(athlete.graduation)?i18n(athlete.graduation):''%>
+					</td>
+					<td>
+						<%=(athlete.instructorName)?athlete.instructorName:''%>
+					</td>
+					<td class="td-icons">
 					</td>
 					<td class="td-icons">
   						<a  href="#modalCardAthlete"

@@ -33,10 +33,10 @@ module.exports = {
 					name: 'name',
 					sortable: true
 				},
-				{
+				/*{
 					name: 'email',
 					sortable: true
-				},
+				},*/
 				{
 					name: 'graduation',
 					sortable: true
