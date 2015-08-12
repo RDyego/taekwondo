@@ -35,6 +35,7 @@ module.exports.bootstrap = function (cb) {
   
   var athleteModel00 = {
     name: 'R. Dyego',
+    email: 'r.dyego@gmail.com',
     graduation: 'Black 9th Dan',
     instructorName: 'R. Dyego',
     validity: new Date(moment().add(1, 'years').format('MM/DD/YYYY'))
@@ -42,6 +43,7 @@ module.exports.bootstrap = function (cb) {
   
   var athleteModel01 = {
     name: 'Charles W.',
+    email: 'charles.w@gmail.com',
     graduation: 'Black 1st Dan',
     instructorName: 'Sensei',
     validity: new Date(moment().add(1, 'years').format('MM/DD/YYYY'))
@@ -49,6 +51,7 @@ module.exports.bootstrap = function (cb) {
   
   var athleteModel02 = {
     name: 'C. Marilia',
+    email: 'c.marilia@gmail.com',
     graduation: 'White',
     instructorName: 'Sensei',
     validity: new Date(moment().add(1, 'years').format('MM/DD/YYYY'))
@@ -56,6 +59,7 @@ module.exports.bootstrap = function (cb) {
   
   var athleteModel03 = {
     name: 'Blablabla',
+    email: 'blablabla@gmail.com',
     graduation: 'Orange',
     instructorName: 'Sensei',
     validity: new Date(moment().add(-2, 'years').format('MM/DD/YYYY'))
@@ -63,10 +67,20 @@ module.exports.bootstrap = function (cb) {
   
   var athleteModel04 = {
     name: 'Urru',
+    email: 'urru@gmail.com',
     graduation: 'Purple',
     instructorName: 'Sensei',
     validity: new Date(moment().add(-2, 'years').format('MM/DD/YYYY'))
   };
+  
+  var athleteModel05 = {
+    name: 'Nome Grande bALd ansda sda sdiAISHD AISJD Adasdasd',
+    email: 'nomegrande@gmail.com',
+    graduation: 'Yellow',
+    instructorName: 'Sensei',
+    validity: new Date(moment().add(-2, 'years').format('MM/DD/YYYY'))
+  };
+  
   
   Athlete.findOneByName(athleteModel00.name).exec(function (err, athleteFound) {
     if (err) return cb(err);
@@ -112,6 +126,16 @@ module.exports.bootstrap = function (cb) {
     if (err) return cb(err);
     if (!athleteFound) {
       Athlete.create(athleteModel04).exec(function (err, athleteCreated) {
+        if (err) return cb(err);
+        //console.log('athlete created: ', athleteCreated);
+      });
+    }
+  });
+  
+  Athlete.findOneByName(athleteModel05.name).exec(function (err, athleteFound) {
+    if (err) return cb(err);
+    if (!athleteFound) {
+      Athlete.create(athleteModel05).exec(function (err, athleteCreated) {
         if (err) return cb(err);
         //console.log('athlete created: ', athleteCreated);
       });
