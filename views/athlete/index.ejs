@@ -20,8 +20,18 @@
 		<tbody>
 			<% _.each(athletes, function (athlete) { %>
 				<tr>
-					<td>						
-						<%=(athlete.name)?athlete.name:''%>
+					<td>	
+					 	<ul class="collection">
+							<li class="collection-item avatar">
+							<% if(athlete.photo) { %>
+						      <img src="/athlete/showPhotoByFd/<%=athlete.photo%>" alt="" class="circle">
+							<% } else { %>
+							  <i class="material-icons circle">folder</i>
+							<% } %>
+						      <span class="title"><%=(athlete.name)?athlete.name:''%></span>
+						      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+						    </li>	
+						</ul>				
 					</td>
 					<td>
 						<%=(athlete.email)?athlete.email:''%>
@@ -32,7 +42,7 @@
 					<td>
 						<%=(athlete.instructorName)?athlete.instructorName:''%>
 					</td>
-					<td>
+					<td class="td-icons">
 						<% if(moment().isAfter(moment(athlete.validity))) { %>
   						<a  href="#modalBaseAthlete"
 						  	data-action="/athlete/updateValidity/<%=athlete.id%>"
@@ -63,7 +73,7 @@
 							</button>
 						<% } %>
 					</td>
-					<td>
+					<td class="td-icons">
   						<a  href="#modalCardAthlete"
 						  	data-form="#formCardAthlete"
 						  	data-athlete-photo="<%=(athlete.photo)?('/athlete/showPhotoByFd/'+athlete.photo):''%>"  
@@ -86,21 +96,21 @@
 							<i class="material-icons">credit_card</i>
 					 	</a>
 					</td>
-					<td>
+					<td class="td-icons">
 						<a href="/athlete/show/<%=athlete.id%>" 
 							class="btn-floating waves-effect waves-light green tooltipped"
 							data-position="right" data-delay="50" data-tooltip="<%=i18n('Show')%>">
 							<i class="material-icons">search</i>
 						</a>
 					</td>
-					<td>
+					<td class="td-icons">
 						<a href="/athlete/edit/<%=athlete.id%>" 
 							class="btn-floating waves-effect waves-light blue tooltipped"
 							data-position="right" data-delay="50" data-tooltip="<%=i18n('Edit')%>">
 							<i class="material-icons">create</i>
 						</a>
 					</td>
-					<td>
+					<td class="td-icons">
   						<a  href="#modalBaseAthlete"
 						  	data-action="/athlete/destroy/<%=athlete.id%>"
 						  	data-form="#formBaseAthlete" 
