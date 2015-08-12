@@ -39,13 +39,13 @@
 								data-button="<%=i18n('Atualizar')%>"
 								class="waves-effect waves-light tooltipped modal-trigger td-a-athlete"
 								data-position="right" data-delay="50" data-tooltip="Carteira vencida. Validade: <%=moment(athlete.validity).format('DD/MM/YYYY')%>">
-								<i class="material-icons iconRed">grade</i>
+								<i class="material-icons icon-amber">grade</i>
 							</a>
 							<% } else { %>
 								<a href="#!" class="waves-effect tooltipped td-a-athlete"
 									data-position="right" data-delay="50" 
 									data-tooltip="Carteira Ok. Validade: <%=moment(athlete.validity).format('DD/MM/YYYY')%>">
-									<i class="material-icons">grade</i>
+									<i class="material-icons icon-green">grade</i>
 								</a>
 							<% } %>
 								
