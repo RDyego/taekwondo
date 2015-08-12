@@ -124,17 +124,8 @@ module.exports = {
 				return res.redirect('/athlete/new');
 			}
 
-			var db = sails.config.connections.someMongodbServer;
-			var uriMongo = 'mongodb://';
-			uriMongo += db.username ? db.username + ':' : '';
-			uriMongo += db.password ? db.password + '@' : '';
-			uriMongo += db.host + ':' + db.port;
-			uriMongo += '/' + db.database;
-			var blobAdapter = require('skipper-gridfs')({
-				maxBytes: 500000, //500kb
-				uri: uriMongo + '.photo'
-			});
-			var receiving = blobAdapter.receive();
+			var receiving = BlobAdapterService.receive();
+			
 			req.file('photo').upload(receiving, function whenDone(err, uploadedFiles) {
 				if (err) {
 					var fileUploadError = [{
@@ -290,18 +281,9 @@ module.exports = {
 				}
 				return res.redirect('/athlete/edit/' + athleteId);
 			}
-
-			var db = sails.config.connections.someMongodbServer;
-			var uriMongo = 'mongodb://';
-			uriMongo += db.username ? db.username + ':' : '';
-			uriMongo += db.password ? db.password + '@' : '';
-			uriMongo += db.host + ':' + db.port;
-			uriMongo += '/' + db.database;
-			var blobAdapter = require('skipper-gridfs')({
-				maxBytes: 500000, //500kb
-				uri: uriMongo + '.photo'
-			});
-			var receiving = blobAdapter.receive();
+			
+			var receiving = BlobAdapterService.receive();
+			
 			req.file('photo').upload(receiving, function whenDone(err, uploadedFiles) {
 				if (err) {
 					var fileUploadError = [{
