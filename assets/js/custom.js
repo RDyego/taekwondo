@@ -21,7 +21,7 @@ $(document).ready(function () {
 	});
 	$('.modal-trigger').leanModal({
 		dismissible: true, // Modal can be dismissed by clicking outside of the modal
-		in_duration: 300, // Transition in duration
+		in_duration: 600, // Transition in duration
 		out_duration: 200, // Transition out duration
 	}).on('click', function () {
 		var $myElementCliked = $(this);
@@ -41,7 +41,7 @@ $(document).ready(function () {
 
 	$('.modal-trigger-card').leanModal({
 		dismissible: true, // Modal can be dismissed by clicking outside of the modal
-		in_duration: 1000, // Transition in duration
+		in_duration: 600, // Transition in duration
 		ready: function () {
 			var $divCard = $('#cardAthlete');
 			var $download = $('#downloadCardAthlete');
@@ -53,46 +53,63 @@ $(document).ready(function () {
     }).on('click', function () {
 		
 		var $myElementCliked = $(this);
-		var $divCard = $('#cardAthlete');
 		
-		var urlColorCard = $('#urlColorCard').val();
-		var urlBlackCard = $('#urlBlackCard').val();
-		var urlbackGroundImage = "url("+urlColorCard+")";
-		
-		var $imgPhoto = $('#athleteCardPhoto');
-		var $pGraduation = $('#athleteCardGraduation');
-		var $pName = $('#athleteCardName');
-		var $pAcademy = $('#athleteCardAcademy');
-		var $pDateStarted = $('#athleteCardDateStarted');
-		var $pRegisterNumber = $('#athleteCardRegisterNumber');
-		var $pValidity = $('#athleteCardValidity');
-		
-		var $pBloodGroup = $('#athleteCardBloodGroup');
-		var $pRHFactor = $('#athleteCardRHFactor');
-		var $pNaturalness = $('#athleteCardNaturalness');
-		var $pBday = $('#athleteCardBday');
-		
-		$imgPhoto.attr('src',($myElementCliked.attr('data-athlete-photo')));
-		$pGraduation.text($myElementCliked.attr('data-athlete-graduation'));
-		$pName.text($myElementCliked.attr('data-athlete-name'));
-		$pAcademy.text($myElementCliked.attr('data-athlete-academy'));
-		$pDateStarted.text($myElementCliked.attr('data-athlete-date-started'));
-		$pValidity.text($myElementCliked.attr('data-athlete-validity'));
-		$pRegisterNumber.text($myElementCliked.attr('data-athlete-register-number'));
-		
-		$pBloodGroup.text($myElementCliked.attr('data-athlete-blood-group'));
-		$pRHFactor.text($myElementCliked.attr('data-athlete-rh-factor'));
-		$pNaturalness.text($myElementCliked.attr('data-athlete-naturalness'));
-		$pBday.text($myElementCliked.attr('data-athlete-bday'));
-		
-		var isBlackBelt = $pGraduation.text().indexOf('Dan') != -1;
-		if(isBlackBelt){
-			urlbackGroundImage = "url("+urlBlackCard+")";
+		if($myElementCliked.attr('data-form') == '#formBaseAthlete'){
+			var $form = $($myElementCliked.attr('data-form'));
+			var $p = $($myElementCliked.attr('data-form') + ' p');
+			var $h4 = $($myElementCliked.attr('data-form') + ' h4');
+			var $button = $($myElementCliked.attr('data-form') + ' button');
+			var action = $myElementCliked.attr('data-action');
+			var message = $myElementCliked.attr('data-message');
+			var title = $myElementCliked.attr('data-title');
+			var button = $myElementCliked.attr('data-button');
+			$form.attr('action', action);
+			$h4.text(title);
+			$p.text(message);
+			$button.text(button);
 		}
-		$divCard.css('background-image', urlbackGroundImage);
-		
-		
-		var $download = $('#downloadCardAthlete');
-		$download.attr('download', "Carteira " + $pName.text());
+		else{
+			var $divCard = $('#cardAthlete');
+			
+			var urlColorCard = $('#urlColorCard').val();
+			var urlBlackCard = $('#urlBlackCard').val();
+			var urlbackGroundImage = "url("+urlColorCard+")";
+			
+			var $imgPhoto = $('#athleteCardPhoto');
+			var $pGraduation = $('#athleteCardGraduation');
+			var $pName = $('#athleteCardName');
+			var $pAcademy = $('#athleteCardAcademy');
+			var $pDateStarted = $('#athleteCardDateStarted');
+			var $pRegisterNumber = $('#athleteCardRegisterNumber');
+			var $pValidity = $('#athleteCardValidity');
+			
+			var $pBloodGroup = $('#athleteCardBloodGroup');
+			var $pRHFactor = $('#athleteCardRHFactor');
+			var $pNaturalness = $('#athleteCardNaturalness');
+			var $pBday = $('#athleteCardBday');
+			
+			$imgPhoto.attr('src',($myElementCliked.attr('data-athlete-photo')));
+			$pGraduation.text($myElementCliked.attr('data-athlete-graduation'));
+			$pName.text($myElementCliked.attr('data-athlete-name'));
+			$pAcademy.text($myElementCliked.attr('data-athlete-academy'));
+			$pDateStarted.text($myElementCliked.attr('data-athlete-date-started'));
+			$pValidity.text($myElementCliked.attr('data-athlete-validity'));
+			$pRegisterNumber.text($myElementCliked.attr('data-athlete-register-number'));
+			
+			$pBloodGroup.text($myElementCliked.attr('data-athlete-blood-group'));
+			$pRHFactor.text($myElementCliked.attr('data-athlete-rh-factor'));
+			$pNaturalness.text($myElementCliked.attr('data-athlete-naturalness'));
+			$pBday.text($myElementCliked.attr('data-athlete-bday'));
+			
+			var isBlackBelt = $pGraduation.text().indexOf('Dan') != -1;
+			if(isBlackBelt){
+				urlbackGroundImage = "url("+urlBlackCard+")";
+			}
+			$divCard.css('background-image', urlbackGroundImage);
+			
+			
+			var $download = $('#downloadCardAthlete');
+			$download.attr('download', "Carteira " + $pName.text());
+		}
 	});
 });
