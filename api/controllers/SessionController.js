@@ -5,7 +5,7 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 
 module.exports = {
