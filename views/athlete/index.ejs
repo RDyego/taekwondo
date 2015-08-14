@@ -6,7 +6,7 @@
 	<% }) %>	
 		</ul>
 	<% } %>
-	<ul class="collapsible" data-collapsible="accordion">
+	<ul class="collapsible popout" data-collapsible="accordion">
 		<li>
 		<div class="collapsible-header <%=(req.param('filterIsOpen')?((req.param('filterIsOpen') == 'true')?'active':''):'')%>"><i class="material-icons">view_headline</i>Filter</div>
 		<div class="collapsible-body">
@@ -26,6 +26,8 @@
 							</div>
 							<input type="hidden" name="filterIsOpen" value="<%=(req.param('filterIsOpen')?req.param('filterIsOpen'):'false')%>">
 							<div class="row">
+								<button class="btn waves-effect waves-light" type="submit">Clear
+								</button>
 								<button class="btn waves-effect waves-light" type="submit">Filter
 								</button>
 							</div>
@@ -140,7 +142,31 @@
 							data-position="right" data-delay="50" data-tooltip="<%=i18n('Delete')%>">
 							<i class="material-icons">clear</i>
 						</a>
-						<p><%=(athlete.email)?athlete.email:''%></p>
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="instructorName" name="instructorName" type="text" readonly value="<%=(athlete.instructorName)?athlete.instructorName:''%>">
+								<label for="instructorName"><%=i18n('Instructor Name')%></label>
+							</div>
+							<div class="input-field col s6">
+								<input id="associationName" name="associationName" type="text" readonly value="<%=(athlete.associationName)?athlete.associationName:''%>">
+								<label for="associationName"><%=i18n('Association Name')%></label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s4">
+								<input id="bday" name="bday" type="text" readonly 
+									value="<%=(athlete.bday) ? moment(athlete.bday).format('DD/MM/YYYY') : ''%>">
+								<label for="bday"><%=i18n('Date of Birth')%></label>
+							</div>
+							<div class="input-field col s4">
+								<input id="dateStarted" name="dateStarted" type="text" readonly value="<%=(athlete.dateStarted)?athlete.dateStarted:''%>">
+								<label for="dateStarted"><%=i18n('Date Started')%></label>
+							</div>
+							<div class="input-field col s4">
+								<input id="phone" name="phone" type="text" readonly value="<%=(athlete.phone)?athlete.phone:''%>">
+								<label for="phone"><%=i18n('Phone')%></label>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
