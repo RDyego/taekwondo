@@ -19,6 +19,11 @@ module.exports = {
 		//Filters
 		var filterIsOpen = req.param('filterIsOpen');
 		var name = req.param('nameFilter');
+		var action = req.param('action');
+		if(action == 'clear'){
+			name = null;
+			filterIsOpen = null;
+		}
 		
 		if (filterIsOpen) {
 			var value = (filterIsOpen == true || filterIsOpen == 'true');
