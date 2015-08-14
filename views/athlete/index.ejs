@@ -6,10 +6,34 @@
 	<% }) %>	
 		</ul>
 	<% } %>
-	<ul class="collapsible popout" data-collapsible="accordion">
+	<ul class="collapsible" data-collapsible="accordion">
 		<li>
-		<div class="collapsible-header"><i class="material-icons">view_headline</i>First</div>
-		<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+		<div class="collapsible-header <%=(req.param('filterIsOpen')?((req.param('filterIsOpen') == 'true')?'active':''):'')%>"><i class="material-icons">view_headline</i>Filter</div>
+		<div class="collapsible-body">
+			<div class="row">
+				<div class="container">
+					<div class="center">
+						<form action="/athlete" method="get" class="col s12">
+							<div class="row">
+								<div class="input-field col s6">
+									<input id="nameFilter" value="<%=(req.param('nameFilter')?req.param('nameFilter'):'')%>" name="nameFilter" type="text" class="validate" maxlength="50">
+									<label for="nameFilter" data-error="<%=i18n('Invalid')%>"><%=i18n('Name')%></label>
+								</div>
+								<div class="input-field col s6">
+									<input id="emailFilter" value="<%=(req.param('emailFilter')?req.param('emailFilter'):'')%>" name="emailFilter" type="email" class="validate" maxlength="50">
+									<label for="emailFilter" data-error="<%=i18n('Invalid')%>"><%=i18n('Email')%></label>
+								</div>
+							</div>
+							<input type="hidden" name="filterIsOpen" value="<%=(req.param('filterIsOpen')?req.param('filterIsOpen'):'false')%>">
+							<div class="row">
+								<button class="btn waves-effect waves-light" type="submit">Submit
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 		</li>
 	</ul>
 	<table class="center bordered hoverable responsive-table" align=center>

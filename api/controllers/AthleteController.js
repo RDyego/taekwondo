@@ -12,8 +12,23 @@ module.exports = {
 	},
 	
 	index: function (req, res, next) {
+		//MomentJS
 		var moment = require('moment');
+		//Model
 		var myAthleteQuery = Athlete.find();
+		//Filters
+		var filterIsOpen = req.param('filterIsOpen');
+		var name = req.param('nameFilter');
+		
+		if (filterIsOpen) {
+			var value = (filterIsOpen == true || filterIsOpen == 'true');
+			if (value) {
+				if(name){
+					myAthleteQuery.where({name: { 'like': '%'+name+'%' }});
+				}
+			}
+		}
+		//Filter, sort and paginate
 		var hasValidity = req.param('validity')
 		var limit = 20;
 		var page = req.param('page');

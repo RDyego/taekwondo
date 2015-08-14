@@ -1,5 +1,18 @@
 
 $(document).ready(function () {
+	$('.collapsible-header').on('click', function() {
+		var $myFilter = $(this);
+		var $myHidden = $($myFilter.next().find('input:hidden'));		
+		var isOpen = $myFilter.hasClass('active');
+		$myHidden.val('false');
+		if(isOpen){
+			$myHidden.val('true');
+			$('th a').attr('href',$('th a').attr('href').replace('&filterIsOpen=false','&filterIsOpen=true'));
+		}else{
+			$('th a').attr('href',$('th a').attr('href').replace('&filterIsOpen=true','&filterIsOpen=false'));
+		}
+	});
+	
     $('select').material_select();
 	$(".dropdown-button").dropdown({ hover: false });
 	$('.datepicker').pickadate({

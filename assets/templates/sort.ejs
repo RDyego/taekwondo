@@ -4,9 +4,11 @@
 	<th data-field="<%=attribute.name%>">
 		<a href="/<%=sortAndPaginate.model%>?sortType=<%=((sortAndPaginate.sortBy == attribute.name) 
 			? sortAndPaginate.sortType : 'DESC')%>&sortBy=<%=attribute.name%>
-			<%=((req.param('validity'))?('&validity='+req.param('validity')):'')%>">
+			<%=(req.param('filterIsOpen')?('&filterIsOpen='+req.param('filterIsOpen')):'')%>
+			<%=(req.param('nameFilter')?('&nameFilter='+req.param('nameFilter')):'')%>
+			<%=(req.param('validity')?('&validity='+req.param('validity')):'')%>">
 			<%=i18n(attribute.name)%>
-			<i class="material-icons">keyboard_arrow_<%=((sortAndPaginate.sortBy == attribute.name) ? (sortAndPaginate.sortType == 'DESC' ?  'down' : 'up') : 'up')%></i>
+			<i class="material-icons icon-sort">keyboard_arrow_<%=((sortAndPaginate.sortBy == attribute.name) ? (sortAndPaginate.sortType == 'DESC' ?  'down' : 'up') : 'up')%></i>
 		</a>
 	</th>
 <% }else{%>
