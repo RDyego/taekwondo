@@ -11,22 +11,18 @@ module.exports = {
 		var name = req.param('nameFilter');
 		var action = req.param('action');
 		if (action == 'clear') {
-			name = null;
 			filterIsOpen = null;
 		}
 		//Filter, sort and paginate
 		var hasValidity = req.param('validity')
 		var limit = 2;
-		var page = req.param('page');
-		var hasPage = !!page;
-		page = page ? page : 1;
-
+		var page = req.param('page') ? req.param('page') : 1;
 		var sortBy = req.param('sortBy') ? req.param('sortBy') : 'name';
 		var sortType = req.param('sortType') ? req.param('sortType') : 'ASC';
 
 		if (filterIsOpen) {
-			var value = (filterIsOpen == true || filterIsOpen == 'true');
-			if (value) {
+			var checkIfFilterIsOpen = (filterIsOpen == true || filterIsOpen == 'true');
+			if (checkIfFilterIsOpen) {
 				if (name) {
 					where = _.merge({ name: { 'like': '%' + name + '%' } }, where);
 				}
