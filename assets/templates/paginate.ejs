@@ -6,6 +6,8 @@
 			+(req.param('sortType')?'&sortType='+req.param('sortType'):'')
 			+(req.param('sortBy')?'&sortBy='+req.param('sortBy'):'')
 			)%>
+			<%=((req.param('filterIsOpen'))?('&filterIsOpen='+req.param('filterIsOpen')):'')%>
+			<%=(req.param('nameFilter')?('&nameFilter='+req.param('nameFilter')):'')%>
 			<%=((req.param('validityFilter'))?('&validityFilter='+req.param('validityFilter')):'')%>
 			<%=((req.param('validity'))?('&validity='+req.param('validity')):'')%>">
 			<i class="material-icons">chevron_left</i>
@@ -16,6 +18,8 @@
 		<a href="/<%=myFind.model%>?page=<%=i%>
 				<%=(req.param('sortType')?'&sortType='+req.param('sortType'):'')%>
 				<%=(req.param('sortBy')?'&sortBy='+req.param('sortBy'):'')%>
+				<%=((req.param('filterIsOpen'))?('&filterIsOpen='+req.param('filterIsOpen')):'')%>
+				<%=(req.param('nameFilter')?('&nameFilter='+req.param('nameFilter')):'')%>
 				<%=((req.param('validityFilter'))?('&validityFilter='+req.param('validityFilter')):'')%>
 				<%=((req.param('validity'))?('&validity='+req.param('validity')):'')%>"><%=i%></a>
 	</li>
@@ -27,6 +31,8 @@
 			+(req.param('sortType')?'&sortType='+req.param('sortType'):'')
 			+(req.param('sortBy')?'&sortBy='+req.param('sortBy'):'')
 			)%>
+			<%=((req.param('filterIsOpen'))?('&filterIsOpen='+req.param('filterIsOpen')):'')%>
+			<%=(req.param('nameFilter')?('&nameFilter='+req.param('nameFilter')):'')%>
 			<%=((req.param('validityFilter'))?('&validityFilter='+req.param('validityFilter')):'')%>
 			<%=((req.param('validity'))?('&validity='+req.param('validity')):'')%>">
 			<i class="material-icons">chevron_right</i>
