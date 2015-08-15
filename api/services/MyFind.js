@@ -9,7 +9,9 @@ module.exports = {
 		//Filters
 		var filterIsOpen = req.param('filterIsOpen');
 		var nameFilter = req.param('nameFilter');
+		var instructorFilter = req.param('instructorFilter');
 		var graduationFilter = req.param('graduationFilter');
+		var validityFilter = req.param('validityFilter');
 		var action = req.param('action');
 		if (action == 'clear') {
 			filterIsOpen = null;
@@ -27,8 +29,20 @@ module.exports = {
 				if (nameFilter) {
 					where = _.merge({ name: { 'like': '%' + nameFilter + '%' } }, where);
 				}
+				if (instructorFilter) {
+					where = _.merge({ instructorName: { 'like': '%' + instructorFilter + '%' } }, where);
+				}
 				if (graduationFilter) {
 					where = _.merge({ graduation: { 'like': '%' + graduationFilter + '%' } }, where);
+				}
+				if (validityFilter) {
+					var checkIfValidityValue = (validityFilter == true || validityFilter == 'true');
+					var currentDate = new Date(moment().format('YYYY-MM-DDTHH:mm:ss.SSS') + 'Z');
+					if (checkIfValidityValue) {
+						where = _.merge({ validity: { '>=': currentDate } }, where);
+					} else {
+						where = _.merge({ validity: { '<': currentDate } }, where);
+					}
 				}
 			}
 		}

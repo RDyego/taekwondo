@@ -15,17 +15,32 @@
 						<div class="center">
 							<form action="/athlete" method="get" class="col s12">
 								<div class="row">
-									<div class="input-field col s9">
-										<input id="nameFilter" value="<%=(req.param('nameFilter')?req.param('nameFilter'):'')%>" name="nameFilter" type="text" class="validate" maxlength="50">
-										<label for="nameFilter" data-error="<%=i18n('Invalid')%>"><%=i18n('Name')%></label>
+									<div class="input-field col s6">
+										<input id="nameFilter" name="nameFilter" value="<%=(req.param('nameFilter')?req.param('nameFilter'):'')%>" type="text" class="validate" maxlength="50">
+										<label for="nameFilter" data-error="<%=i18n('Invalid')%>"><%=i18n("Athlete's Name")%></label>
 									</div>
+									<div class="input-field col s6">
+										<input id="instructorFilter" name="instructorFilter" value="<%=(req.param('instructorFilter')?req.param('instructorFilter'):'')%>" type="text" class="validate" maxlength="50">
+										<label for="instructorFilter" data-error="<%=i18n('Invalid')%>"><%=i18n("Instructor's Name")%></label>
+									</div>
+								</div>
+								<div class="row">
 									<div class="input-field col s3">
 										<select id="graduationFilter" name="graduationFilter">
+											<option value="">Qualquer</option>
 											<%_.each(Athlete.attributes.graduation.enum, function (enumValue) {%>
 												<option <%=(req.param('graduationFilter') == enumValue)?'selected':''%> value="<%=enumValue%>"><%=i18n(enumValue)%></option>
 											<%})%>
 										</select>
 										<label for="graduationFilter"><%=i18n('Graduation')%></label>
+									</div>
+									<div class="input-field col s3">
+										<select id="validityFilter" name="validityFilter">
+											<option value="">Qualquer</option>
+											<option <%=(req.param('validityFilter') == 'true')?'selected':''%> value="true">Valid</option>
+											<option <%=(req.param('validityFilter') == 'false')?'selected':''%> value="false">Expirated</option>
+										</select>
+										<label for="validityFilter">Validity</label>
 									</div>
 								</div>
 								<input type="hidden" name="filterIsOpen" value="<%=(req.param('filterIsOpen')?req.param('filterIsOpen'):'false')%>">
