@@ -13,7 +13,7 @@ $(document).ready(function () {
 				thA.attr('href',thA.attr('href').replace('&filterIsOpen=false','&filterIsOpen=true'));
 			}
 			if(paginationA.attr('href')){
-				//paginationA.attr('href',paginationA.attr('href').replace('&filterIsOpen=false','&filterIsOpen=true'));
+				paginationA.attr('href',paginationA.attr('href').replace('&filterIsOpen=false','&filterIsOpen=true'));
 			}
 			if(sortAthleteA.attr('href')){
 				sortAthleteA.attr('href',sortAthleteA.attr('href').replace('&filterIsOpen=false','&filterIsOpen=true'));
@@ -23,7 +23,7 @@ $(document).ready(function () {
 				thA.attr('href',thA.attr('href').replace('&filterIsOpen=true','&filterIsOpen=false'));
 			}
 			if(paginationA.attr('href')){
-				//paginationA.attr('href',paginationA.attr('href').replace('&filterIsOpen=true','&filterIsOpen=false'));
+				paginationA.attr('href',paginationA.attr('href').replace('&filterIsOpen=true','&filterIsOpen=false'));
 			}
 			if(sortAthleteA.attr('href')){
 				sortAthleteA.attr('href',sortAthleteA.attr('href').replace('&filterIsOpen=true','&filterIsOpen=false'));
