@@ -5,6 +5,8 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+var util = require('util');
+var actionUtil = require('../../node_modules/sails/lib/hooks/blueprints/actionUtil');
 var moment = require('moment');
 
 module.exports = {
@@ -13,6 +15,7 @@ module.exports = {
 	},
 	
 	index: function (req, res, next) {
+   		var Model = actionUtil.parseModel(req);		
 		var where = {};
 		//Filters
 		var filterIsOpen = req.param('filterIsOpen');
@@ -21,15 +24,6 @@ module.exports = {
 		if(action == 'clear'){
 			name = null;
 			filterIsOpen = null;
-		}
-		
-		if (filterIsOpen) {
-			var value = (filterIsOpen == true || filterIsOpen == 'true');
-			if (value) {
-				if(name){
-					where = _.merge({name: { 'like': '%'+name+'%' }}, where);
-				}
-			}
 		}
 		//Filter, sort and paginate
 		var hasValidity = req.param('validity')
@@ -43,7 +37,7 @@ module.exports = {
 		var sortAndPaginateViewModel = {
 			totalPage: 0,
 			currentPage: page,
-			model: 'athlete',
+			model: req.options.model || req.options.controller,
 			sortBy: sortBy,
 			sortType: (hasPage ? sortType : (sortType == 'DESC' ? 'ASC' : 'DESC')),
 			attributes: [
@@ -66,6 +60,15 @@ module.exports = {
 			]
 		};
 		
+		if (filterIsOpen) {
+			var value = (filterIsOpen == true || filterIsOpen == 'true');
+			if (value) {
+				if(name){
+					where = _.merge({name: { 'like': '%'+name+'%' }}, where);
+				}
+			}
+		}
+		
 		if (hasValidity) {
 			var value = (hasValidity == true || hasValidity == 'true');
 			var currentDate = new Date(moment().format('YYYY-MM-DDTHH:mm:ss.SSS') + 'Z');
@@ -77,12 +80,12 @@ module.exports = {
 		}
 		
 		//Model
-		Athlete.find()
+		Model.find()
 		.where(where)
 		.paginate({ page: page, limit: limit })
 		.sort(sortAndPaginateViewModel.sortBy + ' ' + sortAndPaginateViewModel.sortType).exec(function (err, athletesFound) {
 			if (err) return next(err);
-			Athlete.count(where).exec(function (err, countTotal) {
+			Model.count(where).exec(function (err, countTotal) {
 				if (err) return next(err);
 				sortAndPaginateViewModel.totalPage = Math.ceil(countTotal / limit);
 				res.view({
