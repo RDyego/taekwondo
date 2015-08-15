@@ -1,23 +1,30 @@
-<%if(sortAndPaginate.totalPage!=0){%>
+<%if(myFind.totalPage!=0){%>
 <ul class="pagination center">
-	<li class="<%=((sortAndPaginate.currentPage == 1) ? 'disabled' : 'waves-effect')%>">
-		<a href="<%=((sortAndPaginate.currentPage == 1) 
-			? '#' : '/'+sortAndPaginate.model+'?page='+(+sortAndPaginate.currentPage-1)
-			+'&sortType='+sortAndPaginate.sortType+'&sortBy'+sortAndPaginate.sortBy)%>
+	<li class="<%=((myFind.currentPage == 1) ? 'disabled' : 'waves-effect')%>">
+		<a href="<%=((myFind.currentPage == 1) 
+			? '#' : '/'+myFind.model+'?page='+(+myFind.currentPage-1)
+			+(req.param('sortType')?'&sortType='+req.param('sortType'):'')
+			+(req.param('sortBy')?'&sortBy='+req.param('sortBy'):'')
+			)%>
 			<%=((req.param('validity'))?('&validity='+req.param('validity')):'')%>">
 			<i class="material-icons">chevron_left</i>
 		</a>
 	</li>
-	<%for(i=1;i<=sortAndPaginate.totalPage;i++){%>
-	<li class="waves-effect <%=((sortAndPaginate.currentPage == i) ? 'active' : '')%>">
-		<a href="/<%=sortAndPaginate.model%>?page=<%=i%>&sortType=<%=sortAndPaginate.sortType%>&sortBy<%=sortAndPaginate.sortBy%>
+	<%for(i=1;i<=myFind.totalPage;i++){%>
+	<li class="waves-effect <%=((myFind.currentPage == i) ? 'active' : '')%>">
+		<a href="/<%=myFind.model%>?page=<%=i%>
+				<%=(req.param('sortType')?'&sortType='+req.param('sortType'):'')%>
+				<%=(req.param('sortBy')?'&sortBy='+req.param('sortBy'):'')%>
 				<%=((req.param('validity'))?('&validity='+req.param('validity')):'')%>"><%=i%></a>
 	</li>
 	<%}%>
-	<li class="<%=((sortAndPaginate.currentPage == sortAndPaginate.totalPage) ? 'disabled' : 'waves-effect')%>">
-		<a href="<%=((sortAndPaginate.currentPage == sortAndPaginate.totalPage) 
-			? '#' : '/'+sortAndPaginate.model+'?page='+(+sortAndPaginate.currentPage+1)
-			+'&sortType='+sortAndPaginate.sortType+'&sortBy'+sortAndPaginate.sortBy)%>
+	<li class="<%=((myFind.currentPage == myFind.totalPage) ? 'disabled' : 'waves-effect')%>">
+		<a href="<%=
+			((myFind.currentPage == myFind.totalPage) 
+			? '#' : '/'+myFind.model+'?page='+(+myFind.currentPage+1)
+			+(req.param('sortType')?'&sortType='+req.param('sortType'):'')
+			+(req.param('sortBy')?'&sortBy='+req.param('sortBy'):'')
+			)%>
 			<%=((req.param('validity'))?('&validity='+req.param('validity')):'')%>">
 			<i class="material-icons">chevron_right</i>
 		</a>

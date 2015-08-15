@@ -27,38 +27,13 @@ module.exports = {
 		}
 		//Filter, sort and paginate
 		var hasValidity = req.param('validity')
-		var limit = 20;
+		var limit = 2;
 		var page = req.param('page');
 		var hasPage = !!page;
 		page = page ? page : 1;
 
 		var sortBy = req.param('sortBy') ? req.param('sortBy') : 'name';
 		var sortType = req.param('sortType') ? req.param('sortType') : 'ASC';
-		var sortAndPaginateViewModel = {
-			totalPage: 0,
-			currentPage: page,
-			model: req.options.model || req.options.controller,
-			sortBy: sortBy,
-			sortType: (hasPage ? sortType : (sortType == 'DESC' ? 'ASC' : 'DESC')),
-			attributes: [
-				{
-					name: 'name',
-					sortable: true
-				},
-				/*{
-					name: 'email',
-					sortable: true
-				},*/
-				{
-					name: 'graduation',
-					sortable: true
-				},
-				{
-					name: 'instructorName',
-					sortable: true
-				},
-			]
-		};
 		
 		if (filterIsOpen) {
 			var value = (filterIsOpen == true || filterIsOpen == 'true');
@@ -79,19 +54,43 @@ module.exports = {
 			}
 		}
 		
+		var sort = {
+			by: sortBy,
+			'type': sortType,
+			attributes: [
+				{
+					name: 'name',
+					sortable: true
+				},
+				{
+					name: 'graduation',
+					sortable: true
+				},
+			]
+		};
+		
+		var myFind = {
+			where: where,
+			sort: sort,
+			totalPage: 0,
+			currentPage: page,
+			model: req.options.model || req.options.controller,
+			
+		};
+		
 		//Model
 		Model.find()
-		.where(where)
+		.where(myFind.where)
 		.paginate({ page: page, limit: limit })
-		.sort(sortAndPaginateViewModel.sortBy + ' ' + sortAndPaginateViewModel.sortType).exec(function (err, athletesFound) {
+		.sort(myFind.sort.by + ' ' + myFind.sort.type).exec(function (err, recordsFound) {
 			if (err) return next(err);
-			Model.count(where).exec(function (err, countTotal) {
+			Model.count(myFind.where).exec(function (err, countTotal) {
 				if (err) return next(err);
-				sortAndPaginateViewModel.totalPage = Math.ceil(countTotal / limit);
+				myFind.totalPage = Math.ceil(countTotal / limit);
 				res.view({
-					athletes: athletesFound,
+					records: recordsFound,
 					moment: moment,
-					sortAndPaginate: sortAndPaginateViewModel
+					myFind: myFind
 				});
 			});
 		});

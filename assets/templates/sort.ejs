@@ -1,14 +1,15 @@
-
-<% _.each(sortAndPaginate.attributes, function (attribute) { 
+<% _.each(myFind.sort.attributes, function (attribute) { 
 	if (attribute.sortable) { %>
 	<th data-field="<%=attribute.name%>">
-		<a href="/<%=sortAndPaginate.model%>?sortType=<%=((sortAndPaginate.sortBy == attribute.name) 
-			? sortAndPaginate.sortType : 'DESC')%>&sortBy=<%=attribute.name%>
+		<a href="/<%=myFind.model%>
+			?sortType=<%=((myFind.sort.by == attribute.name) ? (myFind.sort.type == 'ASC' ? 'DESC' : 'ASC') : 'ASC')%>
+			&sortBy=<%=attribute.name%>
+			<%=(req.param('page')?('&page='+req.param('page')):'')%>
 			<%=(req.param('filterIsOpen')?('&filterIsOpen='+req.param('filterIsOpen')):'')%>
 			<%=(req.param('nameFilter')?('&nameFilter='+req.param('nameFilter')):'')%>
 			<%=(req.param('validity')?('&validity='+req.param('validity')):'')%>">
 			<%=i18n(attribute.name)%>
-			<i class="material-icons icon-sort">keyboard_arrow_<%=((sortAndPaginate.sortBy == attribute.name) ? (sortAndPaginate.sortType == 'DESC' ?  'down' : 'up') : 'up')%></i>
+			<i class="material-icons icon-sort">keyboard_arrow_<%=((myFind.sort.by == attribute.name) ? (myFind.sort.type == 'DESC' ?  'up' : 'down') : 'down')%></i>
 		</a>
 	</th>
 <% }else{%>

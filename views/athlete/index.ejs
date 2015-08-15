@@ -38,9 +38,20 @@
 			</div>
 		</li>
 	</ul>
-	
+	<table class="center bordered hoverable responsive-table" align=center>
+		<thead>
+			<tr>
+				<% include ../../assets/templates/sort %>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+	</table>
 	<ul class="collapsible popout" data-collapsible="accordion">
-		<% _.each(athletes, function (athlete) { %>
+		<% _.each(records, function (athlete) { %>
 		<li >
       		<div class="collapsible-header collapsible-list">
 				<ul class="collection">
@@ -171,131 +182,6 @@
 		</li>
 		<% }) %>
 	</ul>
-	
-	
-	<table class="center bordered hoverable responsive-table" align=center>
-		<thead>
-			<tr>
-				<% include ../../assets/templates/sort %>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<% _.each(athletes, function (athlete) { %>
-				<tr class="tr-athlete">
-					<td>	
-					 	<ul class="collection">
-							<li class="collection-item avatar">
-							<% if(athlete.photo) { %>
-						      <img src="/athlete/showPhotoByFd/<%=athlete.photo%>" alt="" class="circle">
-							<% } else { %>
-							  <i class="material-icons circle">folder</i>
-							<% } %>
-							  
-							<% if(moment().isAfter(moment(athlete.validity))) { %>
-							<a  href="#modalBaseAthlete"
-								data-action="/athlete/updateValidity/<%=athlete.id%>"
-								data-form="#formBaseAthlete" 
-								data-message="Deseja atualizar a data de validade da carteira do <%=(athlete.name)?athlete.name:''%>
-								de <%=moment(athlete.validity).format('DD/MM/YYYY')%> para <%=moment().add(1,'years').format('DD/MM/YYYY')%>?"
-								data-title="<%=i18n('Atualizar')%>"
-								data-button="<%=i18n('Atualizar')%>"
-								class="waves-effect waves-light tooltipped modal-trigger a-icon-athlete"
-								data-position="right" data-delay="50" data-tooltip="Carteira vencida. Validade: <%=moment(athlete.validity).format('DD/MM/YYYY')%>">
-								<i class="material-icons icon-amber">mood_bad</i>
-							</a>
-							<% } else { %>
-								<a href="#!" class="waves-effect tooltipped a-icon-athlete"
-									data-position="right" data-delay="50" 
-									data-tooltip="Carteira Ok. Validade: <%=moment(athlete.validity).format('DD/MM/YYYY')%>">
-									<i class="material-icons icon-green">mood</i>
-								</a>
-							<% } %>
-								
-						      <span class="title"><%=(athlete.name)?athlete.name:''%></span>
-							  <p><%=(athlete.email)?athlete.email:''%></p>
-							
-						    </li>	
-						</ul>	
-					</td>
-					<td>
-						<a href="#!" 
-							class="btn-floating waves-effect waves-light grey tooltipped"
-							data-position="right" data-delay="50" data-tooltip="<%=(athlete.graduation)?i18n(athlete.graduation):''%>">
-							<i class="material-icons 
-								icon-belt-<%=(athlete.graduation)?athlete.graduation.toLowerCase().replace(' ','-').replace('dan',''):''%>">lens</i>
-						</a>
-					</td>
-					<td>
-						<%=(athlete.instructorName)?athlete.instructorName:''%>
-					</td>
-					<td class="td-icons">
-					</td>
-					<td class="td-icons">
-  						<a  href="<%=(moment().isAfter(moment(athlete.validity)))?'#modalBaseAthlete':'#modalCardAthlete'%>"
-						  	data-form="<%=(moment().isAfter(moment(athlete.validity)))?'#formBaseAthlete':'#formCardAthlete'%>"
-							data-action="<%=(moment().isAfter(moment(athlete.validity)))?'/athlete/updateValidity/'+athlete.id:''%>"
-							data-message="Deseja atualizar a data de validade da carteira do <%=(athlete.name)?athlete.name:''%>
-							de <%=moment(athlete.validity).format('DD/MM/YYYY')%> para <%=moment().add(1,'years').format('DD/MM/YYYY')%>?"
-							data-title="<%=(moment().isAfter(moment(athlete.validity)))?i18n('Atualizar'):''%>"
-							data-button="<%=(moment().isAfter(moment(athlete.validity)))?i18n('Atualizar'):''%>"
-						  	data-athlete-photo="<%=(athlete.photo)?('/athlete/showPhotoByFd/'+athlete.photo):''%>"  
-						  	data-athlete-name="<%=i18n('Name')%>: <%=(athlete.name)?athlete.name:''%>"  
-						  	data-athlete-graduation="<%=i18n('Graduation')%>: <%=(athlete.graduation)?i18n(athlete.graduation):''%>"
-						  	data-athlete-academy="<%=i18n('Academy')%>: <%=(athlete.associationName)?athlete.associationName:''%>"  
-						  	data-athlete-date-started="<%=i18n('Date Started')%>: <%=(athlete.dateStarted)?moment(athlete.dateStarted).format('DD/MM/YYYY'):''%>"
-						  	data-athlete-blood-group="<%=i18n('Blood Group')%>: <%=(athlete.bloodGroup)?athlete.bloodGroup:''%>"
-					  		data-athlete-rh-factor="<%=i18n('RH Factor')%>: <%=(athlete.rhFactor)?athlete.rhFactor:''%>"  
-						  	data-athlete-naturalness="<%=i18n('Naturalness')%>: <%=(athlete.naturalness)?athlete.naturalness:''%>"  
-						  	data-athlete-bday="<%=i18n('Date of Birth')%>: <%=(athlete.bday)?moment(athlete.bday).format('DD/MM/YYYY'):''%>"
-						  	data-athlete-register-number="<%=i18n('Register Number')%>: <%=(athlete.registerNumber)?athlete.registerNumber:''%>" 
-						  	data-athlete-validity="<%=i18n('Validity')%> <%=i18n('for')%>: <%=(athlete.validity)
-						  			? moment(athlete.validity).add(-1, 'years').format('DD/MM/YYYY')
-					  				: moment().format('DD/MM/YYYY')%> <%=i18n('to')%>: <%=(athlete.validity)
-							  		? moment(athlete.validity).format('DD/MM/YYYY')
-								  	: moment().add(1, 'years').format('DD/MM/YYYY')%>"     
-							class="btn-floating waves-effect waves-light 
-							<%=(moment().isAfter(moment(athlete.validity)))?'amber':'green'%> 
-							tooltipped modal-trigger-card"
-							data-position="right" data-delay="50" 
-							data-tooltip="<%=i18n('Card')%> <%=(moment().isAfter(moment(athlete.validity)))?'vencida':'ok'%>. Validade: <%=moment(athlete.validity).format('DD/MM/YYYY')%>">
-							<i class="material-icons">credit_card</i>
-					 	</a>
-					</td>
-					<td class="td-icons">
-						<a href="/athlete/show/<%=athlete.id%>" 
-							class="btn-floating waves-effect waves-light brown tooltipped"
-							data-position="right" data-delay="50" data-tooltip="<%=i18n('Show')%>">
-							<i class="material-icons">search</i>
-						</a>
-					</td>
-					<td class="td-icons">
-						<a href="/athlete/edit/<%=athlete.id%>" 
-							class="btn-floating waves-effect waves-light blue tooltipped"
-							data-position="right" data-delay="50" data-tooltip="<%=i18n('Edit')%>">
-							<i class="material-icons">create</i>
-						</a>
-					</td>
-					<td class="td-icons">
-  						<a  href="#modalBaseAthlete"
-						  	data-action="/athlete/destroy/<%=athlete.id%>"
-						  	data-form="#formBaseAthlete" 
-						  	data-message="<%=i18n('Do you wish delete the user %s?',athlete.name)%>"
-						  	data-title="<%=i18n('Delete')%>"
-						  	data-button="<%=i18n('Delete')%>"
-							class="btn-floating waves-effect waves-light red tooltipped modal-trigger"
-							data-position="right" data-delay="50" data-tooltip="<%=i18n('Delete')%>">
-							<i class="material-icons">clear</i>
-					 	</a>
-					</td>
-				</tr>
-				<% }) %>
-		</tbody>
-	</table>
 	<div class="row">
 		<% include ../../assets/templates/paginate %>
 	</div>

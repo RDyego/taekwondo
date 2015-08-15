@@ -4,6 +4,9 @@
  * @description :: Server-side logic for managing users
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
+var util = require('util');
+var actionUtil = require('../../node_modules/sails/lib/hooks/blueprints/actionUtil');
+var moment = require('moment');
 
 module.exports = {
 	'new': function (req, res, next) {
@@ -25,20 +28,48 @@ module.exports = {
 	},
 	
 	index: function (req, res, next) {
-		var myUserQuery = User.find();
-		var limit = 20;
+   		var Model = actionUtil.parseModel(req);		
+		var where = {};
+		//Filters
+		var filterIsOpen = req.param('filterIsOpen');
+		var name = req.param('nameFilter');
+		var action = req.param('action');
+		if(action == 'clear'){
+			name = null;
+			filterIsOpen = null;
+		}
+		//Filter, sort and paginate
+		var hasValidity = req.param('validity')
+		var limit = 2;
 		var page = req.param('page');
 		var hasPage = !!page;
 		page = page ? page : 1;
 
 		var sortBy = req.param('sortBy') ? req.param('sortBy') : 'name';
 		var sortType = req.param('sortType') ? req.param('sortType') : 'ASC';
-		var sortAndPaginateViewModel = {
-			totalPage: 0,
-			currentPage: page,
-			model: 'user',
-			sortBy: sortBy,
-			sortType: (hasPage ? sortType : (sortType == 'DESC' ? 'ASC' : 'DESC')),
+		
+		if (filterIsOpen) {
+			var value = (filterIsOpen == true || filterIsOpen == 'true');
+			if (value) {
+				if(name){
+					where = _.merge({name: { 'like': '%'+name+'%' }}, where);
+				}
+			}
+		}
+		
+		if (hasValidity) {
+			var value = (hasValidity == true || hasValidity == 'true');
+			var currentDate = new Date(moment().format('YYYY-MM-DDTHH:mm:ss.SSS') + 'Z');
+			if (value) {
+					where = _.merge({ validity: { '>=': currentDate }}, where);
+			} else {
+					where = _.merge({ validity: { '<': currentDate }}, where);
+			}
+		}
+		
+		var sort = {
+			by: sortBy,
+			'type': sortType,
 			attributes: [
 				{
 					name: 'name',
@@ -51,16 +82,28 @@ module.exports = {
 			]
 		};
 		
-		myUserQuery.sort(sortAndPaginateViewModel.sortBy + ' ' + sortAndPaginateViewModel.sortType);
+		var myFind = {
+			where: where,
+			sort: sort,
+			totalPage: 0,
+			currentPage: page,
+			model: req.options.model || req.options.controller,
+			
+		};
 		
-		myUserQuery.paginate({ page: page, limit: limit }).exec(function (err, usersFound) {
+		//Model
+		Model.find()
+		.where(myFind.where)
+		.paginate({ page: page, limit: limit })
+		.sort(myFind.sort.by + ' ' + myFind.sort.type).exec(function (err, recordsFound) {
 			if (err) return next(err);
-			User.count().exec(function (err, countTotal) {
+			Model.count(myFind.where).exec(function (err, countTotal) {
 				if (err) return next(err);
-				sortAndPaginateViewModel.totalPage = Math.ceil(countTotal / limit);
+				myFind.totalPage = Math.ceil(countTotal / limit);
 				res.view({
-					users: usersFound,
-					sortAndPaginate: sortAndPaginateViewModel
+					records: recordsFound,
+					moment: moment,
+					myFind: myFind
 				});
 			});
 		});
