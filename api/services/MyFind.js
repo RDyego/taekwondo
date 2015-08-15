@@ -17,7 +17,7 @@ module.exports = {
 		var hasValidity = req.param('validity')
 		var limit = 2;
 		var page = req.param('page') ? req.param('page') : 1;
-		var sortBy = req.param('sortBy') ? req.param('sortBy') : 'name';
+		var sortBy = req.param('sortBy') ? req.param('sortBy') : attributes[0].name;
 		var sortType = req.param('sortType') ? req.param('sortType') : 'ASC';
 
 		if (filterIsOpen) {

@@ -1,7 +1,8 @@
 <% _.each(myFind.sort.attributes, function (attribute) { 
 	if (attribute.sortable) { %>
 	<th data-field="<%=attribute.name%>">
-		<a href="/<%=myFind.model%>
+		<a  class="a-sort-<%=attribute.name%>"
+			href="/<%=myFind.model%>
 			?sortType=<%=((myFind.sort.by == attribute.name) ? (myFind.sort.type == 'ASC' ? 'DESC' : 'ASC') : 'ASC')%>
 			&sortBy=<%=attribute.name%>
 			<%=(req.param('page')?('&page='+req.param('page')):'')%>

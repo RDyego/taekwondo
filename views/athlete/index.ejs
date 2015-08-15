@@ -38,18 +38,9 @@
 			</div>
 		</li>
 	</ul>
-	<table class="center bordered hoverable responsive-table" align=center>
-		<thead>
-			<tr>
-				<% include ../../assets/templates/sort %>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-			</tr>
-		</thead>
-	</table>
+	<div class="container sortAthlete">
+		<% include ../../assets/templates/sort %>
+	</div>
 	<ul class="collapsible popout" data-collapsible="accordion">
 		<% _.each(records, function (athlete) { %>
 		<li >
