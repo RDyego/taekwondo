@@ -91,10 +91,10 @@ module.exports = {
 							}
 							return res.redirect('/athlete/new');
 						}
+						res.redirect('/athlete/new');
 					});
 				}
 			});
-			res.redirect('/athlete/index');
 		});
 	},
 
@@ -240,10 +240,10 @@ module.exports = {
 							}
 							return res.redirect('/athlete/index');
 						}
+						res.redirect('/athlete/index');
 					});
 				}
 			});
-			res.redirect('/athlete/index');
 		});
 	},
 
