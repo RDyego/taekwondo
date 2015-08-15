@@ -1,9 +1,24 @@
-<div class="container">
-	<div class="card-panel z-depth-2">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Sails App</title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--STYLES-->
+    <link rel="stylesheet" href="/bower_components/materialize/dist/css/materialize.min.css">
+    <link rel="stylesheet" href="/styles/importer.css">
+    <!--STYLES END-->	
+</head>
+
+<body class="blue darken-3">	  
+    <div class="card-panel z-depth-2" id="login">
 		<form action="/session/create" method="post" class="col s12">
-			<div class="row">
-				<div class="col s12">
-					<span>Sign in with your account</span>
+			<div class="row logo-header">
+				<div class="col s12 center-align">
+					<img src="/images/logo-federacao.png" alt="FECET">
+                    <p class="center-align grey-text text-darken-1">FEDERAÇÃO CEARENSE ESPORTIVA DE TAEKWONDO</p>
 				</div>
 			</div>
 			
@@ -34,4 +49,14 @@
 			<input type="hidden" name="_csrf" value="<%=_csrf%>">
 		</form>
 	</div>
-</div>
+
+    <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/js/dependencies/html2canvas/html2canvas.min.js"></script>
+    <script src="/js/dependencies/html2canvas/html2canvas.svg.min.js"></script>
+    <script src="/bower_components/materialize/dist/js/materialize.min.js"></script>
+    <script src="/js/custom.js"></script>
+    <!--SCRIPTS END-->    
+</body>
+</html>
