@@ -43,9 +43,9 @@
 										<label for="validityFilter">Validity</label>
 									</div>
 								</div>
-								<input type="hidden" name="filterIsOpen" value="<%=(req.param('filterIsOpen')?req.param('filterIsOpen'):'false')%>">
+								<input type="hidden" id="filterIsOpen" name="filterIsOpen" value="<%=(req.param('filterIsOpen')?req.param('filterIsOpen'):'false')%>">
 								<div class="row">
-									<button class="btn waves-effect waves-light" type="submit" name="action" value="clear">Clear
+									<button class="btn waves-effect waves-light" type="submit" name="action" id="buttonClear" value="clear">Clear
 									</button>
 									<button class="btn waves-effect waves-light" type="submit" name="action" value="filter">Filter
 									</button>

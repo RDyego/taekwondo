@@ -1,4 +1,8 @@
 $(document).ready(function () {
+	$('#buttonClear').on('click', function() {
+		var $myHidden = $('#filterIsOpen');	
+		$myHidden.val('false');
+	});
 	$('.collapsible-header').on('click', function() {
 		var $myFilter = $(this);
 		var $myHidden = $($myFilter.next().find('input:hidden'));		
@@ -13,7 +17,12 @@ $(document).ready(function () {
 				thA.attr('href',thA.attr('href').replace('&filterIsOpen=false','&filterIsOpen=true'));
 			}
 			if(paginationA.attr('href')){
-				paginationA.attr('href',paginationA.attr('href').replace('&filterIsOpen=false','&filterIsOpen=true'));
+				paginationA.each(function (i,a) {
+					a = $(a);
+					if(a.attr('href').indexOf('&filterIsOpen=false') >= 0){
+						a.attr('href',a.attr('href').replace('&filterIsOpen=false','&filterIsOpen=true'));
+					}
+				});
 			}
 			if(sortAthleteA.attr('href')){
 				sortAthleteA.attr('href',sortAthleteA.attr('href').replace('&filterIsOpen=false','&filterIsOpen=true'));
@@ -23,7 +32,12 @@ $(document).ready(function () {
 				thA.attr('href',thA.attr('href').replace('&filterIsOpen=true','&filterIsOpen=false'));
 			}
 			if(paginationA.attr('href')){
-				paginationA.attr('href',paginationA.attr('href').replace('&filterIsOpen=true','&filterIsOpen=false'));
+				paginationA.each(function (i,a) {
+					a = $(a);
+					if(a.attr('href').indexOf('&filterIsOpen=true') >= 0){
+						a.attr('href',a.attr('href').replace('&filterIsOpen=true','&filterIsOpen=false'));
+					}
+				});
 			}
 			if(sortAthleteA.attr('href')){
 				sortAthleteA.attr('href',sortAthleteA.attr('href').replace('&filterIsOpen=true','&filterIsOpen=false'));
