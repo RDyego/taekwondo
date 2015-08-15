@@ -1,15 +1,25 @@
-
 $(document).ready(function () {
+	function filterBy () {
+		io.socket.get('/athlete/test?where={"name":{"contains":"Dyego"}}', function (purchases) {
+			console.log(purchases);
+		});
+	}
+	
 	$('.collapsible-header').on('click', function() {
 		var $myFilter = $(this);
 		var $myHidden = $($myFilter.next().find('input:hidden'));		
 		var isOpen = $myFilter.hasClass('active');
 		$myHidden.val('false');
+		var thA = $('th a');
 		if(isOpen){
 			$myHidden.val('true');
-			$('th a').attr('href',$('th a').attr('href').replace('&filterIsOpen=false','&filterIsOpen=true'));
+			if(thA.attr('href')){
+				thA.attr('href',thA.attr('href').replace('&filterIsOpen=false','&filterIsOpen=true'));
+			}
 		}else{
-			$('th a').attr('href',$('th a').attr('href').replace('&filterIsOpen=true','&filterIsOpen=false'));
+			if(thA.attr('href')){
+				thA.attr('href',thA.attr('href').replace('&filterIsOpen=true','&filterIsOpen=false'));
+			}
 		}
 	});
 	

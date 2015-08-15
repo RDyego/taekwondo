@@ -5,17 +5,15 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+var moment = require('moment');
+
 module.exports = {
 	'new': function (req, res, next) {
-		var moment = require('moment');
 		res.view({ moment: moment });
 	},
 	
 	index: function (req, res, next) {
-		//MomentJS
-		var moment = require('moment');
-		//Model
-		var myAthleteQuery = Athlete.find();
+		var where = {};
 		//Filters
 		var filterIsOpen = req.param('filterIsOpen');
 		var name = req.param('nameFilter');
@@ -29,7 +27,7 @@ module.exports = {
 			var value = (filterIsOpen == true || filterIsOpen == 'true');
 			if (value) {
 				if(name){
-					myAthleteQuery.where({name: { 'like': '%'+name+'%' }});
+					where = _.merge({name: { 'like': '%'+name+'%' }}, where);
 				}
 			}
 		}
@@ -72,28 +70,19 @@ module.exports = {
 			var value = (hasValidity == true || hasValidity == 'true');
 			var currentDate = new Date(moment().format('YYYY-MM-DDTHH:mm:ss.SSS') + 'Z');
 			if (value) {
-				myAthleteQuery.where(
-					{
-						validity: {
-							'>=': currentDate
-						}
-					});
+					where = _.merge({ validity: { '>=': currentDate }}, where);
 			} else {
-				myAthleteQuery.where(
-					{
-						validity: {
-							'<': currentDate
-						}
-					});
-
+					where = _.merge({ validity: { '<': currentDate }}, where);
 			}
 		}
-
-		myAthleteQuery.sort(sortAndPaginateViewModel.sortBy + ' ' + sortAndPaginateViewModel.sortType);
-
-		myAthleteQuery.paginate({ page: page, limit: limit }).exec(function (err, athletesFound) {
+		
+		//Model
+		Athlete.find()
+		.where(where)
+		.paginate({ page: page, limit: limit })
+		.sort(sortAndPaginateViewModel.sortBy + ' ' + sortAndPaginateViewModel.sortType).exec(function (err, athletesFound) {
 			if (err) return next(err);
-			Athlete.count().exec(function (err, countTotal) {
+			Athlete.count(where).exec(function (err, countTotal) {
 				if (err) return next(err);
 				sortAndPaginateViewModel.totalPage = Math.ceil(countTotal / limit);
 				res.view({
@@ -106,7 +95,6 @@ module.exports = {
 	},
 
 	create: function (req, res, next) {
-		var moment = require('moment');
 		var viewModel = req.params.all();
 		
 		/** INIT - Needs improvement */
@@ -204,7 +192,6 @@ module.exports = {
 	},
 
 	show: function (req, res, next) {
-		var moment = require('moment');
 		var athleteId = req.param('id');
 		Athlete.findOne(athleteId).exec(function (err, athleteFound) {
 			if (err) {
@@ -232,7 +219,6 @@ module.exports = {
 	},
 
 	edit: function (req, res, next) {
-		var moment = require('moment');
 		var athleteId = req.param('id');
 		Athlete.findOne(athleteId).exec(function (err, athleteFound) {
 			if (err) {
@@ -366,7 +352,6 @@ module.exports = {
 	},
 
 	updateValidity: function (req, res, next) {
-		var moment = require('moment');
 		var athleteId = req.param('id');
 		var viewModel = { validity: new Date(moment().add(1, 'years').format('MM/DD/YYYY'))};
 
