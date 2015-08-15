@@ -8,7 +8,8 @@ module.exports = {
 		var where = {};
 		//Filters
 		var filterIsOpen = req.param('filterIsOpen');
-		var name = req.param('nameFilter');
+		var nameFilter = req.param('nameFilter');
+		var graduationFilter = req.param('graduationFilter');
 		var action = req.param('action');
 		if (action == 'clear') {
 			filterIsOpen = null;
@@ -23,12 +24,15 @@ module.exports = {
 		if (filterIsOpen) {
 			var checkIfFilterIsOpen = (filterIsOpen == true || filterIsOpen == 'true');
 			if (checkIfFilterIsOpen) {
-				if (name) {
-					where = _.merge({ name: { 'like': '%' + name + '%' } }, where);
+				if (nameFilter) {
+					where = _.merge({ name: { 'like': '%' + nameFilter + '%' } }, where);
+				}
+				if (graduationFilter) {
+					where = _.merge({ graduation: { 'like': '%' + graduationFilter + '%' } }, where);
 				}
 			}
 		}
-
+		
 		if (hasValidity) {
 			var value = (hasValidity == true || hasValidity == 'true');
 			var currentDate = new Date(moment().format('YYYY-MM-DDTHH:mm:ss.SSS') + 'Z');

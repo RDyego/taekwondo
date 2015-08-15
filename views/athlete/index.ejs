@@ -15,13 +15,17 @@
 						<div class="center">
 							<form action="/athlete" method="get" class="col s12">
 								<div class="row">
-									<div class="input-field col s6">
+									<div class="input-field col s9">
 										<input id="nameFilter" value="<%=(req.param('nameFilter')?req.param('nameFilter'):'')%>" name="nameFilter" type="text" class="validate" maxlength="50">
 										<label for="nameFilter" data-error="<%=i18n('Invalid')%>"><%=i18n('Name')%></label>
 									</div>
-									<div class="input-field col s6">
-										<input id="emailFilter" value="<%=(req.param('emailFilter')?req.param('emailFilter'):'')%>" name="emailFilter" type="email" class="validate" maxlength="50">
-										<label for="emailFilter" data-error="<%=i18n('Invalid')%>"><%=i18n('Email')%></label>
+									<div class="input-field col s3">
+										<select id="graduationFilter" name="graduationFilter">
+											<%_.each(Athlete.attributes.graduation.enum, function (enumValue) {%>
+												<option <%=(req.param('graduationFilter') == enumValue)?'selected':''%> value="<%=enumValue%>"><%=i18n(enumValue)%></option>
+											<%})%>
+										</select>
+										<label for="graduationFilter"><%=i18n('Graduation')%></label>
 									</div>
 								</div>
 								<input type="hidden" name="filterIsOpen" value="<%=(req.param('filterIsOpen')?req.param('filterIsOpen'):'false')%>">
@@ -165,6 +169,10 @@
 							<div class="input-field col s3">
 								<input id="phone" name="phone" type="text" readonly value="<%=(athlete.phone)?athlete.phone:''%>">
 								<label for="phone"><%=i18n('Phone')%></label>
+							</div>
+							<div class="input-field col s3">
+								<input id="naturalness" name="naturalness" type="text" readonly value="<%=(athlete.naturalness)?athlete.naturalness:''%>">
+								<label for="naturalness"><%=i18n('Naturalness')%></label>
 							</div>
 						</div>
 					</div>
