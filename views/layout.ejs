@@ -152,6 +152,12 @@
     <script src="/bower_components/materialize/dist/js/materialize.min.js"></script>
     <script src="/js/custom.js"></script>
     <!--SCRIPTS END-->
-    
+    <script>
+        $( document ).ready( function () {
+        <%  if(typeof flash !== 'undefined' && flash) { if(flash && flash.err) { %>
+               Materialize.toast('Error!', 4000);
+        <% } } %>
+        });
+      </script>
   </body>
 </html>
