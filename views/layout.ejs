@@ -52,7 +52,10 @@
     </ul>
     <nav class="blue darken-3">
       <div class="nav-wrapper">
-        <a href="/" class="brand-logo"><%=i18n('FECET')%></a>
+        <img src="/images/logo-federacao-clean-64x65.png" alt="FECET">
+        <a href="/" class="brand-logo">
+          <%=i18n('FECET')%>
+        </a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <% if (session.authenticated) { %>
             <li><a href="/"><%=i18n('Main')%></a></li>

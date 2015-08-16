@@ -6,9 +6,8 @@ if (!session.authenticated && typeof modelFlag === 'undefined'){
 <div class="container center ">
   <div class="card">
     <div class="card-image waves-effect waves-block waves-light">
-      <img class="activator main-logo" src="/images/logo-fecet.jpg">
+      <img class="activator main-logo" src="/images/logo-federacao-900x950.png">
     </div>
-    
   </div>
 </div>
 <% } else { %>
@@ -72,6 +71,13 @@ if (!session.authenticated && typeof modelFlag === 'undefined'){
     <script src="/bower_components/materialize/dist/js/materialize.min.js"></script>
     <script src="/js/custom.js"></script>
     <!--SCRIPTS END-->    
+    <script>
+		$( document ).ready( function () {
+		<%  if(typeof flash !== 'undefined' && flash) { if(flash && flash.err) { %>
+				Materialize.toast('Error!', 4000);
+		<% } } %>
+		});
+	</script>
 </body>
 </html>
 <%}%> 
