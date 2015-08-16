@@ -22,13 +22,13 @@
 				</div>
 			</div>
 			
-			<% if(flash && flash.err) { %>
+			<%  if(typeof flash !== 'undefined' && flash) { if(flash && flash.err) { %>
 				<ul class="alert alert-success">
 			<% Object.keys(flash.err).forEach(function(error) { %>
 				<li><%- JSON.stringify(flash.err[error])  %></li>	
 			<% }) %>	
 				</ul>
-			<% } %>
+			<% } } %>
 			<div class="row no-margin">
 				<div class="input-field col s12">
 					<input id="email" name="email" type="email" class="validate">
@@ -43,7 +43,7 @@
 			</div>
 			<div class="row no-margin">
 				<div class="col s12 input-field">
-					<button class="col s12 btn waves-effect waves-light" type="submit">Login</button>
+					<button class="col s12 btn waves-effect waves-light blue" type="submit">Login</button>
 				</div>
 			</div>
 			<input type="hidden" name="_csrf" value="<%=_csrf%>">

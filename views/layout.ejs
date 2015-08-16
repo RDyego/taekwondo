@@ -50,12 +50,12 @@
       <li class="divider"></li>
       <li><a href="/user"><%=i18n('Users´s List')%></a></li>
     </ul>
-    <nav>
+    <nav class="blue darken-3">
       <div class="nav-wrapper">
-        <a href="/" class="brand-logo"><%=i18n('FECET')%></a>
+        <a href="/athlete" class="brand-logo"><%=i18n('FECET')%></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <% if (session.authenticated) { %>
-            <li><a href="/"><%=i18n('Main')%></a></li>
+            <li><a href="/athlete"><%=i18n('Main')%></a></li>
             <li>
               <a class="dropdown-button" href="#!" data-activates="dropdownUser">
                 <%=i18n('Users')%><i class="material-icons right">arrow_drop_down</i>
@@ -66,9 +66,9 @@
                 <%=i18n('Athletes')%><i class="material-icons right">arrow_drop_down</i>
               </a>
             </li>
-            <li><a href="/session/destroy" class="btn btn-default navbar-btn navbar-right">sign-out</a></li>
+            <li><a href="/session/destroy" class="blue btn btn-default navbar-btn navbar-right">sign-out</a></li>
           <% } else { %>
-            <li><a href="/session/new" class="btn btn-default navbar-btn navbar-right">log-on</a></li>
+            <li><a href="/session/new" class="blue btn btn-default navbar-btn navbar-right">log-on</a></li>
           <%}%> 
         </ul>
       </div>
@@ -79,7 +79,7 @@
     <%- body %>
   </main>
 
-  <footer class="page-footer">
+  <footer class="page-footer blue darken-3">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
