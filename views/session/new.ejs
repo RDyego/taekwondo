@@ -4,11 +4,9 @@ if (!session.authenticated && typeof modelFlag === 'undefined'){
 	res.redirect('/session/new');
 } else if (session.authenticated) { %>
 <div class="container center ">
-  <div class="card">
-    <div class="card-image waves-effect waves-block waves-light">
-      <img class="activator main-logo" src="/images/logo-federacao-900x950.png">
+    <div class="waves-effect waves-block waves-light">
+      <img class="activator responsive-img main-logo" src="/images/logo-federacao-900x950.png">
     </div>
-  </div>
 </div>
 <% } else { %>
 <!DOCTYPE html>

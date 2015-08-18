@@ -10,7 +10,7 @@
 			<%=(req.param('nameFilter')?('&nameFilter='+req.param('nameFilter')):'')%>
 			<%=((req.param('validityFilter'))?('&validityFilter='+req.param('validityFilter')):'')%>">
 			<%=i18n(attribute.name)%>
-			<i class="material-icons icon-sort">keyboard_arrow_<%=((myFind.sort.by == attribute.name) ? (myFind.sort.type == 'DESC' ?  'up' : 'down') : 'down')%></i>
+			<i class="material-icons icon-sort">arrow_drop_<%=((myFind.sort.by == attribute.name) ? (myFind.sort.type == 'DESC' ?  'up' : 'down') : 'down')%></i>
 		</a>
 	</th>
 <% }else{%>
