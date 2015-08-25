@@ -188,7 +188,9 @@
     <script>
         $( document ).ready( function () {
         <%  if(typeof flash !== 'undefined' && flash) { if(flash && flash.err) { %>
-               Materialize.toast('Error!', 4000);
+            <% Object.keys(flash.err).forEach(function(error) { %>
+              Materialize.toast(<%- JSON.stringify(flash.err[error].message)  %>, 4000);
+            <% }) %>
         <% } } %>
         });
       </script>

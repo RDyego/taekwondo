@@ -43,13 +43,13 @@ if (!session.authenticated && typeof modelFlag === 'undefined'){
 			<div class="row no-margin">
 				<div class="input-field col s12">
 					<input id="email" name="email" type="email" class="validate">
-					<label for="email" data-error="Invalid Email..." data-success="Ok...">Email</label>
+					<label for="email" data-error="Invalid Email...">Email</label>
 				</div>
 			</div>
 			<div class="row no-margin">
 				<div class="input-field col s12">
 					<input id="password" name="password" type="password" class="validate">
-					<label for="password" data-error="Invalid Password..." data-success="Ok...">Password</label>
+					<label for="password" data-error="Invalid Password...">Password</label>
 				</div>
 			</div>
 			<div class="row no-margin">
@@ -72,7 +72,9 @@ if (!session.authenticated && typeof modelFlag === 'undefined'){
     <script>
 		$( document ).ready( function () {
 		<%  if(typeof flash !== 'undefined' && flash) { if(flash && flash.err) { %>
-				Materialize.toast('Error!', 4000);
+				<% Object.keys(flash.err).forEach(function(error) { %>
+				Materialize.toast(<%- JSON.stringify(flash.err[error].message)  %>, 4000);
+				<% }) %>
 		<% } } %>
 		});
 	</script>
