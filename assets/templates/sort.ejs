@@ -5,10 +5,10 @@
 			href="/<%=myFind.model%>
 			?sortType=<%=((myFind.sort.by == attribute.name) ? (myFind.sort.type == 'ASC' ? 'DESC' : 'ASC') : 'ASC')%>
 			&sortBy=<%=attribute.name%>
-			<%=(req.param('page')?('&page='+req.param('page')):'')%>
-			<%=(req.param('filterIsOpen')?('&filterIsOpen='+req.param('filterIsOpen')):'')%>
-			<%=(req.param('nameFilter')?('&nameFilter='+req.param('nameFilter')):'')%>
-			<%=((req.param('validityFilter'))?('&validityFilter='+req.param('validityFilter')):'')%>">
+			<%Object.keys(req.params.all()).forEach(function(key){
+				if(key != 'sortType' && key != 'sortBy'){%>
+				<%- '&'+key+'='+req.params.all()[key]  %>
+			<%}});%>">
 			<%=i18n(attribute.name)%>
 			<i class="material-icons icon-sort">arrow_drop_<%=((myFind.sort.by == attribute.name) ? (myFind.sort.type == 'DESC' ?  'up' : 'down') : 'down')%></i>
 		</a>
