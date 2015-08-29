@@ -187,11 +187,20 @@
     <!--SCRIPTS END-->
     <script>
         $( document ).ready( function () {
-        <%  if(typeof flash !== 'undefined' && flash) { if(flash && flash.err) { %>
-            <% Object.keys(flash.err).forEach(function(error) { %>
-              Materialize.toast(<%- JSON.stringify(flash.err[error].message)  %>, 4000);
-            <% }) %>
-        <% } } %>
+        <%  
+          if(typeof flash !== 'undefined' && flash) { 
+            if(flash.err) { 
+              Object.keys(flash.err).forEach(function(key) { %>
+              Materialize.toast(<%- JSON.stringify(flash.err[key].message)  %>, 4000);
+            <% }); 
+            } 
+            if(flash.success) { 
+              Object.keys(flash.success).forEach(function(key) { %>
+              Materialize.toast(<%- JSON.stringify(flash.success[key].message)  %>, 4000);
+            <% }); 
+            }
+          } 
+        %>
         });
       </script>
   </body>

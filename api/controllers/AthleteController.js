@@ -91,8 +91,29 @@ module.exports = {
 							}
 							return res.redirect('/athlete/new');
 						}
+						
+						console.log('if');
+						var athleteCreatedWithPhotoSuccess = [{
+							name: 'athleteCreatedWithPhotoSuccess',
+							message: 'athlete created with photo Successfull.'
+						}];
+						
+						req.session.flash = {
+							success: athleteCreatedWithPhotoSuccess
+						}
 						res.redirect('/athlete/new');
 					});
+				}else{
+					console.log('else');
+					var athleteCreatedWithoutPhotoSuccess = [{
+						name: 'athleteCreatedWithoutPhotoSuccess',
+						message: 'athlete created without photo Successfull.'
+					}];
+					
+					req.session.flash = {
+						success: athleteCreatedWithoutPhotoSuccess
+					}
+					res.redirect('/athlete/new');
 				}
 			});
 		});
