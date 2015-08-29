@@ -3,33 +3,32 @@
 	<li class="<%=((myFind.currentPage == 1) ? 'disabled' : 'waves-effect')%>">
 		<a href="<%=((myFind.currentPage == 1) 
 			? '#' : '/'+myFind.model+'?page='+(+myFind.currentPage-1))%>
-			<%=((req.param('sortType'))?('&sortType='+req.param('sortType')):'')%>
-			<%=((req.param('sortBy'))?('&sortBy='+req.param('sortBy')):'')%>
-			<%=((req.param('filterIsOpen'))?('&filterIsOpen='+req.param('filterIsOpen')):'')%>
-			<%=(req.param('nameFilter')?('&nameFilter='+req.param('nameFilter')):'')%>
-			<%=((req.param('validityFilter'))?('&validityFilter='+req.param('validityFilter')):'')%>">
+			<%Object.keys(req.params.all()).forEach(function(key){
+				if(key != 'page'){%>
+				<%- '&'+key+'='+req.params.all()[key]  %>
+			<%}});%>">
 			<i class="material-icons">chevron_left</i>
 		</a>
 	</li>
 	<%for(i=1;i<=myFind.totalPage;i++){%>
 	<li class="waves-effect <%=((myFind.currentPage == i) ? 'active' : '')%>">
 		<a href="/<%=myFind.model%>?page=<%=i%>
-				<%=(req.param('sortType')?'&sortType='+req.param('sortType'):'')%>
-				<%=(req.param('sortBy')?'&sortBy='+req.param('sortBy'):'')%>
-				<%=((req.param('filterIsOpen'))?('&filterIsOpen='+req.param('filterIsOpen')):'')%>
-				<%=(req.param('nameFilter')?('&nameFilter='+req.param('nameFilter')):'')%>
-				<%=((req.param('validityFilter'))?('&validityFilter='+req.param('validityFilter')):'')%>"><%=i%></a>
+			<%Object.keys(req.params.all()).forEach(function(key){
+				if(key != 'page'){%>
+				<%- '&'+key+'='+req.params.all()[key]  %>
+			<%}});%>">
+			<%=i%>
+		</a>
 	</li>
 	<%}%>
 	<li class="<%=((myFind.currentPage == myFind.totalPage) ? 'disabled' : 'waves-effect')%>">
 		<a href="<%=
 			((myFind.currentPage == myFind.totalPage) 
 			? '#' : '/'+myFind.model+'?page='+(+myFind.currentPage+1))%>
-			<%=((req.param('sortType'))?('&sortType='+req.param('sortType')):'')%>
-			<%=((req.param('sortBy'))?('&sortBy='+req.param('sortBy')):'')%>
-			<%=((req.param('filterIsOpen'))?('&filterIsOpen='+req.param('filterIsOpen')):'')%>
-			<%=(req.param('nameFilter')?('&nameFilter='+req.param('nameFilter')):'')%>
-			<%=((req.param('validityFilter'))?('&validityFilter='+req.param('validityFilter')):'')%>">
+			<%Object.keys(req.params.all()).forEach(function(key){
+				if(key != 'page'){%>
+				<%- '&'+key+'='+req.params.all()[key]  %>
+			<%}});%>">
 			<i class="material-icons">chevron_right</i>
 		</a>
 	</li>
