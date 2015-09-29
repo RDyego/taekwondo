@@ -51,11 +51,13 @@ module.exports.session = {
   *                                                                          *
   *                                                                          *
   ***************************************************************************/
+  /*
   adapter: 'redis',
   host: 'tarpon.redistogo.com',
   port: 11204,
   db: 'redistogo',
   pass: '5a25fdb7975a50b87cf59e0bfc90fb32',
+  */
   // host: 'localhost',
   // port: 6379,
   // ttl: <redis session TTL in seconds>,
