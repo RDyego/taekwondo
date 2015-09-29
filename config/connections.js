@@ -20,10 +20,12 @@
  */
 
 module.exports.connections = {
+  
   'production': {
     adapter: 'sails-mongo',
     url: mongodb://fecet:fecet#123@ds051873.mongolab.com:51873/heroku_22ntdgrs
   },
+  
   /***************************************************************************
   *                                                                          *
   * Local disk storage for DEVELOPMENT ONLY                                  *
