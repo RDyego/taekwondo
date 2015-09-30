@@ -17,9 +17,9 @@ module.exports = {
    * environment (see config/connections.js and config/models.js )           *
    ***************************************************************************/
 
-   //models: {
-   //  connection: 'productionMongoHqDb'
-   //},
+   models: {
+    connection: 'production'
+   },
 
   /***************************************************************************
    * Set the port in the production environment to 80                        *
