@@ -23,7 +23,8 @@ module.exports.connections = {
   
   'production': {
     adapter: 'sails-mongo',
-    url: "mongodb://fecet:fecet#123@ds051873.mongolab.com:51873/heroku_22ntdgrs"
+    url: process.evn.DB_URL,
+    schema: true
   },
   
   /***************************************************************************
