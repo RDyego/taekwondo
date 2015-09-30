@@ -24,7 +24,9 @@ module.exports.connections = {
   'production': {
     adapter: 'sails-mongo',
     url: process.env.MONGOLAB_URI,
-    schema: true
+    schema: true,
+    pool: false,
+    ssl: true
   },
   
   /***************************************************************************
@@ -33,10 +35,10 @@ module.exports.connections = {
   *                                                                          *
   * Installed by default.                                                    *
   *                                                                          *
-  ***************************************************************************/
   localDiskDb: {
     adapter: 'sails-mongo'//'sails-disk'
   },
+  ***************************************************************************/
 
   /***************************************************************************
   *                                                                          *
@@ -61,7 +63,6 @@ module.exports.connections = {
   *                                                                          *
   * Run: npm install sails-mongo                                             *
   *                                                                          *
-  ***************************************************************************/
   someMongodbServer: {
     adapter: 'sails-mongo',
     host: 'localhost',
@@ -71,6 +72,7 @@ module.exports.connections = {
     database: 'activityoverlord',
     schema: true
   },
+  ***************************************************************************/
 
   /***************************************************************************
   *                                                                          *
