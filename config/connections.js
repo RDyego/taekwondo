@@ -70,7 +70,6 @@ module.exports.connections = {
     password: '',
     database: 'activityoverlord',
     schema: true
-    //url: process.env.MONGOHQ_URL
   },
 
   /***************************************************************************
