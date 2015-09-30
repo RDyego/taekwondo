@@ -246,7 +246,9 @@ module.exports = {
 					}
 					return res.redirect('/athlete/edit/' + athleteId);
 				}
+				var test = true;
 				if (uploadedFiles.length != 0) {
+					test = false;
 					var path = require('path');
 					var file = path.basename(uploadedFiles[0].fd);
 
@@ -264,7 +266,9 @@ module.exports = {
 						return res.redirect('/athlete/index');
 					});
 				}
-				res.redirect('/athlete/index');
+				if(test){
+					res.redirect('/athlete/index');
+				}
 			});
 		});
 	},
