@@ -1,6 +1,7 @@
 module.exports = {
 	blobAdapter: function () {
-		var db = sails.config.connections.someMongodbServer;
+		//var db = sails.config.connections.someMongodbServer;
+		var db = sails.config.connections.production;
 		
 		var uriMongo = 'mongodb://';
 		uriMongo += db.username ? db.username + ':' : '';
