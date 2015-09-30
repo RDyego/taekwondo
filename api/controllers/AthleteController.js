@@ -261,9 +261,10 @@ module.exports = {
 							}
 							return res.redirect('/athlete/index');
 						}
-						res.redirect('/athlete/index');
+						return res.redirect('/athlete/index');
 					});
 				}
+				res.redirect('/athlete/index');
 			});
 		});
 	},
