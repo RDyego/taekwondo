@@ -26,7 +26,6 @@
     "sails": "~0.11.0",
     "sails-disk": "~0.10.0",
     "sails-mongo": "^0.11.2",
-    "sails.io.js": "^0.11.6",
     "skipper-gridfs": "^0.5.3"
   },
   "scripts": {
