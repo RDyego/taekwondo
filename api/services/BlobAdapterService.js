@@ -1,19 +1,25 @@
 module.exports = {
 	blobAdapter: function () {
-		//var db = sails.config.connections.someMongodbServer;
-		var db = sails.config.connections.production;
-		
-		var uriMongo = 'mongodb://';
-		uriMongo += db.username ? db.username + ':' : '';
-		uriMongo += db.password ? db.password + '@' : '';
-		uriMongo += db.host + ':' + db.port;
-		uriMongo += '/' + db.database;
+		var db;
+		var uriMongo;
+
+		if (sails.config.environment === 'production') {
+			db = sails.config.connections.production;
+			uriMongo = db.url;
+		} else {
+			db = sails.config.connections.someMongodbServer;
+			uriMongo = 'mongodb://';
+			uriMongo += db.username ? db.username + ':' : '';
+			uriMongo += db.password ? db.password + '@' : '';
+			uriMongo += db.host + ':' + db.port;
+			uriMongo += '/' + db.database;
+		}
 
 		var blobAdapter = require('skipper-gridfs')({
 			maxBytes: 500000, //500kb
 			uri: uriMongo + '.photo'
 		});
-		
+
 		return blobAdapter;
 	}
 }
