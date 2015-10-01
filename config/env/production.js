@@ -11,15 +11,27 @@
  */
 
 module.exports = {
-
+  connections: {
+    'production': {
+      adapter: 'sails-mongo',
+      url: process.env.MONGOLAB_URI,
+      schema: true,
+      pool: false,
+      ssl: true
+    },
+  },
+  models: {
+    connection: 'production',
+    migrate: 'safe'
+  },
   /***************************************************************************
    * Set the default database connection for models in the production        *
    * environment (see config/connections.js and config/models.js )           *
    ***************************************************************************/
 
-   //models: {
-   //  connection: 'productionMongoHqDb'
-   //},
+  //models: {
+  //  connection: 'productionMongoHqDb'
+  //},
 
   /***************************************************************************
    * Set the port in the production environment to 80                        *

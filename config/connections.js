@@ -20,15 +20,7 @@
  */
 
 module.exports.connections = {
-
-  'production': {
-    adapter: 'sails-mongo',
-    url: process.env.MONGOLAB_URI,
-    schema: true,
-    pool: false,
-    ssl: true
-  },
-  
+    
   /***************************************************************************
   *                                                                          *
   * Local disk storage for DEVELOPMENT ONLY                                  *
