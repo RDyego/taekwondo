@@ -7,6 +7,7 @@
 	<% }) %>	
 		</ul>
 	<% } %>
+    <h1><%=sails.getHost()%></h1>
 	<ul class="collapsible popout" data-collapsible="accordion">
 		<li>
 			<div class="collapsible-header collapsible-filter <%=(req.param('filterIsOpen')?((req.param('filterIsOpen') == 'true')?'active':''):'')%>"><i class="material-icons">filter_list</i>Filter</div>
