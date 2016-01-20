@@ -18,7 +18,7 @@ module.exports = {
 		}
 		//Filter, sort and paginate
 		var hasValidity = req.param('validity')
-		var limit = 2;
+		var limit = 10;
 		var page = req.param('page') ? req.param('page') : 1;
 		var sortBy = req.param('sortBy') ? req.param('sortBy') : attributes[0].name;
 		var sortType = req.param('sortType') ? req.param('sortType') : 'ASC';
