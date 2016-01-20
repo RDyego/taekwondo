@@ -259,7 +259,6 @@ module.exports = {
 				}
         console.log('update 11');
 				var test = true;
-                /*
 				if (uploadedFiles.length != 0) {
         console.log('update 12');
 					test = false;
@@ -284,9 +283,8 @@ module.exports = {
 						return res.redirect('/athlete/index');
 					});
 				}
-                */
 				if(test){
-        console.log('update 17');
+        console.log('update 1');
 					res.redirect('/athlete/index');
 				}
 			});
