@@ -2,7 +2,8 @@ module.exports = {
 	blobAdapter: function () {
 		var db;
 		var uriMongo;
-
+        console.log(sails.config.environment);
+        
 		if (sails.config.environment === 'production') {
 			db = sails.config.connections.production;
 			uriMongo = db.url;
@@ -13,10 +14,12 @@ module.exports = {
 			uriMongo += db.password ? db.password + '@' : '';
 			uriMongo += db.host + ':' + db.port;
 			uriMongo += '/' + db.database;
+            
 		}
 
+        console.log(uriMongo);
 		var blobAdapter = require('skipper-gridfs')({
-			maxBytes: 500000, //500kb
+			maxBytes: 500000*2, //500kb x 2 = 1mb
 			uri: uriMongo + '.photo'
 		});
 
