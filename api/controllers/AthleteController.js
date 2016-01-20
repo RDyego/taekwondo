@@ -201,11 +201,9 @@ module.exports = {
 	},
 
 	update: function (req, res, next) {
-        console.log('update 1');
 		var athleteId = req.param('id');
 		var viewModel = req.params.all();
 		
-        console.log('update 2');
 		/** INIT - Needs improvement */
 		if (viewModel.bday) {
 			var d = viewModel.bday.split('/');
@@ -221,14 +219,10 @@ module.exports = {
 			var d = viewModel.dateStarted.split('/');
 			viewModel.dateStarted = d[1] + '/' + d[0] + '/' + d[2];
 		}
-        console.log('update 3');
 		/** END - Needs improvement */
 
 		Athlete.update(athleteId, viewModel, function (err) {
-            
-        console.log('update 4');
 			if (err) {
-        console.log('update 5');
 				var error = [{
 					name: 'updateAthleteError',
 					message: 'update athlete error.'
@@ -236,18 +230,13 @@ module.exports = {
 				req.session.flash = {
 					err: error
 				}
-        console.log('update 6');
 				return res.redirect('/athlete/edit/' + athleteId);
 			}
 
-        console.log('update 7');
 			var receiving = BlobAdapterService.blobAdapter().receive();
 
-        console.log('update 8');
 			req.file('photo').upload(receiving, function whenDone(err, uploadedFiles) {
-        console.log('update 9');
 				if (err) {
-        console.log('update 10');
 					var fileUploadError = [{
 						name: 'fileUploadError',
 						message: 'file upload error.'
@@ -257,19 +246,14 @@ module.exports = {
 					}
 					return res.redirect('/athlete/edit/' + athleteId);
 				}
-        console.log('update 11');
 				var test = true;
 				if (uploadedFiles.length != 0) {
-        console.log('update 12');
 					test = false;
 					var path = require('path');
 					var file = path.basename(uploadedFiles[0].fd);
 
-        console.log('update 13');
 					Athlete.update(athleteId, { photo: file }).exec(function (err) {
-        console.log('update 14');
 						if (err) {
-        console.log('update 15');
 							var updatePhotoAthleteError = [{
 								name: 'updatePhotoAthleteError',
 								message: 'update photo athlete error.'
@@ -279,12 +263,10 @@ module.exports = {
 							}
 							return res.redirect('/athlete/index');
 						}
-        console.log('update 16');
 						return res.redirect('/athlete/index');
 					});
 				}
 				if(test){
-        console.log('update 1');
 					res.redirect('/athlete/index');
 				}
 			});

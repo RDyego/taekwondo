@@ -118,6 +118,7 @@
 					<label for="associationName"><%=i18n('Association Name')%></label>
 				</div>
 			</div>
+            <input type="hidden" name="_csrf" value="<%=_csrf%>">
 			<div class="row">
 				<div class="col s6">
 					<div class="file-field input-field">
@@ -138,7 +139,6 @@
 			</div>
 			<input type="hidden" name="validity" 
 				value="<%=(athlete.validity)?moment(athlete.validity).format('DD/MM/YYYY'):moment().add(1, 'years').format('DD/MM/YYYY')%>">
-			<input type="hidden" name="_csrf" value="<%=_csrf%>">
 		</form>
 	</div>
 </div>
