@@ -69,7 +69,7 @@ module.exports = {
 			totalPage: 0,
 			currentPage: page,
 			model: req.options.model || req.options.controller,
-
+            url: req.protocol + '://' + req.host + ':' + req.port
 		};
 		
 		//Model
