@@ -7,6 +7,7 @@
 	<% }) %>	
 		</ul>
 	<% } %>
+    <h1><%=req.protocol + '://' + req.host%></h1>
 	<ul class="collapsible popout" data-collapsible="accordion">
 		<li>
 			<div class="collapsible-header collapsible-filter <%=(req.param('filterIsOpen')?((req.param('filterIsOpen') == 'true')?'active':''):'')%>"><i class="material-icons">filter_list</i>Filter</div>
@@ -204,8 +205,8 @@
 	<div class="row">
 		<% include ../../assets/templates/paginate %>
 	</div>
-	<input type="hidden" id="urlColorCard" value="<%='http://150.107.224.124:1337/images/carteira-colorida.jpg'%>">
-	<input type="hidden" id="urlBlackCard" value="<%='http://150.107.224.124:1337/images/carteira-preta.jpg'%>">
+	<input type="hidden" id="urlColorCard" value="<%='http://103.250.83.115:1337/images/carteira-colorida.jpg'%>">
+	<input type="hidden" id="urlBlackCard" value="<%='http://103.250.83.115:1337/images/carteira-preta.jpg'%>">
 </div>
 
 <div id="modalBaseAthlete" class="modal">
