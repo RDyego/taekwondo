@@ -67,8 +67,6 @@
 	</div>
 	<ul class="collapsible popout" data-collapsible="accordion">
 		<% _.each(records, function (athlete) { %>
-        <h1><%=(athlete.instructorName)?athlete.instructorName:''%></h1>
-        <h1><%=athlete.instructorName%></h1>
 		<li >
       		<div class="collapsible-header collapsible-list">
 				<ul class="collection">
@@ -170,6 +168,7 @@
 						</a>
 						<div class="row">
 							<div class="input-field col s6">
+                                <input type="text" value="<%=(athlete.instructorName)?athlete.instructorName:''%>">
 								<input id="instructorName" name="instructorName" type="text" readonly value="<%=(athlete.instructorName)?athlete.instructorName:''%>">
 								<label for="instructorName"><%=i18n('Instructor Name')%></label>
 							</div>
