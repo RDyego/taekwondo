@@ -1,16 +1,4 @@
-<div class="row">
-    <div class="input-field col s6">
-      <input value="3" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">First Name</label>
-    </div>
-  </div>
 <div class="container">
-    <div class="row">
-    <div class="input-field col s6">
-      <input value="4" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">First Name</label>
-    </div>
-  </div>
 	<h5 class="center-align"><%=i18n('Athletes´s List')%></h5>
 	<% if(flash && flash.err) { %>
 		<ul class="alert alert-success">
@@ -20,28 +8,10 @@
 		</ul>
 	<% } %>
 	<ul class="collapsible popout" data-collapsible="accordion">
-        <div class="row">
-    <div class="input-field col s6">
-      <input value="5" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">First Name</label>
-    </div>
-  </div>
 		<li>
 			<div class="collapsible-header collapsible-filter <%=(req.param('filterIsOpen')?((req.param('filterIsOpen') == 'true')?'active':''):'')%>"><i class="material-icons">filter_list</i>Filter</div>
 			<div class="collapsible-body">
-                <div class="row">
-    <div class="input-field col s6">
-      <input value="9" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">First Name</label>
-    </div>
-  </div>
 				<div class="row">
-                    <div class="row">
-    <div class="input-field col s6">
-      <input value="10" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">First Name</label>
-    </div>
-  </div>
 					<div class="container">
 						<div class="center">
 							<form action="/athlete" method="get" class="col s12">
@@ -54,12 +24,7 @@
 										<input id="instructorFilter" name="instructorFilter" value="<%=(req.param('instructorFilter')?req.param('instructorFilter'):'')%>" type="text" class="validate" maxlength="50">
 										<label for="instructorFilter" data-error="<%=i18n('Invalid')%>"><%=i18n("Instructor's Name")%></label>
 									</div>
-								</div><div class="row">
-    <div class="input-field col s6">
-      <input value="11" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">First Name</label>
-    </div>
-  </div>
+								</div>
 								<div class="row">
 									<div class="input-field col s3">
 										<select id="graduationFilter" name="graduationFilter">
@@ -69,12 +34,7 @@
 											<%})%>
 										</select>
 										<label for="graduationFilter"><%=i18n('Graduation')%></label>
-									</div<div class="row">
-    <div class="input-field col s6">
-      <input value="13" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">First Name</label>
-    </div>
-  </div>
+									</div>
 									<div class="input-field col s3">
 										<select id="validityFilter" name="validityFilter">
 											<option value="">Qualquer</option>
@@ -83,12 +43,7 @@
 										</select>
 										<label for="validityFilter">Validity</label>
 									</div>
-								</div><div class="row">
-    <div class="input-field col s6">
-      <input value="12" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">First Name</label>
-    </div>
-  </div>
+								</div>
 								<input type="hidden" id="filterIsOpen" name="filterIsOpen" value="<%=(req.param('filterIsOpen')?req.param('filterIsOpen'):'false')%>">
 								<div class="row">
 									<button class="red lighten-2 btn waves-effect waves-light" type="submit" name="action" id="buttonClear" value="clear">
@@ -99,12 +54,7 @@
 										<i class="material-icons left">search</i>
 										Filter
 									</button>
-								</div><div class="row">
-    <div class="input-field col s6">
-      <input value="14" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">First Name</label>
-    </div>
-  </div>
+								</div>
 							</form>
 						</div>
 					</div>
@@ -112,27 +62,10 @@
 			</div>
 		</li>
 	</ul>
-    <div class="row">
-    <div class="input-field col s6">
-      <input value="6" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">First Name</label>
-    </div>
-  </div>
 	<div class="sortAthlete">
 		<% include ../../assets/templates/sort %>
 	</div>
-    <div class="row">
-    <div class="input-field col s6">
-      <input value="7" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">First Name</label>
-    </div>
-  </div>
-	<ul class="collapsible popout" data-collapsible="accordion"><div class="row">
-    <div class="input-field col s6">
-      <input value="8" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">First Name</label>
-    </div>
-  </div>
+	<ul class="collapsible popout" data-collapsible="accordion">
 		<% _.each(records, function (athlete) { %>
 		<li >
       		<div class="collapsible-header collapsible-list">
@@ -267,24 +200,14 @@
 			</div>
 		</li>
 		<% }) %>
-	</ul><div class="row">
-    <div class="input-field col s6">
-      <input value="2" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">First Name</label>
-    </div>
-  </div>
+	</ul>
 	<div class="row">
 		<% include ../../assets/templates/paginate %>
 	</div>
 	<input type="hidden" id="urlColorCard" value="<%=myFind.url+'/images/carteira-colorida.jpg'%>">
 	<input type="hidden" id="urlBlackCard" value="<%=myFind.url+'/images/carteira-preta.jpg'%>">
 </div>
-<div class="row">
-    <div class="input-field col s6">
-      <input value="1" id="first_name2" type="text" class="validate">
-      <label class="active" for="first_name2">First Name</label>
-    </div>
-  </div>
+
 <div id="modalBaseAthlete" class="modal">
 	<form id="formBaseAthlete" action="" method="POST">
 		<input type="hidden" name="_method" value="delete" />
