@@ -166,6 +166,81 @@
 							data-position="right" data-delay="50" data-tooltip="<%=i18n('Delete')%>">
 							<i class="material-icons">clear</i>
 						</a>
+                        <div class="row">
+                            <div class="input-field col s6">
+                            <input value="Alvin" id="first_name2" type="text" class="validate">
+                            <label class="active" for="first_name2">First Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                            <input value="<%=(athlete.instructorName)?athlete.instructorName:''%>" id="first_name2" type="text" class="validate">
+                            <label class="active" for="first_name2">First Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                            <input value="<%=athlete.instructorName%>" id="first_name2" type="text" class="validate">
+                            <label class="active" for="first_name2">First Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                            <input value="<%=athlete.instructorName || ''%>" id="first_name2" type="text" class="validate">
+                            <label class="active" for="first_name2">First Name</label>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="input-field col s6">
+                            <input value="Alvin" id="first_name2" readonly type="text" class="validate">
+                            <label class="active" for="first_name2">First Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                            <input value="<%=(athlete.instructorName)?athlete.instructorName:''%>"  readonly id="first_name2" type="text" class="validate">
+                            <label class="active" for="first_name2">First Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                            <input value="<%=athlete.instructorName%>" readonly id="first_name2" type="text" class="validate">
+                            <label class="active" for="first_name2">First Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                            <input value="<%=athlete.instructorName || ''%>"  readonly id="first_name2" type="text" class="validate">
+                            <label class="active" for="first_name2">First Name</label>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="input-field col s6">
+                            <input value="Alvin" id="first_name2" name="first_name2" readonly type="text" class="validate">
+                            <label class="active" for="first_name2">First Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                            <input value="<%=(athlete.instructorName)?athlete.instructorName:''%>" name="first_name2"  readonly id="first_name2" type="text" class="validate">
+                            <label class="active" for="first_name2">First Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                            <input value="<%=athlete.instructorName%>" readonly id="first_name2" name="first_name2" type="text" class="validate">
+                            <label class="active" for="first_name2">First Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                            <input value="<%=athlete.instructorName || ''%>"  readonly id="first_name2" name="first_name2" type="text" class="validate">
+                            <label class="active" for="first_name2">First Name</label>
+                            </div>
+                        </div>
+                        
 						<div class="row">
 							<div class="input-field col s6">
 								<input id="instructorName" name="instructorName"  placeholder="" type="text" readonly value="<%=(athlete.instructorName)?athlete.instructorName:''%>">
