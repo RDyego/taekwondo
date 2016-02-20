@@ -203,6 +203,10 @@ module.exports = {
 	update: function (req, res, next) {
 		var athleteId = req.param('id');
 		var viewModel = req.params.all();
+        
+        if(viewModel.photo === ''){
+            delete viewModel.photo;
+        }
 		
 		/** INIT - Needs improvement */
 		if (viewModel.bday) {
