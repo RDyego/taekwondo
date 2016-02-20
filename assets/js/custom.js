@@ -5,9 +5,9 @@ $(document).ready(function () {
 	});
 	$('.collapsible-header').on('click', function() {
 		var $myFilter = $(this);
-		var $myHidden = $($myFilter.next().find('input:hidden'));		
+		var $myHidden = $('#filterIsOpen');	
+		$myHidden.val('true');
 		var isOpen = $myFilter.hasClass('active');
-		$myHidden.val('false');
 		var thA = $('th a');
 		var sortAthleteA = $('.sortAthlete a');
 		var paginationA = $('.pagination a');
