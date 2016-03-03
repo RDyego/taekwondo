@@ -23,10 +23,6 @@ main {
 	background-color: #2196f3;
 }
 
-.main-logo {
-	width: 50% !important;
-}
-
 .collapsible {
 	.collapsible-list {
 		height: 84px;
@@ -188,4 +184,62 @@ main {
 		 	top: 295px;
 		}
 	}
+}
+
+
+.main-logo {
+	width: 50%;
+}
+
+.brand-logo {
+    background: url(/images/logo-federacao-clean-64x65.png) center left no-repeat
+}
+
+.imgFrame {
+    /* We enforce aspect-ratio here, 4:3 for this example */
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 0;
+    padding-bottom: 60%;
+}
+
+.innerFrame {
+    /*
+    This block will take up the full height and width of the containing
+    block which enforces an aspect ratio
+
+    We set font-size to zero to remove inline-block spacing
+
+    */
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    font-size: 0;
+}
+
+.innerFrame:before,
+.frameBefore {
+    /*
+
+    Set an inline element that has full height of container and
+    vertical alignment set to middle. The following image will align
+    to this
+
+    */
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.innerFrame img {
+    /*
+
+    Make sure the image stays vertically aligned, and allow it to resize
+
+    */
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
 }

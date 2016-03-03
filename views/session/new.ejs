@@ -3,9 +3,11 @@ var modelFlag = req.options.model || req.options.controller;
 if (!session.authenticated && typeof modelFlag === 'undefined'){
 	res.redirect('/session/new');
 } else if (session.authenticated) { %>
-<div class="container center ">
-    <div class="waves-effect waves-block waves-light">
-      <img class="activator responsive-img main-logo" src="/images/logo-federacao-900x950.png">
+<div class="container item">
+    <div class="imgFrame">
+        <div class="waves-effect waves-block waves-light innerFrame">
+            <img class="activator responsive-img main-logo" src="/images/logo-federacao-900x950.png">
+        </div>
     </div>
 </div>
 <% } else { %>

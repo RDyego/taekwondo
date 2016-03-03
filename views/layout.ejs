@@ -64,8 +64,7 @@
     <nav class="blue darken-3">
       <div class="nav-wrapper">
         <a href="/" class="brand-logo">
-          <img src="/images/logo-federacao-clean-64x65.png" alt="FECET">
-          <%=i18n('FECET')%>
+            <%=i18n('FECET')%>
         </a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -115,15 +114,16 @@
   <footer class="page-footer blue darken-3">
     <div class="container">
       <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Footer Content</h5>
+        <div class="col l12 s12">
+          <h5 class="white-text"></h5>
         </div>
       </div>
     </div>
     <div class="footer-copyright">
       <div class="container">
-      © 2015 Copyright Text
-      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      © <%- new Date().getFullYear() %> 
+      <a class="grey-text text-lighten-4" target="blank" href="http://www.fecet.net/">Federação Cearense Esportiva de Taekwondo - FECET</a>
+      <a class="grey-text text-lighten-4 right" target="blank" href="https://github.com/RDyego">GitHub</a>
       </div>
     </div>
   </footer>
