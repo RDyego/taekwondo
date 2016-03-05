@@ -16,7 +16,7 @@ module.exports = {
 		}
 
 		var blobAdapter = require('skipper-gridfs')({
-			maxBytes: 500000*2, //500kb x 2 = 1mb
+			maxBytes: 500000*4, //500kb x 4 = 2mb
 			uri: uriMongo + '.photo'
 		});
 
