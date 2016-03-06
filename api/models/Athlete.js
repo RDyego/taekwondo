@@ -80,7 +80,7 @@ module.exports = {
     },
     graduation: {
       type: 'string',
-      enum: ['White', 'Yellow', 'Orange', 'Light Blue', 'Green', 'Purple', 'Dark Blue', 'Brown', 'Red', 'Red/Black', 'Black 1st Dan', 'Black 2nd Dan', 'Black 3rd Dan', 'Black 4th Dan', 'Black 4th Dan', 'Black 5th Dan', 'Black 6th Dan', 'Black 7th Dan', 'Black 8th Dan', 'Black 9th Dan']
+      enum: ['White', 'Gray', 'Yellow', 'Orange', 'Green', 'Purple', 'Blue', 'Brown', 'Red', 'Red/Black', 'Black 1st Dan', 'Black 2nd Dan', 'Black 3rd Dan', 'Black 4th Dan', 'Black 4th Dan', 'Black 5th Dan', 'Black 6th Dan', 'Black 7th Dan', 'Black 8th Dan', 'Black 9th Dan']
     },
     dateStarted: {
       type: 'date'
