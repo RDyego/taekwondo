@@ -95,7 +95,7 @@ module.exports = {
     },
     bloodGroup: {
       type: 'string',
-      enum: ['A', 'B', 'O', 'AB']
+      enum: ['A', 'B', 'O', 'AB', '-']
     },
     rhFactor: {
       type: 'string',
