@@ -22,6 +22,7 @@ module.exports.bootstrap = function (cb) {
     confirmation: 'asd'
   };
 
+  /*
   User.findOneByEmail(userModel.email).exec(function (err, userFound) {
     if (err) return cb(err);
     if (!userFound) {
@@ -31,7 +32,7 @@ module.exports.bootstrap = function (cb) {
       });
     }
   });
-  
+  */
   
   var athleteModel00 = {
     name: 'R. Dyego',
@@ -81,7 +82,7 @@ module.exports.bootstrap = function (cb) {
     validity: new Date(moment().add(-2, 'years').format('MM/DD/YYYY'))
   };
   
-  
+  /*
   Athlete.findOneByName(athleteModel00.name).exec(function (err, athleteFound) {
     if (err) return cb(err);
     if (!athleteFound) {
@@ -141,7 +142,7 @@ module.exports.bootstrap = function (cb) {
       });
     }
   });
-  
+  */
   /*
    for (var x = 0; x < 100; x++) {
      var name = "z" + x;

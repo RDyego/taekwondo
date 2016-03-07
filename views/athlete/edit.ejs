@@ -88,7 +88,8 @@
 					<label for="graduation"><%=i18n('Graduation')%></label>
 				</div>
 				<div class="input-field col s3">
-					<input id="dateStarted" name="dateStarted" type="date" class="datepicker" maxlength="20" value="<%=(athlete.dateStarted)?athlete.dateStarted:''%>">
+					<input id="dateStarted" name="dateStarted" type="date" class="datepicker" maxlength="20" 
+                        value="<%=(athlete.dateStarted)?moment(athlete.dateStarted).format('DD/MM/YYYY'):''%>">
 					<label for="dateStarted"><%=i18n('Date Started')%></label>
 				</div>
 				<div class="input-field col s3">

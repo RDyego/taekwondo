@@ -183,7 +183,8 @@
 								<label for="bday"><%=i18n('Date of Birth')%></label>
 							</div>
 							<div class="input-field col s3">
-								<input id="dateStarted" name="dateStarted" type="text" readonly value="<%=(athlete.dateStarted)?athlete.dateStarted:''%>">
+								<input id="dateStarted" name="dateStarted" type="text" readonly 
+                                    value="<%=(athlete.dateStarted) ? moment(athlete.dateStarted).format('DD/MM/YYYY'):''%>">
 								<label for="dateStarted"><%=i18n('Date Started')%></label>
 							</div>
 							<div class="input-field col s3">
