@@ -53,10 +53,11 @@ module.exports = {
 			if (err) {
 				var createNewAthleteError = [{
 					name: 'createNewAthleteError',
-					message: 'create new athlete error.'
+					message: err.Errors
 				}];
 				req.session.flash = {
-					err: createNewAthleteError
+					err: createNewAthleteError,
+                    params: req.params.all()
 				}
 				return res.redirect('/athlete/new');
 			}

@@ -187,20 +187,9 @@
     <!--SCRIPTS END-->
     <script>
         $( document ).ready( function () {
-        <%  
-          if(typeof flash !== 'undefined' && flash) { 
-            if(flash.err) { 
-              Object.keys(flash.err).forEach(function(key) { %>
-              Materialize.toast(<%- JSON.stringify(flash.err[key].message)  %>, 4000);
-            <% }); 
-            } 
-            if(flash.success) { 
-              Object.keys(flash.success).forEach(function(key) { %>
-              Materialize.toast(<%- JSON.stringify(flash.success[key].message)  %>, 4000);
-            <% }); 
-            }
-          } 
-        %>
+            <% if(typeof flash !== 'undefined' && flash) { %>
+                <%- MyViewValidate.toastMessage(flash)  %>
+            <% } %>
         });
       </script>
   </body>

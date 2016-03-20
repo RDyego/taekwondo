@@ -1,21 +1,30 @@
 <div class="container">
 	<div class="center">
-		<% if(flash && flash.err) { %>
+		<!--<% if(flash && flash.err) { %>
 			<ul class="alert alert-success">
-		<% Object.keys(flash.err).forEach(function(error) { %>
-			<li><%- JSON.stringify(flash.err[error])  %></li>	
-		<% }) %>	
+            <% Object.keys(flash.err).forEach(function(error) { 
+                var messages = flash.err[error].message;
+                Object.keys(messages).forEach(function(key) { %>
+                <li><%- JSON.stringify(messages[key][0].message)  %></li>	
+            <% });
+            }); %>	
 			</ul>
-		<% } %>
+		<% } %>-->
 		<form action="/athlete/create" enctype="multipart/form-data" method="post" class="col s12">
 			<div class="row">
 				<div class="input-field col s6">
-					<input id="name" name="name" type="text" class="validate" maxlength="50">
-					<label for="name" data-error="<%=i18n('Invalid')%>" data-success="<%=i18n('Ok')%>"><%=i18n('Name')%></label>
+					<input id="name" name="name" type="text" maxlength="50"
+                        value="<%= MyViewValidate.getValueAfterReloadByField(flash,'name') %>"
+                        class="validate <%= (MyViewValidate.validate(flash,'name').isValid ? '' : 'invalid') %>" 
+                        <%=(MyViewValidate.validate(flash,'name').isValid ? '' : 'placeholder')%>>
+					<label for="name" data-error="<%=(MyViewValidate.validate(flash,'name').message) || i18n('Invalid')%>" data-success="<%=i18n('Ok')%>"><%=i18n('Name')%></label>
 				</div>
 				<div class="input-field col s6">
-					<input id="email" name="email" type="email" class="validate" maxlength="50">
-					<label for="email" data-error="<%=i18n('Invalid')%>" data-success="<%=i18n('Ok')%>"><%=i18n('Email')%></label>
+					<input id="email" name="email" type="email" maxlength="50"
+                        value="<%= MyViewValidate.getValueAfterReloadByField(flash,'email') %>"
+                        class="validate <%= (MyViewValidate.validate(flash,'email').isValid ? '' : 'invalid') %>" 
+                        <%=(MyViewValidate.validate(flash,'email').isValid ? '' : 'placeholder')%>>
+					<label for="email" data-error="<%=(MyViewValidate.validate(flash,'email').message) || i18n('Invalid')%>" data-success="<%=i18n('Ok')%>"><%=i18n('Email')%></label>
 				</div>
 			</div>
 			<div class="row">

@@ -20,7 +20,7 @@ module.exports = {
     email: {
       type: 'email',
       //required: true,
-      //unique: true,
+      unique: true,
       size: 50
     },
     fatherName: {
@@ -104,5 +104,16 @@ module.exports = {
     validity: {
       type: 'date'
     },
-  }
+  },
+    //model validation messages definitions
+    validationMessages: { //hand for i18n & l10n
+        email: {
+            required: 'Email is required',
+            email: 'Provide valid email address',
+            unique: 'Email address is already taken'
+        },
+        name: {
+            required: 'Name is required',
+        }
+    }
 };
