@@ -131,11 +131,12 @@
 						  	data-athlete-naturalness="<%=i18n('Naturalness')%>: <%=(athlete.naturalness)?athlete.naturalness:''%>"  
 						  	data-athlete-bday="<%=i18n('Date of Birth')%>: <%=(athlete.bday)?moment(athlete.bday).format('DD/MM/YYYY'):''%>"
 						  	data-athlete-register-number="<%=i18n('Register Number')%>: <%=(athlete.registerNumber)?athlete.registerNumber:''%>" 
-						  	data-athlete-validity="<%=i18n('Validity')%> <%=i18n('for')%>: <%=(athlete.validity)
-						  			? moment(athlete.validity).add(-1, 'years').format('DD/MM/YYYY')
-					  				: moment().format('DD/MM/YYYY')%> <%=i18n('to')%>: <%=(athlete.validity)
-							  		? moment(athlete.validity).format('DD/MM/YYYY')
-								  	: moment().add(1, 'years').format('DD/MM/YYYY')%>"     
+						  	data-athlete-validity="<%=i18n('Validity')%> <%=i18n('for')%>: <%= (athlete.validityFrom) ?
+                                    moment(athlete.validityFrom).format('DD/MM/YYYY')
+                                    :((athlete.validity)?moment(athlete.validity).add(-1, 'years').format('DD/MM/YYYY'):moment().format('DD/MM/YYYY'))%> 
+                                    <%=i18n('to')%>: <%= (athlete.validityTo) ?
+                                    moment(athlete.validityTo).format('DD/MM/YYYY')
+                                    :((athlete.validity)?moment(athlete.validity).format('DD/MM/YYYY'):moment().add(1, 'years').format('DD/MM/YYYY'))%>"     
 							class="btn-floating waves-effect waves-light 
 							<%=(moment().isAfter(moment(athlete.validity)))?'amber':'green'%> 
 							tooltipped modal-trigger-card"

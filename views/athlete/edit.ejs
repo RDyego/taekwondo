@@ -132,6 +132,16 @@
 						</div>
 					</div>
 				</div>
+                <div class="input-field col s3">
+					<input id="validityFrom" name="validityFrom" type="date" class="datepicker" maxlength="20" 
+                        value="<%=(athlete.validityFrom)?moment(athlete.validityFrom).format('DD/MM/YYYY'):((athlete.validity)?moment(athlete.validity).add(-1, 'years').format('DD/MM/YYYY'):moment().format('DD/MM/YYYY'))%>">
+					<label for="validityFrom"><%=i18n('Validity From')%></label>
+				</div>
+                <div class="input-field col s3">
+					<input id="validityTo" name="validityTo" type="date" class="datepicker" maxlength="20" 
+                        value="<%=(athlete.validityTo)?moment(athlete.validityTo).format('DD/MM/YYYY'):((athlete.validity)?moment(athlete.validity).format('DD/MM/YYYY'):moment().add(1, 'years').format('DD/MM/YYYY'))%>">
+					<label for="validityTo"><%=i18n('Validity To')%></label>
+				</div>
 			</div>
 			<div class="row">
 				<button class="blue btn waves-effect waves-light" type="submit" name="action"><%=i18n('Edit')%>

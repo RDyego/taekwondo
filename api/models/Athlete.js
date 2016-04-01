@@ -104,6 +104,12 @@ module.exports = {
     validity: {
       type: 'date'
     },
+    validityFrom: {
+      type: 'date'
+    },
+    validityTo: {
+      type: 'date'
+    },
   },
     //model validation messages definitions
     validationMessages: { //hand for i18n & l10n

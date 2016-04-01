@@ -42,6 +42,16 @@ module.exports = {
 			viewModel.validity = d[1] + '/' + d[0] + '/' + d[2];
 
 		}
+		if (viewModel.validityFrom) {
+			var d = viewModel.validityFrom.split('/');
+			viewModel.validityFrom = d[1] + '/' + d[0] + '/' + d[2];
+
+		}
+		if (viewModel.validityTo) {
+			var d = viewModel.validityTo.split('/');
+			viewModel.validityTo = d[1] + '/' + d[0] + '/' + d[2];
+
+		}
 		if (viewModel.dateStarted) {
 			var d = viewModel.dateStarted.split('/');
 			viewModel.dateStarted = d[1] + '/' + d[0] + '/' + d[2];
@@ -93,7 +103,6 @@ module.exports = {
 							return res.redirect('/athlete/new');
 						}
 						
-						console.log('if');
 						var athleteCreatedWithPhotoSuccess = [{
 							name: 'athleteCreatedWithPhotoSuccess',
 							message: 'athlete created with photo Successfull.'
@@ -105,7 +114,6 @@ module.exports = {
 						res.redirect('/athlete/new');
 					});
 				}else{
-					console.log('else');
 					var athleteCreatedWithoutPhotoSuccess = [{
 						name: 'athleteCreatedWithoutPhotoSuccess',
 						message: 'athlete created without photo Successfull.'
@@ -218,6 +226,16 @@ module.exports = {
 		if (viewModel.validity) {
 			var d = viewModel.validity.split('/');
 			viewModel.validity = d[1] + '/' + d[0] + '/' + d[2];
+
+		}
+		if (viewModel.validityFrom) {
+			var d = viewModel.validityFrom.split('/');
+			viewModel.validityFrom = d[1] + '/' + d[0] + '/' + d[2];
+
+		}
+		if (viewModel.validityTo) {
+			var d = viewModel.validityTo.split('/');
+			viewModel.validityTo = d[1] + '/' + d[0] + '/' + d[2];
 
 		}
 		if (viewModel.dateStarted) {
