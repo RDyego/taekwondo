@@ -21,7 +21,31 @@ module.exports.bootstrap = function(cb) {
         password: 'asd',
         confirmation: 'asd'
     };
-
+    
+    //UPDATE registerNumber when it is null
+    Athlete.find().exec(function(err, records) {
+        if (err) return cb(err);
+        Athlete.find({}).sort({ "registerNumber": -1 }).limit(1).exec(function(err, recordFound) {
+            if (err) return next(err);
+            var newRegisterNumber = recordFound[0].registerNumber + 1;
+            if (records) {
+            _.each(records, function(athlete) {
+                if(!athlete.registerNumber){
+                        var viewModel = {
+                            registerNumber: newRegisterNumber++
+                        };
+                        console.log(viewModel);
+                        Athlete.update(athlete.id, viewModel).exec(function(err) {
+                            if (err) return cb(err);
+                            console.log(' athlete updated: ', athlete.name);
+                        });
+                }
+            });
+        }
+        });
+    });
+    
+    //UPDATE validityFrom and validityTo by validity
     // Athlete.find().exec(function(err, records) {
     //     if (err) return cb(err);
     //     var count = 0;

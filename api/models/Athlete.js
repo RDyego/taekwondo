@@ -111,6 +111,18 @@ module.exports = {
       type: 'date'
     },
   },
+    beforeCreate: function(athlete, next){
+        Athlete.find({}).sort({ "registerNumber": -1 }).limit(1).exec(function(err, recordFound) {
+            if (err) return next(err);
+            var newRegisterNumber = recordFound[0].registerNumber + 1;
+            if(!athlete['registerNumber']){
+                athlete['registerNumber'] = newRegisterNumber++;
+                console.log(athlete['registerNumber']);
+                console.log('athlete created: ', athlete['name']);
+            }
+            next();
+        });
+    },
     //model validation messages definitions
     validationMessages: { //hand for i18n & l10n
         email: {
