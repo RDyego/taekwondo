@@ -78,22 +78,22 @@
 						<i class="material-icons circle">folder</i>
 						<% } %>
 						<!-- Icon Alert -->	
-						<% if(moment().isAfter(moment(athlete.validity))) { %>
+						<% if(moment().isAfter(moment(athlete.validityTo))) { %>
 						<a  href="#modalBaseAthlete"
 							data-action="/athlete/updateValidity/<%=athlete.id%>"
 							data-form="#formBaseAthlete" 
 							data-message="Deseja atualizar a data de validade da carteira do <%=(athlete.name)?athlete.name:''%>
-							de <%=moment(athlete.validity).format('DD/MM/YYYY')%> para <%=moment().add(1,'years').format('DD/MM/YYYY')%>?"
+							de <%=moment(athlete.validityTo).format('DD/MM/YYYY')%> para <%=moment().add(1,'years').format('DD/MM/YYYY')%>?"
 							data-title="<%=i18n('Atualizar')%>"
 							data-button="<%=i18n('Atualizar')%>"
 							class="tooltipped modal-trigger a-icon-athlete"
-							data-position="right" data-delay="50" data-tooltip="Carteira vencida. Validade: <%=moment(athlete.validity).format('DD/MM/YYYY')%>">
+							data-position="right" data-delay="50" data-tooltip="Carteira vencida. Validade: <%=moment(athlete.validityTo).format('DD/MM/YYYY')%>">
 							<i class="material-icons icon-amber">warning</i>
 						</a>
 						<% } else { %>
 							<a href="#!" class="tooltipped a-icon-athlete"
 								data-position="right" data-delay="50" 
-								data-tooltip="Carteira Ok. Validade: <%=moment(athlete.validity).format('DD/MM/YYYY')%>">
+								data-tooltip="Carteira Ok. Validade: <%=moment(athlete.validityTo).format('DD/MM/YYYY')%>">
 								<i class="material-icons icon-green">mood</i>
 							</a>
 						<% } %>
@@ -114,13 +114,13 @@
 				<div class="container">
 					<div class="center">
 						<!--Action Card -->
-  						<a  href="<%=(moment().isAfter(moment(athlete.validity)))?'#modalBaseAthlete':'#modalCardAthlete'%>"
-						  	data-form="<%=(moment().isAfter(moment(athlete.validity)))?'#formBaseAthlete':'#formCardAthlete'%>"
-							data-action="<%=(moment().isAfter(moment(athlete.validity)))?'/athlete/updateValidity/'+athlete.id:''%>"
+  						<a  href="<%=(moment().isAfter(moment(athlete.validityTo)))?'#modalBaseAthlete':'#modalCardAthlete'%>"
+						  	data-form="<%=(moment().isAfter(moment(athlete.validityTo)))?'#formBaseAthlete':'#formCardAthlete'%>"
+							data-action="<%=(moment().isAfter(moment(athlete.validityTo)))?'/athlete/updateValidity/'+athlete.id:''%>"
 							data-message="Deseja atualizar a data de validade da carteira do <%=(athlete.name)?athlete.name:''%>
-							de <%=moment(athlete.validity).format('DD/MM/YYYY')%> para <%=moment().add(1,'years').format('DD/MM/YYYY')%>?"
-							data-title="<%=(moment().isAfter(moment(athlete.validity)))?i18n('Atualizar'):''%>"
-							data-button="<%=(moment().isAfter(moment(athlete.validity)))?i18n('Atualizar'):''%>"
+							de <%=moment(athlete.validityTo).format('DD/MM/YYYY')%> para <%=moment().add(1,'years').format('DD/MM/YYYY')%>?"
+							data-title="<%=(moment().isAfter(moment(athlete.validityTo)))?i18n('Atualizar'):''%>"
+							data-button="<%=(moment().isAfter(moment(athlete.validityTo)))?i18n('Atualizar'):''%>"
 						  	data-athlete-photo="<%=(athlete.photo)?('/athlete/showPhotoByFd/'+athlete.photo):''%>"  
 						  	data-athlete-name="<%=i18n('Name')%>: <%=(athlete.name)?athlete.name:''%>"  
 						  	data-athlete-graduation="<%=i18n('Graduation')%>: <%=(athlete.graduation)?i18n(athlete.graduation):''%>"
@@ -138,10 +138,10 @@
                                     moment(athlete.validityTo).format('DD/MM/YYYY')
                                     :((athlete.validity)?moment(athlete.validity).format('DD/MM/YYYY'):moment().add(1, 'years').format('DD/MM/YYYY'))%>"     
 							class="btn-floating waves-effect waves-light 
-							<%=(moment().isAfter(moment(athlete.validity)))?'amber':'green'%> 
+							<%=(moment().isAfter(moment(athlete.validityTo)))?'amber':'green'%> 
 							tooltipped modal-trigger-card"
 							data-position="right" data-delay="50" 
-							data-tooltip="<%=i18n('Card')%> <%=(moment().isAfter(moment(athlete.validity)))?'vencida':'ok'%>. Validade: <%=moment(athlete.validity).format('DD/MM/YYYY')%>">
+							data-tooltip="<%=i18n('Card')%> <%=(moment().isAfter(moment(athlete.validityTo)))?'vencida':'ok'%>. Validade: <%=moment(athlete.validityTo).format('DD/MM/YYYY')%>">
 							<i class="material-icons">credit_card</i>
 					 	</a>
 						<!--Action Show -->
