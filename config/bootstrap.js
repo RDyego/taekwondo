@@ -22,33 +22,33 @@ module.exports.bootstrap = function(cb) {
         confirmation: 'asd'
     };
 
-    Athlete.find().exec(function(err, records) {
-        if (err) return cb(err);
-        var count = 0;
-        if (records) {
-            _.each(records, function(athlete) {
-                var viewModel = {
-                    validityFrom: moment(athlete.validity).add(-1, 'years').format('DD/MM/YYYY'),
-                    validityTo: moment(athlete.validity).format('DD/MM/YYYY')
-                };
-                if (viewModel.validityFrom) {
-                    var d = viewModel.validityFrom.split('/');
-                    viewModel.validityFrom = d[1] + '/' + d[0] + '/' + d[2];
+    // Athlete.find().exec(function(err, records) {
+    //     if (err) return cb(err);
+    //     var count = 0;
+    //     if (records) {
+    //         _.each(records, function(athlete) {
+    //             var viewModel = {
+    //                 validityFrom: moment(athlete.validity).add(-1, 'years').format('DD/MM/YYYY'),
+    //                 validityTo: moment(athlete.validity).format('DD/MM/YYYY')
+    //             };
+    //             if (viewModel.validityFrom) {
+    //                 var d = viewModel.validityFrom.split('/');
+    //                 viewModel.validityFrom = d[1] + '/' + d[0] + '/' + d[2];
 
-                }
-                if (viewModel.validityTo) {
-                    var d = viewModel.validityTo.split('/');
-                    viewModel.validityTo = d[1] + '/' + d[0] + '/' + d[2];
+    //             }
+    //             if (viewModel.validityTo) {
+    //                 var d = viewModel.validityTo.split('/');
+    //                 viewModel.validityTo = d[1] + '/' + d[0] + '/' + d[2];
 
-                }
-                console.log(viewModel);
-                Athlete.update(athlete.id, viewModel).exec(function(err) {
-                    if (err) return cb(err);
-                    console.log(count++ + ' athlete updated: ', athlete.name);
-                });
-            });
-        }
-    });
+    //             }
+    //             console.log(viewModel);
+    //             Athlete.update(athlete.id, viewModel).exec(function(err) {
+    //                 if (err) return cb(err);
+    //                 console.log(count++ + ' athlete updated: ', athlete.name);
+    //             });
+    //         });
+    //     }
+    // });
 
     /*
     User.findOneByEmail(userModel.email).exec(function (err, userFound) {
