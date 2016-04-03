@@ -39,9 +39,9 @@ module.exports = {
 					var checkIfValidityValue = (validityFilter == true || validityFilter == 'true');
 					var currentDate = new Date(moment().format('YYYY-MM-DDTHH:mm:ss.SSS') + 'Z');
 					if (checkIfValidityValue) {
-						where = _.merge({ validity: { '>=': currentDate } }, where);
+						where = _.merge({ validityTo: { '>=': currentDate } }, where);
 					} else {
-						where = _.merge({ validity: { '<': currentDate } }, where);
+						where = _.merge({ validityTo: { '<': currentDate } }, where);
 					}
 				}
 			}
@@ -51,9 +51,9 @@ module.exports = {
 			var value = (hasValidity == true || hasValidity == 'true');
 			var currentDate = new Date(moment().format('YYYY-MM-DDTHH:mm:ss.SSS') + 'Z');
 			if (value) {
-				where = _.merge({ validity: { '>=': currentDate } }, where);
+				where = _.merge({ validityTo: { '>=': currentDate } }, where);
 			} else {
-				where = _.merge({ validity: { '<': currentDate } }, where);
+				where = _.merge({ validityTo: { '<': currentDate } }, where);
 			}
 		}
 
