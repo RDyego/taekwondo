@@ -23,7 +23,7 @@ module.exports.bootstrap = function(cb) {
     };
     
     //UPDATE registerNumber when it is null
-    Athlete.find().exec(function(err, records) {
+/*    Athlete.find().exec(function(err, records) {
         if (err) return cb(err);
         Athlete.find({}).sort({ "registerNumber": -1 }).limit(1).exec(function(err, recordFound) {
             if (err) return next(err);
@@ -44,7 +44,7 @@ module.exports.bootstrap = function(cb) {
         }
         });
     });
-    
+  */  
     //UPDATE validityFrom and validityTo by validity
     // Athlete.find().exec(function(err, records) {
     //     if (err) return cb(err);
@@ -74,7 +74,7 @@ module.exports.bootstrap = function(cb) {
     //     }
     // });
 
-    /*
+    
     User.findOneByEmail(userModel.email).exec(function (err, userFound) {
       if (err) return cb(err);
       if (!userFound) {
@@ -84,7 +84,7 @@ module.exports.bootstrap = function(cb) {
         });
       }
     });
-    */
+    
 
     var athleteModel00 = {
         name: 'R. Dyego',
