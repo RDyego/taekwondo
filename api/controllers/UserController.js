@@ -37,6 +37,10 @@ module.exports = {
 				name: 'email',
 				sortable: true
 			},
+			{
+				name: 'limit',
+				value: 10000
+			},
 		];
 		MyFind.findRecordsToView(req, res, next, attributesToBeSorted);
 	},
