@@ -24,6 +24,28 @@ module.exports = {
 				name: 'graduation',
 				sortable: true
 			},
+			{
+				name: 'limit',
+				value: 10
+			},
+		];
+		MyFind.findRecordsToView(req, res, next, attributesToBeSorted);
+	},
+
+	emails: function (req, res, next) {
+		var attributesToBeSorted = [
+			{
+				name: 'name',
+				sortable: true
+			},
+			{
+				name: 'graduation',
+				sortable: true
+			},
+			{
+				name: 'limit',
+				value: 10000
+			},
 		];
 		MyFind.findRecordsToView(req, res, next, attributesToBeSorted);
 	},
